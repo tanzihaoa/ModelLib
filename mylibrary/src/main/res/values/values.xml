@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+    <attr format="color" name="shapeBackgroundColor"/>
+    <attr format="color" name="shapeBorderColor"/>
+    <attr format="dimension" name="shapeBorderWidth"/>
+    <attr format="dimension" name="shapeCornerBottomLeft"/>
+    <attr format="dimension" name="shapeCornerBottomRight"/>
+    <attr format="dimension" name="shapeCornerTopLeft"/>
+    <attr format="dimension" name="shapeCornerTopRight"/>
+    <attr format="dimension" name="shapeCorners"/>
+    <attr format="enum" name="shapeGradientAngle">
+        
+        <enum name="TOP_BOTTOM" value="0"/>
+        
+        <enum name="TR_BL" value="1"/>
+        
+        <enum name="RIGHT_LEFT" value="2"/>
+        
+        <enum name="BR_TL" value="3"/>
+        
+        <enum name="BOTTOM_TOP" value="4"/>
+        
+        <enum name="BL_TR" value="5"/>
+        
+        <enum name="LEFT_RIGHT" value="6"/>
+        
+        <enum name="TL_BR" value="7"/>
+    </attr>
+    <attr format="color" name="shapeGradientCenterColor"/>
+    <attr format="color" name="shapeGradientEndColor"/>
+    <attr format="color" name="shapeGradientStartColor"/>
+    <attr format="color" name="textStateCheckedColor"/>
+    <attr format="color" name="textStateDefaultColor"/>
+    <attr format="color" name="textStateEnableColor"/>
+    <attr format="color" name="textStatePressedColor"/>
+    <attr format="color" name="textStateSelectedColor"/>
+    <color name="app_divider_color">#eeeeee</color>
+    <color name="focus_light">#F6DDB5</color>
+    <color name="lw_divider_color">#DFDFDF</color>
+    <color name="lw_edit_bg_color">#EFEFEF</color>
+    <color name="lw_progress_dialog_color">#FF4081</color>
+    <color name="lw_transparent">#00000000</color>
+    <color name="lw_txt_color_1">#111111</color>
+    <color name="lw_txt_color_3">#333333</color>
+    <color name="lw_txt_color_8">#888888</color>
+    <color name="lw_txt_write_color">#f0f0f0</color>
+    <color name="lw_write_color">#f0f0f0</color>
+    <color name="main_red_light_color">#D73B11</color>
+    <color name="main_yellow_sub_color">#fd9b00</color>
+    <style name="lw_AppProgressDialog" parent="Theme.AppCompat.Dialog.Alert">
+        
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/lw_txt_color_3</item>
+        
+        <item name="android:topDark">@android:color/white</item>
+        
+        <item name="android:bottomDark">@android:color/white</item>
+        
+        <item name="android:centerDark">@android:color/white</item>
+        
+        <item name="android:windowIsTranslucent">true</item>
+
+
+
+
+
+
+
+        <item name="android:indeterminateTintMode" ns1:ignore="NewApi">src_atop</item>
+        <item name="android:windowMinWidthMinor">80%</item>
+        <item name="windowFixedWidthMinor">80%</item>
+    </style>
+    <style name="lw_EdittextAlertDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/black</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+    <style name="lw_loading_dialog" parent="Theme.AppCompat.Dialog.Alert">
+
+
+        <item name="android:windowBackground">@android:color/transparent</item>
+
+
+        <item name="android:windowIsTranslucent">true</item>
+        
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.2</item>
+        <item name="android:windowAnimationStyle">@style/lw_loading_dialog_anim</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/lw_txt_color_3</item>
+        
+        <item name="android:windowMinWidthMinor">80%</item>
+        <item name="windowFixedWidthMinor">80%</item>
+    </style>
+    <style name="lw_loading_dialog_anim">
+        <item name="android:windowEnterAnimation">@anim/lw_slide_up</item>
+        <item name="android:windowExitAnimation">@anim/lw_slide_down</item>
+    </style>
+    <declare-styleable name="CheckBoxImageView">
+        <attr format="reference|color" name="cbiCheckImgSrc"/>
+        <attr format="reference|color" name="cbiCheckUnImgSrc"/>
+        <attr format="boolean" name="cbiIsChecked"/>
+    </declare-styleable>
+    <declare-styleable name="ShapeConstraintLayout">
+        
+        <attr name="shapeBorderWidth"/>
+        
+        <attr name="shapeBorderColor"/>
+        
+        <attr name="shapeBackgroundColor"/>
+        
+        <attr name="shapeGradientStartColor"/>
+        <attr name="shapeGradientCenterColor"/>
+        <attr name="shapeGradientEndColor"/>
+        <attr name="shapeGradientAngle"/>
+
+        
+        <attr name="shapeCorners"/>
+        <attr name="shapeCornerTopLeft"/>
+        <attr name="shapeCornerTopRight"/>
+        <attr name="shapeCornerBottomLeft"/>
+        <attr name="shapeCornerBottomRight"/>
+
+    </declare-styleable>
+    <declare-styleable name="ShapeConstraintLayoutLayer">
+        
+        <attr name="shapeBorderWidth"/>
+        
+        <attr name="shapeBorderColor"/>
+        
+        <attr name="shapeBackgroundColor"/>
+        
+        <attr name="shapeGradientStartColor"/>
+        <attr name="shapeGradientCenterColor"/>
+        <attr name="shapeGradientEndColor"/>
+        <attr name="shapeGradientAngle"/>
+        
+        <attr name="shapeCorners"/>
+        <attr name="shapeCornerTopLeft"/>
+        <attr name="shapeCornerTopRight"/>
+        <attr name="shapeCornerBottomLeft"/>
+        <attr name="shapeCornerBottomRight"/>
+    </declare-styleable>
+    <declare-styleable name="ShapeEditText">
+        
+        <attr name="shapeBorderWidth"/>
+        
+        <attr name="shapeBorderColor"/>
+        
+        <attr name="shapeBackgroundColor"/>
+        
+        <attr name="shapeGradientStartColor"/>
+        <attr name="shapeGradientCenterColor"/>
+        <attr name="shapeGradientEndColor"/>
+        <attr name="shapeGradientAngle"/>
+
+        
+        <attr name="shapeCorners"/>
+        <attr name="shapeCornerTopLeft"/>
+        <attr name="shapeCornerTopRight"/>
+        <attr name="shapeCornerBottomLeft"/>
+        <attr name="shapeCornerBottomRight"/>
+
+    </declare-styleable>
+    <declare-styleable name="ShapeFrameLayout">
+        
+        <attr name="shapeBorderWidth"/>
+        
+        <attr name="shapeBorderColor"/>
+        
+        <attr name="shapeBackgroundColor"/>
+        
+        <attr name="shapeGradientStartColor"/>
+        <attr name="shapeGradientCenterColor"/>
+        <attr name="shapeGradientEndColor"/>
+        <attr name="shapeGradientAngle"/>
+
+        
+        <attr name="shapeCorners"/>
+        <attr name="shapeCornerTopLeft"/>
+        <attr name="shapeCornerTopRight"/>
+        <attr name="shapeCornerBottomLeft"/>
+        <attr name="shapeCornerBottomRight"/>
+
+    </declare-styleable>
+    <declare-styleable name="ShapeImageView">
+        
+        <attr name="shapeBorderWidth"/>
+        
+        <attr name="shapeBorderColor"/>
+        
+        <attr name="shapeBackgroundColor"/>
+        
+        <attr name="shapeGradientStartColor"/>
+        <attr name="shapeGradientCenterColor"/>
+        <attr name="shapeGradientEndColor"/>
+        <attr name="shapeGradientAngle"/>
+        
+        <attr name="shapeCorners"/>
+        <attr name="shapeCornerTopLeft"/>
+        <attr name="shapeCornerTopRight"/>
+        <attr name="shapeCornerBottomLeft"/>
+        <attr name="shapeCornerBottomRight"/>
+    </declare-styleable>
+    <declare-styleable name="ShapeLinearLayout">
+        
+        <attr name="shapeBorderWidth"/>
+        
+        <attr name="shapeBorderColor"/>
+        
+        <attr name="shapeBackgroundColor"/>
+        
+        <attr name="shapeGradientStartColor"/>
+        <attr name="shapeGradientCenterColor"/>
+        <attr name="shapeGradientEndColor"/>
+        <attr name="shapeGradientAngle"/>
+
+        
+        <attr name="shapeCorners"/>
+        <attr name="shapeCornerTopLeft"/>
+        <attr name="shapeCornerTopRight"/>
+        <attr name="shapeCornerBottomLeft"/>
+        <attr name="shapeCornerBottomRight"/>
+
+    </declare-styleable>
+    <declare-styleable name="ShapeRelativeLayout">
+        
+        <attr name="shapeBorderWidth"/>
+        
+        <attr name="shapeBorderColor"/>
+        
+        <attr name="shapeBackgroundColor"/>
+        
+        <attr name="shapeGradientStartColor"/>
+        <attr name="shapeGradientCenterColor"/>
+        <attr name="shapeGradientEndColor"/>
+        <attr name="shapeGradientAngle"/>
+
+        
+        <attr name="shapeCorners"/>
+        <attr name="shapeCornerTopLeft"/>
+        <attr name="shapeCornerTopRight"/>
+        <attr name="shapeCornerBottomLeft"/>
+        <attr name="shapeCornerBottomRight"/>
+
+    </declare-styleable>
+    <declare-styleable name="ShapeTextView">
+        
+        <attr name="shapeBorderWidth"/>
+        
+        <attr name="shapeBorderColor"/>
+        
+        <attr name="shapeBackgroundColor"/>
+        
+        <attr name="shapeGradientStartColor"/>
+        <attr name="shapeGradientCenterColor"/>
+        <attr name="shapeGradientEndColor"/>
+        <attr name="shapeGradientAngle"/>
+
+        
+        <attr name="shapeCorners"/>
+        <attr name="shapeCornerTopLeft"/>
+        <attr name="shapeCornerTopRight"/>
+        <attr name="shapeCornerBottomLeft"/>
+        <attr name="shapeCornerBottomRight"/>
+
+        
+        <attr name="textStatePressedColor"/>
+        <attr name="textStateSelectedColor"/>
+        <attr name="textStateCheckedColor"/>
+        <attr name="textStateEnableColor"/>
+        <attr name="textStateDefaultColor"/>
+
+    </declare-styleable>
+    <declare-styleable name="ShapeView">
+        
+        <attr name="shapeBorderWidth"/>
+        
+        <attr name="shapeBorderColor"/>
+        
+        <attr name="shapeBackgroundColor"/>
+        
+        <attr name="shapeGradientStartColor"/>
+        <attr name="shapeGradientCenterColor"/>
+        <attr name="shapeGradientEndColor"/>
+        <attr name="shapeGradientAngle"/>
+        
+        <attr name="shapeCorners"/>
+        <attr name="shapeCornerTopLeft"/>
+        <attr name="shapeCornerTopRight"/>
+        <attr name="shapeCornerBottomLeft"/>
+        <attr name="shapeCornerBottomRight"/>
+    </declare-styleable>
+    <declare-styleable name="XProportionConstraintLayout">
+        <attr format="float" name="xplWidthRatio"/>
+        <attr format="float" name="xplHeightRatio"/>
+        <attr format="boolean" name="xplIsWidthTarget"/>
+    </declare-styleable>
+    <declare-styleable name="XProportionFrameLayout">
+        <attr name="xplWidthRatio"/>
+        <attr name="xplHeightRatio"/>
+        <attr name="xplIsWidthTarget"/>
+    </declare-styleable>
+    <declare-styleable name="XProportionImageView">
+        <attr format="float" name="xpiWidthRatio"/>
+        <attr format="float" name="xpiHeightRatio"/>
+        <attr format="boolean" name="xpiIsWidthTarget"/>
+    </declare-styleable>
+    <declare-styleable name="XProportionLinearLayout">
+        <attr name="xplWidthRatio"/>
+        <attr name="xplHeightRatio"/>
+        <attr name="xplIsWidthTarget"/>
+    </declare-styleable>
+    <declare-styleable name="XProportionRelativeLayout">
+        <attr name="xplWidthRatio"/>
+        <attr name="xplHeightRatio"/>
+        <attr name="xplIsWidthTarget"/>
+    </declare-styleable>
+    <declare-styleable name="XShapeCommonlyView">
+        
+        <attr name="shapeBorderWidth"/>
+        
+        <attr name="shapeBorderColor"/>
+        
+        <attr name="shapeBackgroundColor"/>
+        
+        <attr name="shapeGradientStartColor"/>
+        <attr name="shapeGradientCenterColor"/>
+        <attr name="shapeGradientEndColor"/>
+        
+        <attr name="shapeGradientAngle"/>
+        
+        <attr name="shapeCorners"/>
+        <attr name="shapeCornerTopLeft"/>
+        <attr name="shapeCornerTopRight"/>
+        <attr name="shapeCornerBottomLeft"/>
+        <attr name="shapeCornerBottomRight"/>
+    </declare-styleable>
+</resources>

@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.tzh.myapplication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

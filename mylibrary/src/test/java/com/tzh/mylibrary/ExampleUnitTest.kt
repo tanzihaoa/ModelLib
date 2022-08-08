@@ -1,4 +1,4 @@
-package com.example.mylibrary
+package com.tzh.mylibrary
 
 import org.junit.Test
 
