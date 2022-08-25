@@ -79,27 +79,6 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:backgroundDimEnabled">false</item>
     </style>
-    <style name="lw_loading_dialog" parent="Theme.AppCompat.Dialog.Alert">
-
-
-        <item name="android:windowBackground">@android:color/transparent</item>
-
-
-        <item name="android:windowIsTranslucent">true</item>
-        
-        <item name="android:backgroundDimEnabled">true</item>
-        <item name="android:backgroundDimAmount">0.2</item>
-        <item name="android:windowAnimationStyle">@style/lw_loading_dialog_anim</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/lw_txt_color_3</item>
-        
-        <item name="android:windowMinWidthMinor">80%</item>
-        <item name="windowFixedWidthMinor">80%</item>
-    </style>
-    <style name="lw_loading_dialog_anim">
-        <item name="android:windowEnterAnimation">@anim/lw_slide_up</item>
-        <item name="android:windowExitAnimation">@anim/lw_slide_down</item>
-    </style>
     <declare-styleable name="CheckBoxImageView">
         <attr format="reference|color" name="cbiCheckImgSrc"/>
         <attr format="reference|color" name="cbiCheckUnImgSrc"/>

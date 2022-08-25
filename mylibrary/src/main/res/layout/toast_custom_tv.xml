@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.tzh.mylibrary.shapeview.ShapeTextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:shapeBackgroundColor="#B3222222"
+    app:shapeCorners="4dp"
+    android:gravity="center"
+    android:maxWidth="200dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:textColor="#ffffff"
+    android:textSize="12sp">
+
+</com.tzh.mylibrary.shapeview.ShapeTextView>
