@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ImageTextView">
+        <!--图片宽-->
+        <attr name="itvImgWidth" format="dimension" />
+        <!--图片高-->
+        <attr name="itvImgHeight" format="dimension" />
+        <!--图片选中图片路径-->
+        <attr name="itvImgSelectSrc" format="reference|color" />
+        <!-- 选中图片染色-->
+        <attr name="itvImgSelectColor" format="color" />
+        <!-- 未选中图片路径-->
+        <attr name="itvImgUnSelectSrc" format="reference|color" />
+        <!-- 未选中图片染色-->
+        <attr name="itvImgUnSelectColor" format="color" />
+        <!--间隔-->
+        <attr name="itvSpace" format="dimension" />
+        <!-- 文字大小-->
+        <attr name="itvTextSize" format="dimension" />
+        <!-- 文字选中颜色-->
+        <attr name="itvTextSelectColor" format="color" />
+        <!--文字未选中颜色-->
+        <attr name="itvTextUnSelectColor" format="color" />
+        <!--文字-->
+        <attr name="itvText" format="string" />
+        <!--文字是否加粗-->
+        <attr name="itvTextIsBold" format="boolean" />
+
+
+        <!--右边显示的控件-->
+        <attr name="itvShowLocal" format="enum">
+            <!--图片在文字的上面-->
+            <enum name="TO_TEXT_TOP" value="0" />
+            <!--图片在文字的下面-->
+            <enum name="TO_TEXT_BOTTOM" value="1" />
+            <!--图片在文字的左边-->
+            <enum name="TO_TEXT_LEFT" value="2" />
+            <!--图片在文字的右边-->
+            <enum name="TO_TEXT_RIGHT" value="3" />
+        </attr>
+
+    </declare-styleable>
+    <declare-styleable name="LoadView">
+        <!--图片宽度-->
+        <attr name="lvImgWidth" format="dimension" />
+        <!--图片高度-->
+        <attr name="lvImgHeight" format="dimension" />
+
+        <!--加载动画宽度-->
+        <attr name="lvLoadWidth" format="dimension" />
+        <!--加载动画高度-->
+        <attr name="lvLoadHeight" format="dimension" />
+
+        <!--加载view 位置-->
+        <attr name="lvLoadLayoutIsCenter" format="boolean" />
+
+        <!--加载view  距离顶部的距离-->
+        <attr name="lvLoadLayout_top_margin" format="dimension" />
+
+        <!--状态view 位置 -->
+        <attr name="lvStateLayoutIsCenter" format="boolean" />
+
+        <!--状态view  距离顶部的距离 -->
+        <attr name="lvStateLayout_top_margin" format="dimension" />
+
+        <!--去xx 的按钮 文字-->
+        <attr name="lvGoButtonText" format="string" />
+
+        <!--直接显示哪个状态 -->
+        <attr name="lvShowState" format="enum">
+            <!--加载状态-->
+            <enum name="STATE_LOADING" value="1" />
+            <!--加载成功-->
+            <enum name="STATE_SUCCESS" value="2" />
+            <!--加载失败-->
+            <enum name="STATE_ERROR" value="3" />
+            <!--加载空-->
+            <enum name="STATE_EMPTY" value="4" />
+            <!--搜索空-->
+            <enum name="STATE_SEARCH_EMPTY" value="5" />
+            <!--需要登录-->
+            <enum name="STATE_LOGIN" value="6" />
+            <!--加载失败-老师已下线-->
+            <enum name="STATE_ERROR_TEACHER_NO" value="7" />
+        </attr>
+    </declare-styleable>
+</resources>

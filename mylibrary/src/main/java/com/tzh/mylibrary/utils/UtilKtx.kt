@@ -1,6 +1,8 @@
 package com.tzh.mylibrary.utils
 
+import android.content.Context
 import android.view.View
+import com.tzh.mylibrary.base.BaseApplication
 
 object UtilKtx {
 }
@@ -35,6 +37,34 @@ fun String?.toIntPlusOrString(addNum: Int = 1): String {
         return (it + addNum).toString()
     }
     return this.toDefault("")
+}
+
+
+/**
+ * sp 转 px
+ */
+fun Context?.spToPx(spValue: Float): Int {
+    val context = this ?: BaseApplication.sContext
+    val fontScale: Float = context.resources.displayMetrics.scaledDensity
+    return (spValue * fontScale + 0.5f).toInt()
+}
+
+/**
+ * dp 转 px
+ */
+fun Context?.dpToPx(dpValue: Float): Int {
+    val context = this ?: BaseApplication.sContext
+    val scale: Float = context.resources.displayMetrics.density
+    return (dpValue * scale + 0.5f).toInt()
+}
+
+/**
+ * px 转 dp
+ */
+fun Context?.pxToDp(pxValue: Float): Int {
+    val context = this ?: BaseApplication.sContext
+    val scale = context.resources.displayMetrics.density
+    return (pxValue / scale + 0.5f).toInt()
 }
 
 

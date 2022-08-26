@@ -1,7 +1,7 @@
 package com.tzh.myapplication.utils
 
 import android.util.Log
-import androidx.databinding.ktx.BuildConfig
+import com.tzh.myapplication.BuildConfig
 import com.tzh.mylibrary.utils.toDefault
 
 object LogUtils {

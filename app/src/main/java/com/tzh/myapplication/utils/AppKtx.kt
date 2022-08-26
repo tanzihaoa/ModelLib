@@ -15,23 +15,11 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import com.google.gson.reflect.TypeToken
 import com.tzh.mylibrary.base.BaseApplication
 import com.tzh.mylibrary.utils.GsonUtil
 import java.text.DecimalFormat
 
 object AppKtx {
-    /**
-     * 钱的单位转成String
-     *
-     */
-    fun onMoneyToString(money: Float): String {
-        return if (money == 0f) {
-            "0.00"
-        } else {
-            DecimalFormat("#.00").format(money)
-        }
-    }
 
     /**
      * 获取状态栏高度
@@ -144,20 +132,6 @@ fun <T> T?.toJsonString(): String? {
     return GsonUtil.GsonString(this)
 }
 
-/**
- * 列表转json
- */
-fun <T> MutableList<T>?.toJsonString(): String? {
-    this ?: return null
-
-    val type = object : TypeToken<List<T>>() {}.type //SUPPRESS CHECKSTYLE
-    return try {
-        GsonUtil.getGSON().toJson(this, type)
-    } catch (e: Exception) {
-        e.printStackTrace()
-        null
-    }
-}
 
 /**
  * string 转列表
@@ -276,17 +250,6 @@ inline fun Boolean.isTrue(block: () -> Unit): Boolean {
     if (this) block()
     return this
 }
-
-
-//@OptIn(ExperimentalContracts::class)
-//inline fun Boolean?.no(block: () -> Unit): Boolean? {
-//    contract {
-//        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
-//    }
-//    if (this != true) block()
-//    return this
-//}
-
 
 /**
  *  databinding 通过 inflate 绑定  layout
