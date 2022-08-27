@@ -40,48 +40,50 @@
         </attr>
 
     </declare-styleable>
-    <declare-styleable name="LoadView">
-        <!--图片宽度-->
-        <attr name="lvImgWidth" format="dimension" />
-        <!--图片高度-->
-        <attr name="lvImgHeight" format="dimension" />
 
-        <!--加载动画宽度-->
-        <attr name="lvLoadWidth" format="dimension" />
-        <!--加载动画高度-->
-        <attr name="lvLoadHeight" format="dimension" />
+    <!--App title bar-->
+    <declare-styleable name="XAppTitleBar">
+        <!--标题文字-->
+        <attr name="xtbTitleText" format="string" />
+        <!--标题文字颜色-->
+        <attr name="xtbTitleTxtColor" format="color" />
+        <!--返回按钮颜色-->
+        <attr name="xtbBackIconColor" format="color" />
+        <!--是否显示返回按钮 默认显示-->
+        <attr name="xtbBackIconIsShow" format="boolean" />
 
-        <!--加载view 位置-->
-        <attr name="lvLoadLayoutIsCenter" format="boolean" />
+        <attr name="xtbIsWindowTranslucentStatus" format="boolean" />
 
-        <!--加载view  距离顶部的距离-->
-        <attr name="lvLoadLayout_top_margin" format="dimension" />
+        <!--右边显示的控件-->
+        <attr name="xtbRightShowView" format="enum">
+            <!--右边不显示-->
+            <enum name="view_NONE" value="0" />
+            <!--右边显示文字-->
+            <enum name="VIEW_TEXT" value="1" />
+            <!--右边显示图片-->
+            <enum name="VIEW_IMAGE" value="2" />
 
-        <!--状态view 位置 -->
-        <attr name="lvStateLayoutIsCenter" format="boolean" />
-
-        <!--状态view  距离顶部的距离 -->
-        <attr name="lvStateLayout_top_margin" format="dimension" />
-
-        <!--去xx 的按钮 文字-->
-        <attr name="lvGoButtonText" format="string" />
-
-        <!--直接显示哪个状态 -->
-        <attr name="lvShowState" format="enum">
-            <!--加载状态-->
-            <enum name="STATE_LOADING" value="1" />
-            <!--加载成功-->
-            <enum name="STATE_SUCCESS" value="2" />
-            <!--加载失败-->
-            <enum name="STATE_ERROR" value="3" />
-            <!--加载空-->
-            <enum name="STATE_EMPTY" value="4" />
-            <!--搜索空-->
-            <enum name="STATE_SEARCH_EMPTY" value="5" />
-            <!--需要登录-->
-            <enum name="STATE_LOGIN" value="6" />
-            <!--加载失败-老师已下线-->
-            <enum name="STATE_ERROR_TEACHER_NO" value="7" />
         </attr>
+
+        <!--左边图片资源-->
+        <attr name="xtbLeftImgSrc" format="reference|color" />
+
+        <!--右边文字-->
+        <attr name="xtbRightText" format="string" />
+        <!--右边文字颜色-->
+        <attr name="xtbRightTxtColor" format="color" />
+        <!--右边文字大小-->
+        <attr name="xtbRightTxtSize" format="dimension" />
+        <!--右边文字是否加粗  默认不加粗-->
+        <attr name="xtbRightTxtIsBold" format="boolean" />
+
+        <!--右边图片资源-->
+        <attr name="xtbRightImgSrc" format="reference|color" />
+        <!--右边图片颜色-->
+        <attr name="xtbRightImgColor" format="integer" />
+        <!--右边图片宽-->
+        <attr name="xtbRightImgWidth" format="dimension" />
+        <!--右边图片高-->
+        <attr name="xtbRightImgHeight" format="dimension" />
     </declare-styleable>
 </resources>

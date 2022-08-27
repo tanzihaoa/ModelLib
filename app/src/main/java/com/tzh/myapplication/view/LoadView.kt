@@ -10,9 +10,14 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.view.updatePadding
+import com.bumptech.glide.Glide
+import com.tzh.myapplication.R
+import com.tzh.myapplication.databinding.StatusLayoutLoadBinding
+import com.tzh.myapplication.databinding.StatusLayoutStateBinding
+import com.tzh.myapplication.network.ApiThrowable
 import com.tzh.myapplication.utils.bindingInflateLayout
-import com.tzh.mylibrary.R
 import com.tzh.mylibrary.utils.dpToPx
+import com.tzh.mylibrary.utils.toDefault
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
@@ -52,6 +57,11 @@ class LoadView @JvmOverloads constructor(
          * 搜索 空
          */
         private const val STATE_SEARCH_EMPTY = 5
+
+        /**
+         * 老师为 空
+         */
+        private const val STATE_MASTER_EMPTY = 6
 
     }
 
@@ -232,11 +242,11 @@ class LoadView @JvmOverloads constructor(
                     }
                     binding.loadImg.setWillNotDraw(false)
                     Glide.with(binding.loadImg.context.applicationContext).clear(binding.loadImg)
-                    Glide.with(binding.loadImg.context.applicationContext).asGif().load(R.drawable.page_loading).into(binding.loadImg)
+                    Glide.with(binding.loadImg.context.applicationContext).asGif().load(R.mipmap.page_loading).into(binding.loadImg)
                 }
             }
 
-            STATE_SUCCESS, STATE_ERROR, STATE_EMPTY, STATE_SEARCH_EMPTY, ApiThrowable.HTTP_ERROR_NO_EXIT_OR_DELETE -> {
+            STATE_SUCCESS, STATE_ERROR, STATE_EMPTY, STATE_SEARCH_EMPTY,STATE_MASTER_EMPTY, ApiThrowable.HTTP_ERROR_NO_EXIT_OR_DELETE -> {
                 bindingInflateLayout<StatusLayoutStateBinding>(R.layout.status_layout_state).let { binding ->
                     updateView(binding.stateImg, binding.stateLayout)
 
@@ -303,7 +313,19 @@ class LoadView @JvmOverloads constructor(
                                 binding.stateGoLayout.visibility = View.VISIBLE
                             }
                             binding.stateImg.setWillNotDraw(false)
-                            binding.stateImg.setImageResource(R.mipmap.load_state_empty)
+                            binding.stateImg.setImageResource(R.mipmap.load_state_search_empty)
+                        }
+                        STATE_MASTER_EMPTY -> {
+                            //老师为空
+                            if (mStateBigTipStr.isNullOrEmpty()) {
+                                mStateBigTipStr = "暂无数据"
+                            }
+                            binding.stateLayout.visibility = View.VISIBLE
+                            if (!mGoButtonText.isNullOrEmpty()) {
+                                binding.stateGoLayout.visibility = View.VISIBLE
+                            }
+                            binding.stateImg.setWillNotDraw(false)
+                            binding.stateImg.setImageResource(R.mipmap.load_state_master_empty)
                         }
                     }
 
@@ -415,18 +437,24 @@ class LoadView @JvmOverloads constructor(
         }
     }
 
-    @Deprecated("请使用 loadingForSearch")
+    /**
+     *  搜索 加载数据
+     * @param haveData 是否有数据
+     * @param bigTip 大字提示
+     * @param minTip 小字提示
+     */
     @JvmOverloads
-    fun loadingForSearchResult(haveResult: Boolean, isToActivity: Boolean = false) {
+    fun loadingForMaster(haveData: Boolean, bigTip: String? = "暂无数据", minTip: String? = "") {
         visibility = View.VISIBLE
-        mStateBigTipStr = "没有搜索结果"
-        mStateMinTipStr = "换个关键词再试试吧~"
-        if (haveResult) {
+        mStateBigTipStr = bigTip.toDefault("暂无数据")
+        mStateMinTipStr = minTip.toDefault("")
+        if (haveData) {
             show(STATE_SUCCESS)
         } else {
-            show(STATE_SEARCH_EMPTY)
+            show(STATE_MASTER_EMPTY)
         }
     }
+
 
     /**
      * 加载失败
@@ -516,30 +544,6 @@ class LoadView @JvmOverloads constructor(
         }
     }
 
-    @Deprecated("弃用")
-    fun loadingProgressT() {
-
-    }
-
-    @Deprecated("弃用")
-    fun loadingProgress() {
-
-    }
-
-    @Deprecated("弃用")
-    fun setReloadClickListener(listener: OnClickListener) {
-
-    }
-
-    @Deprecated("弃用")
-    fun setToClickListener(listener: OnClickListener) {
-
-    }
-
-    @Deprecated("弃用")
-    fun loadingForResultShowTo(b1: Boolean, s1: String, b2: Boolean, s2: String) {
-
-    }
 
     /**
      * 判断是否有网络连接

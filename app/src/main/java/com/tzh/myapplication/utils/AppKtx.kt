@@ -12,9 +12,12 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.annotation.DrawableRes
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import com.bumptech.glide.Glide
 import com.tzh.mylibrary.base.BaseApplication
 import com.tzh.mylibrary.utils.GsonUtil
 import java.text.DecimalFormat
@@ -287,4 +290,28 @@ fun Long.supplement(length: Int, default: String = "0"): String {
         }
     }
     return thisStr
+}
+
+/**
+ * 加载gif
+ */
+fun ImageView?.loadAssetsGif(imgName: String?) {
+    this ?: return
+    if (context == null) return
+
+    if (imgName.isNullOrEmpty()) return
+
+    Glide.with(this).asGif().load("file:///android_asset/ico_image/$imgName").into(this)
+}
+
+
+fun ImageView?.loadGif(@DrawableRes res: Int) {
+    this ?: return
+    Glide.with(this).asGif().load(res).into(this)
+}
+
+fun ImageView?.loadGif(res: String?) {
+    this ?: return
+    res ?: return
+    Glide.with(this).asGif().load(res).into(this)
 }

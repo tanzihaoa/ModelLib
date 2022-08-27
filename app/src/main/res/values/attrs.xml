@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LoadView">
+        <!--图片宽度-->
+        <attr name="lvImgWidth" format="dimension" />
+        <!--图片高度-->
+        <attr name="lvImgHeight" format="dimension" />
+
+        <!--加载动画宽度-->
+        <attr name="lvLoadWidth" format="dimension" />
+        <!--加载动画高度-->
+        <attr name="lvLoadHeight" format="dimension" />
+
+        <!--加载view 位置-->
+        <attr name="lvLoadLayoutIsCenter" format="boolean" />
+
+        <!--加载view  距离顶部的距离-->
+        <attr name="lvLoadLayout_top_margin" format="dimension" />
+
+        <!--状态view 位置 -->
+        <attr name="lvStateLayoutIsCenter" format="boolean" />
+
+        <!--状态view  距离顶部的距离 -->
+        <attr name="lvStateLayout_top_margin" format="dimension" />
+
+        <!--去xx 的按钮 文字-->
+        <attr name="lvGoButtonText" format="string" />
+
+        <!--直接显示哪个状态 -->
+        <attr name="lvShowState" format="enum">
+            <!--加载状态-->
+            <enum name="STATE_LOADING" value="1" />
+            <!--加载成功-->
+            <enum name="STATE_SUCCESS" value="2" />
+            <!--加载失败-->
+            <enum name="STATE_ERROR" value="3" />
+            <!--加载空-->
+            <enum name="STATE_EMPTY" value="4" />
+            <!--搜索空-->
+            <enum name="STATE_SEARCH_EMPTY" value="5" />
+            <!--需要登录-->
+            <enum name="STATE_LOGIN" value="6" />
+            <!--加载失败-老师已下线-->
+            <enum name="STATE_ERROR_TEACHER_NO" value="7" />
+        </attr>
+    </declare-styleable>
+</resources>

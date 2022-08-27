@@ -1,11 +1,19 @@
 package com.tzh.myapplication
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import com.tzh.myapplication.base.AppBaseActivity
+import com.tzh.myapplication.databinding.ActivityMainBinding
+import com.tzh.myapplication.ui.ListActivity
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main) {
+    override fun initView() {
+        binding.v = this
+    }
+
+    override fun initData() {
+
+    }
+
+    fun toRecycler(){
+        ListActivity.start(this)
     }
 }
