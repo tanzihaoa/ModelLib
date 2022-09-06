@@ -5,11 +5,16 @@ import com.tzh.myapplication.databinding.AdapterListBinding
 import com.tzh.myapplication.ui.dto.ListDTO
 import com.tzh.mylibrary.adapter.XRvBindingHolder
 import com.tzh.mylibrary.adapter.XRvBindingPureDataAdapter
+import com.tzh.mylibrary.utils.ToastUtil
+import com.tzh.mylibrary.utils.setOnClickNoDouble
 
 class ListAdapter : XRvBindingPureDataAdapter<ListDTO>(R.layout.adapter_list){
     override fun onBindViewHolder(holder: XRvBindingHolder, position: Int, data: ListDTO) {
         holder.getBinding<AdapterListBinding>().run {
             this.dto = data
+            this.title.setOnClickNoDouble {
+                ToastUtil.show(data.title)
+            }
         }
     }
 }

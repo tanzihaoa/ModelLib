@@ -11,7 +11,11 @@ class XRvBindingHolder(private val binding: ViewDataBinding) : RecyclerView.View
 
     companion object {
         fun createHolder(parent: ViewGroup, @LayoutRes layoutId: Int): XRvBindingHolder {
-            return XRvBindingHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context), layoutId, parent, false))
+            return XRvBindingHolder(DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context),
+                layoutId,
+                parent,
+                false))
         }
     }
 
