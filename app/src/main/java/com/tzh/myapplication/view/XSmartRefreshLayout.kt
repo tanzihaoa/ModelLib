@@ -95,7 +95,7 @@ class XSmartRefreshLayout @JvmOverloads constructor(context: Context, attrs: Att
      */
     fun loadSuccess(
         adapter: XRvBindingPureDataAdapter<*>? = null,
-        loadView: com.tzh.myapplication.view.LoadView? = null,
+        loadView: LoadView? = null,
         isShowNoData: Boolean = true,
         noDataTip: String? = null,
         noDataMinTip: String? = null
@@ -139,7 +139,7 @@ class XSmartRefreshLayout @JvmOverloads constructor(context: Context, attrs: Att
      * 加载失败
      */
     fun loadError(
-        loadView: com.tzh.myapplication.view.LoadView? = null,
+        loadView: LoadView? = null,
         throwable: Throwable? = null,
         isReLoad: Boolean = true
     ) {
@@ -155,7 +155,7 @@ class XSmartRefreshLayout @JvmOverloads constructor(context: Context, attrs: Att
         }
 
         //只有当loadview 是加载状态时，smart加载失败，才能显示失败的缺省状态
-        if (loadView?.mStatus.toDefault(-1) == com.tzh.myapplication.view.LoadView.STATE_LOADING) {
+        if (loadView?.mStatus.toDefault(-1) == LoadView.STATE_LOADING) {
             //当loadview的状态时加载状态时，如果出现错误，则显示错误界面
             //处理数据加载错误的缺省状态
             loadView?.loadingError(throwable, isReLoad)

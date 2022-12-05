@@ -3,7 +3,7 @@
     <data>
         <variable
             name="dto"
-            type="com.tzh.myapplication.ui.dto.ListDTO" />
+            type="com.tzh.myapplication.ui.dto.MasterShopListDto" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"

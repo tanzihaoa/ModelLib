@@ -175,13 +175,7 @@ inline fun <reified T> xHttpRequest(): T {
 /**
  * 自动处理activity/fragment 生命周期
  */
-fun <T : BaseResDto<*>> Observable<T>.xWithDefault(
-    owner: LifecycleOwner,
-    isRetryRequest: Boolean = false
-): ObservableSubscribeProxy<T> {
-    if (isRetryRequest) {
-        //  this.retryWhen(RetryWithDelay(3, 3000))
-    }
+fun <T : BaseResDto<*>> Observable<T>.xWithDefault(owner: LifecycleOwner): ObservableSubscribeProxy<T> {
     return this.subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .doOnNext(DefaultFailure())

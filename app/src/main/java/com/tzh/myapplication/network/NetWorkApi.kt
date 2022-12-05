@@ -22,7 +22,7 @@ object NetWorkApi {
                 //当前页数
                 put("p", p)
                 //每页数量
-                put("num", HttpHelper.PAGE_LIMIT_20)
+                put("num", HttpHelper.PAGE_LIMIT_10)
                 //关键词搜索
                 if (!keywords.isNullOrEmpty()) {
                     put("keywords", keywords)

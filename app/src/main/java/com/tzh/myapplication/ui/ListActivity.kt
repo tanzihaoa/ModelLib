@@ -8,11 +8,11 @@ import com.tzh.myapplication.databinding.ActivityListBinding
 import com.tzh.myapplication.network.DefaultError
 import com.tzh.myapplication.network.NetWorkApi
 import com.tzh.myapplication.ui.adapter.ListAdapter
-import com.tzh.myapplication.ui.dto.ListDTO
+import com.tzh.myapplication.view.LoadView
+import com.tzh.mylibrary.utils.ToastUtil
 import com.tzh.mylibrary.utils.initAdapter
 import com.tzh.mylibrary.utils.linear
 import com.tzh.mylibrary.utils.verDivider
-import io.reactivex.functions.Consumer
 
 class ListActivity : AppBaseActivity<ActivityListBinding>(R.layout.activity_list) {
     companion object {
@@ -29,37 +29,34 @@ class ListActivity : AppBaseActivity<ActivityListBinding>(R.layout.activity_list
     override fun initView() {
         binding.recyclerView.linear().initAdapter(mAdapter).verDivider(8f)
         binding.smartLayout.setOnRefreshLoadMoreListener {
-            getData()
+            requestData()
         }
+        binding.loadView.onStateListener = object : LoadView.OnStateListener(){
+            override fun onReload() {
+                requestData()
+            }
+        }
+        requestData()
     }
 
     override fun initData() {
-        getData()
-        requestData()
+
     }
     /**
      * 获取列表数据
      */
     private fun requestData() {
         NetWorkApi.masterShopList(this, binding.smartLayout.pageIndex, "", "", "")
-            .subscribe(Consumer {
+            .subscribe({
                 binding.smartLayout.pageCount = it.getDataDto().maxPage
                 if ( binding.smartLayout.isRefresh) {
-//                    mAdapter.setDatas(it.getDataDto().getListDto(), true)
+                    mAdapter.setDatas(it.getDataDto().getListDto(), true)
                 } else {
-//                    mAdapter.addDatas(it.getDataDto().getListDto(), true)
+                    mAdapter.addDatas(it.getDataDto().getListDto(), true)
                 }
-                binding.smartLayout.loadSuccess(mAdapter)
+                ToastUtil.show("hhhh")
+                binding.smartLayout.loadSuccess(mAdapter,binding.loadView)
             }, DefaultError(binding.loadView, binding.smartLayout))
     }
 
-    private fun getData(){
-        binding.smartLayout.pageCount = 4
-        if(binding.smartLayout.isRefresh){
-            mAdapter.setDatas(ListDTO().getList())
-        }else{
-            mAdapter.addDatas(ListDTO().getList())
-        }
-        binding.smartLayout.loadSuccess(mAdapter,binding.loadView)
-    }
 }
