@@ -16,8 +16,8 @@ import com.tzh.myapplication.databinding.StatusLayoutLoadBinding
 import com.tzh.myapplication.databinding.StatusLayoutStateBinding
 import com.tzh.myapplication.network.ApiThrowable
 import com.tzh.myapplication.utils.bindingInflateLayout
-import com.tzh.mylibrary.utils.dpToPx
-import com.tzh.mylibrary.utils.toDefault
+import com.tzh.myapplication.utils.dpToPx
+import com.tzh.myapplication.utils.toDefault
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException

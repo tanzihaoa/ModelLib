@@ -1,11 +1,9 @@
 package com.tzh.mylibrary.view
 
 import android.content.Context
-import android.content.res.Resources
 import android.util.AttributeSet
-import android.util.TypedValue
 import android.view.View
-import com.tzh.mylibrary.utils.getStatusBarHeight
+import com.tzh.mylibrary.util.AppKtx.getStatusBarHeight
 
 
 /**
@@ -24,7 +22,9 @@ class XAppTitleView @JvmOverloads constructor(
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        setMeasuredDimension(widthMeasureSpec, getStatusBarHeight(context))
+        setMeasuredDimension(widthMeasureSpec,
+            getStatusBarHeight(context)
+        )
     }
 
 }

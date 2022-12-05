@@ -15,8 +15,8 @@ import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import com.tzh.mylibrary.R
-import com.tzh.mylibrary.utils.*
-
+import com.tzh.mylibrary.util.*
+import com.tzh.mylibrary.util.AppKtx.getStatusBarHeight
 
 class XAppTitleBar @JvmOverloads constructor(
     context: Context,
@@ -119,7 +119,7 @@ class XAppTitleBar @JvmOverloads constructor(
         //右边是否显示图片
         val rightShowView = typedArray.getInt(R.styleable.XAppTitleBar_xtbRightShowView, 0)
 
-        mRightTxt = typedArray.getString(R.styleable.XAppTitleBar_xtbRightText).toDefault("")
+        mRightTxt = typedArray.getString(R.styleable.XAppTitleBar_xtbRightText).toString()
 
         mRightTextColor =
             typedArray.getResourceId(
@@ -183,7 +183,7 @@ class XAppTitleBar @JvmOverloads constructor(
 
         if (isWindowTranslucentStatus) {
             //重置高度
-            setPadding(0, getStatusBarHeight(context), 0, 0)
+            setPadding(0,getStatusBarHeight(context), 0, 0)
         } else {
             setPadding(0, 0, 0, 0)
         }
@@ -310,5 +310,6 @@ class XAppTitleBar @JvmOverloads constructor(
         mRightViewText?.setOnClickNoDouble { listener.onClick(it) }
         mRightViewImage?.setOnClickNoDouble { listener.onClick(it) }
     }
+
 
 }

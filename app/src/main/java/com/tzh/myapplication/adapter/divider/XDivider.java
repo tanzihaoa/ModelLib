@@ -1,4 +1,4 @@
-package com.tzh.mylibrary.adapter.divider;
+package com.tzh.myapplication.adapter.divider;
 
 public class XDivider {
 

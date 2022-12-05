@@ -1,4 +1,4 @@
-package com.tzh.mylibrary.adapter
+package com.tzh.myapplication.adapter
 
 import android.view.View
 import android.view.ViewGroup

@@ -1,4 +1,4 @@
-package com.tzh.mylibrary.utils
+package com.tzh.mylibrary.util
 
 import android.content.Context
 

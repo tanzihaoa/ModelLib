@@ -2,9 +2,9 @@ package com.tzh.myapplication.network
 
 import com.tzh.myapplication.ui.dto.BaseResDto
 import com.tzh.myapplication.utils.LogUtils
-import com.tzh.mylibrary.utils.GsonUtil
-import com.tzh.mylibrary.utils.ToastUtil
-import com.tzh.mylibrary.utils.toDefault
+import com.tzh.myapplication.utils.GsonUtil
+import com.tzh.myapplication.utils.ToastUtil
+import com.tzh.myapplication.utils.toDefault
 import io.reactivex.functions.Consumer
 
 /**
@@ -20,7 +20,7 @@ class DefaultFailure : Consumer<BaseResDto<*>> {
 
     @Throws(Exception::class)
     override fun accept(responseDto: BaseResDto<*>) {
-        LogUtils.e("accept==",GsonUtil.GsonString(responseDto))
+        LogUtils.e("accept==", GsonUtil.GsonString(responseDto))
         when (responseDto.status) {
             REQUEST_SUCCESS -> {
                 //如果data，或者 list中data为null，则直接走 异常流程

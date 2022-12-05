@@ -9,10 +9,10 @@ import com.tzh.myapplication.network.DefaultError
 import com.tzh.myapplication.network.NetWorkApi
 import com.tzh.myapplication.ui.adapter.ListAdapter
 import com.tzh.myapplication.view.LoadView
-import com.tzh.mylibrary.utils.ToastUtil
-import com.tzh.mylibrary.utils.initAdapter
-import com.tzh.mylibrary.utils.linear
-import com.tzh.mylibrary.utils.verDivider
+import com.tzh.myapplication.utils.ToastUtil
+import com.tzh.myapplication.utils.initAdapter
+import com.tzh.myapplication.utils.linear
+import com.tzh.myapplication.utils.verDivider
 
 class ListActivity : AppBaseActivity<ActivityListBinding>(R.layout.activity_list) {
     companion object {

@@ -1,4 +1,4 @@
-package com.tzh.mylibrary.base
+package com.tzh.myapplication.base
 
 import android.app.Application
 import android.content.Context

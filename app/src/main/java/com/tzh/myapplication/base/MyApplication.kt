@@ -6,7 +6,6 @@ import androidx.multidex.MultiDex
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.tzh.myapplication.view.load.AppLoadLayout
 import com.tzh.myapplication.view.load.AppRefreshLayout
-import com.tzh.mylibrary.base.BaseApplication
 
 class MyApplication : BaseApplication() {
 

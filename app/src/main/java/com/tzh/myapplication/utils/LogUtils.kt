@@ -1,7 +1,7 @@
 package com.tzh.myapplication.utils
 
 import android.util.Log
-import com.tzh.mylibrary.utils.toDefault
+import com.tzh.myapplication.utils.toDefault
 
 object LogUtils {
     private const val TAG = "LogUtils"

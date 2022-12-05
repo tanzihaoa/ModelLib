@@ -8,8 +8,8 @@ import com.scwang.smart.refresh.layout.constant.RefreshState
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
 import com.scwang.smart.refresh.layout.listener.ScrollBoundaryDecider
 import com.scwang.smart.refresh.layout.simple.SimpleBoundaryDecider
-import com.tzh.mylibrary.adapter.XRvBindingPureDataAdapter
-import com.tzh.mylibrary.utils.toDefault
+import com.tzh.myapplication.adapter.XRvBindingPureDataAdapter
+import com.tzh.myapplication.utils.toDefault
 
 
 class XSmartRefreshLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : SmartRefreshLayout(context, attrs) {

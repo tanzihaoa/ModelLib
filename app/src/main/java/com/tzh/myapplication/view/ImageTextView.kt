@@ -1,4 +1,4 @@
-package com.tzh.mylibrary.image
+package com.tzh.myapplication.view
 
 import android.content.Context
 import android.graphics.drawable.Drawable
@@ -7,9 +7,9 @@ import android.util.TypedValue
 import android.view.Gravity
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
-import com.tzh.mylibrary.R
+import com.tzh.myapplication.R
+import com.tzh.myapplication.utils.*
 import com.tzh.mylibrary.shapeview.ShapeLinearLayout
-import com.tzh.mylibrary.utils.*
 
 /**
  * 图片和文字view
@@ -77,12 +77,12 @@ class ImageTextView @JvmOverloads constructor(
     /**
      * 文字选中状态颜色
      */
-    private var mTextSelectColor: Int = R.color.color_333
+    private var mTextSelectColor: Int = R.color.color_000
 
     /**
      * 文字未选中状态颜色
      */
-    private var mTextUnSelectColor: Int = R.color.color_333
+    private var mTextUnSelectColor: Int = R.color.color_000
 
     /**
      * 图片文字间距
@@ -122,7 +122,7 @@ class ImageTextView @JvmOverloads constructor(
 
         val space = typedArray.getDimensionPixelOffset(R.styleable.ImageTextView_itvSpace, DpToUtil.sp2px(context, 5f))
         val textSize = typedArray.getDimension(R.styleable.ImageTextView_itvTextSize, DpToUtil.sp2px(context, 14f).toFloat())
-        mTextUnSelectColor = typedArray.getResourceId(R.styleable.ImageTextView_itvTextUnSelectColor, R.color.color_333)
+        mTextUnSelectColor = typedArray.getResourceId(R.styleable.ImageTextView_itvTextUnSelectColor, R.color.color_000)
         mTextSelectColor = typedArray.getResourceId(R.styleable.ImageTextView_itvTextSelectColor, -1)
         if (mTextSelectColor == -1) {
             mTextSelectColor = mTextUnSelectColor
@@ -144,7 +144,7 @@ class ImageTextView @JvmOverloads constructor(
 
         mTextview.setTextStyle(textIsBold)
 
-        mSpaceDp = DpToUtil.px2dip(context, space.toFloat()).toFloat()
+        mSpaceDp = com.tzh.myapplication.utils.DpToUtil.px2dip(context, space.toFloat()).toFloat()
         gravity = Gravity.CENTER
 
 

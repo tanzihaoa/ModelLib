@@ -1,10 +1,10 @@
-package com.tzh.mylibrary.utils
+package com.tzh.myapplication.utils
 
 import android.content.Context
 import android.content.res.Resources
 import android.util.TypedValue
 import android.view.View
-import com.tzh.mylibrary.base.BaseApplication
+import com.tzh.myapplication.base.BaseApplication
 
 object UtilKtx {
 }
@@ -46,7 +46,7 @@ fun String?.toIntPlusOrString(addNum: Int = 1): String {
  * sp 转 px
  */
 fun Context?.spToPx(spValue: Float): Int {
-    val context = this ?: BaseApplication.sContext
+    val context = this ?: com.tzh.myapplication.base.BaseApplication.sContext
     val fontScale: Float = context.resources.displayMetrics.scaledDensity
     return (spValue * fontScale + 0.5f).toInt()
 }
@@ -55,7 +55,7 @@ fun Context?.spToPx(spValue: Float): Int {
  * dp 转 px
  */
 fun Context?.dpToPx(dpValue: Float): Int {
-    val context = this ?: BaseApplication.sContext
+    val context = this ?: com.tzh.myapplication.base.BaseApplication.sContext
     val scale: Float = context.resources.displayMetrics.density
     return (dpValue * scale + 0.5f).toInt()
 }
@@ -64,7 +64,7 @@ fun Context?.dpToPx(dpValue: Float): Int {
  * px 转 dp
  */
 fun Context?.pxToDp(pxValue: Float): Int {
-    val context = this ?: BaseApplication.sContext
+    val context = this ?: com.tzh.myapplication.base.BaseApplication.sContext
     val scale = context.resources.displayMetrics.density
     return (pxValue / scale + 0.5f).toInt()
 }

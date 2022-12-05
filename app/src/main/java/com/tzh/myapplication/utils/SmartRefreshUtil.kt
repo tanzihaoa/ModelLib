@@ -2,9 +2,9 @@ package com.tzh.myapplication.utils
 
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.scwang.smart.refresh.layout.constant.RefreshState
+import com.tzh.myapplication.adapter.XRvBindingPureDataAdapter
 import com.tzh.myapplication.view.LoadView
-import com.tzh.mylibrary.adapter.XRvBindingPureDataAdapter
-import com.tzh.mylibrary.utils.toDefault
+import com.tzh.myapplication.utils.toDefault
 
 /**
  * 加载数据 成功 使用这个
