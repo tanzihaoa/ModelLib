@@ -60,12 +60,6 @@
         
         <item name="android:windowIsTranslucent">true</item>
 
-
-
-
-
-
-
         <item name="android:indeterminateTintMode" ns1:ignore="NewApi">src_atop</item>
         <item name="android:windowMinWidthMinor">80%</item>
         <item name="windowFixedWidthMinor">80%</item>
