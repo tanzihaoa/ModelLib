@@ -182,24 +182,3 @@ fun <T : BaseResDto<*>> Observable<T>.xWithDefault(owner: LifecycleOwner): Obser
         .`as`(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(owner, Lifecycle.Event.ON_DESTROY)))
 
 }
-
-/**
- * 需要手动 处理线程是否关闭
- */
-fun <T : BaseResDto<*>> Observable<T>.xWithDefault(isRetryRequest: Boolean = false): Observable<T> {
-    if (isRetryRequest) {
-        //  this.retryWhen(RetryWithDelay(3, 3000))
-    }
-    return this.subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .doOnNext(DefaultFailure())
-}
-
-
-/**
- * 自动处理activity/fragment 生命周期
- */
-fun <T : BaseResDto<*>> Observable<T>.xWithLifecycle(owner: LifecycleOwner): ObservableSubscribeProxy<T> {
-    return `as`(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(owner, Lifecycle.Event.ON_DESTROY)))
-
-}

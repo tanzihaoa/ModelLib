@@ -17,7 +17,6 @@ class DefaultFailure : Consumer<BaseResDto<*>> {
      */
     private val REQUEST_SUCCESS = 1
 
-
     @Throws(Exception::class)
     override fun accept(responseDto: BaseResDto<*>) {
         LogUtils.e("accept==", GsonUtil.GsonString(responseDto))

@@ -33,7 +33,6 @@ class MyApplication : BaseApplication() {
 
     override fun onCreate() {
         super.onCreate()
-        isNetwork()
     }
 
     /**
