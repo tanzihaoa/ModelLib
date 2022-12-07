@@ -1,4 +1,4 @@
-package com.tzh.mylibrary.adapter.divider;
+package com.tzh.myapplication.adapter.divider;
 
 import android.content.Context;
 import android.graphics.Canvas;

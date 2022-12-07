@@ -1,4 +1,4 @@
-package com.tzh.mylibrary.utils
+package com.tzh.myapplication.utils
 
 import android.content.Context
 import android.content.res.ColorStateList
@@ -29,7 +29,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.tzh.mylibrary.adapter.divider.XRvVerticalDivider
+import com.tzh.myapplication.adapter.divider.XRvVerticalDivider
 
 
 /**

@@ -1,4 +1,4 @@
-package com.tzh.mylibrary.utils
+package com.tzh.myapplication.utils
 
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView

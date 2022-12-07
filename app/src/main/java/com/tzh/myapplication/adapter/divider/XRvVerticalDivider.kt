@@ -1,11 +1,11 @@
-package com.tzh.mylibrary.adapter.divider
+package com.tzh.myapplication.adapter.divider
 
 import android.content.Context
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.tzh.mylibrary.adapter.XRvConfig
+import com.tzh.myapplication.adapter.XRvConfig
 
 open class XRvVerticalDivider(var context: Context) : XBaseDivider(context) {
 

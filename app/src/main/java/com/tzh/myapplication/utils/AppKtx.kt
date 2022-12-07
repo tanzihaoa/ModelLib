@@ -18,9 +18,7 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.bumptech.glide.Glide
-import com.tzh.mylibrary.base.BaseApplication
-import com.tzh.mylibrary.utils.GsonUtil
-import java.text.DecimalFormat
+import com.tzh.myapplication.base.BaseApplication
 
 object AppKtx {
 
@@ -95,36 +93,6 @@ fun <T : ViewDataBinding> Context.bindingInflateLayout(@LayoutRes layoutId: Int)
 
 
 /**
- * 当数据为空或为null 时返回null
- */
-fun <T> MutableList<T>?.emptyToNull(): MutableList<T>? {
-    if (isNullOrEmpty()) {
-        return null
-    }
-    return this
-}
-
-/**
- * 当数据为空或为null 时返回空数组
- */
-fun <T> MutableList<T>?.nullToEmpty(): MutableList<T> {
-    return this ?: mutableListOf()
-}
-
-
-fun String?.toEmptyString(): String {
-    return this ?: ""
-}
-
-
-fun String?.emptyToNull(): String? {
-    if (isNullOrEmpty()) {
-        return null
-    }
-    return this
-}
-
-/**
  * 对某个对象 做非null处理
  */
 //fun <T> T?.toDefault(default: T): T = this ?: default
@@ -189,32 +157,6 @@ fun String?.toFloat(default: Float): Float {
  */
 fun Any?.isNotNullKtx(): Boolean = this != null
 
-/**
- * sp 转 px
- */
-fun Context?.spToPx(spValue: Float): Int {
-    val context = this ?: BaseApplication.sContext
-    val fontScale: Float = context.resources.displayMetrics.scaledDensity
-    return (spValue * fontScale + 0.5f).toInt()
-}
-
-/**
- * dp 转 px
- */
-fun Context?.dpToPx(dpValue: Float): Int {
-    val context = this ?: BaseApplication.sContext
-    val scale: Float = context.resources.displayMetrics.density
-    return (dpValue * scale + 0.5f).toInt()
-}
-
-/**
- * px 转 dp
- */
-fun Context?.pxToDp(pxValue: Float): Int {
-    val context = this ?: BaseApplication.sContext
-    val scale = context.resources.displayMetrics.density
-    return (pxValue / scale + 0.5f).toInt()
-}
 
 /**
  * 主线程闲置后再处理新的
@@ -225,34 +167,6 @@ fun showMainIdle(handler: MessageQueue.IdleHandler) {
     Looper.myQueue().addIdleHandler(handler)
 }
 
-
-/**
- * view 被点击多次后 再回调
- * @param num 点击次数
- * @param time xx毫秒内 ()
- */
-fun View?.setOnClickMoreShow(num: Int = 5, time: Int = 3, block: () -> Unit) {
-    this ?: return
-    var clickSum = 0
-    var clickTime = 0L
-    this.setOnClickListener {
-        if (clickTime + time > System.currentTimeMillis()) {
-            clickSum++
-            if (clickSum == num) {
-                clickSum = 0
-                block()
-            }
-        } else {
-            clickSum = 0
-            clickTime = System.currentTimeMillis()
-        }
-    }
-}
-
-inline fun Boolean.isTrue(block: () -> Unit): Boolean {
-    if (this) block()
-    return this
-}
 
 /**
  *  databinding 通过 inflate 绑定  layout

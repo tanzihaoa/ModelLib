@@ -1,6 +1,7 @@
-package com.tzh.mylibrary.adapter
+package com.tzh.myapplication.adapter
 
-import com.tzh.mylibrary.R
+import com.tzh.myapplication.R
+
 
 object XRvConfig {
     /**

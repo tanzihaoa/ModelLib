@@ -1,4 +1,4 @@
-package com.tzh.mylibrary.utils;
+package com.tzh.myapplication.utils;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.tzh.mylibrary.R;
-import com.tzh.mylibrary.base.BaseApplication;
+import com.tzh.myapplication.R;
+import com.tzh.myapplication.base.MyApplication;
 
 public class ToastUtil {
     private static Toast toast;
@@ -23,9 +23,9 @@ public class ToastUtil {
         if (toast != null) {
             toast.cancel();
         }
-        toast = new Toast(BaseApplication.Companion.getSContext());
+        toast = new Toast(MyApplication.sContext);
         if (view == null) {
-            view = LayoutInflater.from(BaseApplication.Companion.getSContext()).inflate(R.layout.toast_custom_tv, null);
+            view = LayoutInflater.from(MyApplication.sContext).inflate(R.layout.toast_custom_tv, null);
             tv = (TextView) view;
         }
         tv.setText(TextUtils.isEmpty(msg) ? "" : msg);

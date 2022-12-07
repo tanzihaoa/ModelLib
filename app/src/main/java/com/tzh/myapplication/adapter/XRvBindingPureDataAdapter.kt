@@ -1,9 +1,9 @@
-package com.tzh.mylibrary.adapter
+package com.tzh.myapplication.adapter
 
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.tzh.mylibrary.utils.XRvWrapperUtils
+import com.tzh.myapplication.utils.XRvWrapperUtils
 
 
 /**
@@ -148,8 +148,8 @@ abstract class XRvBindingPureDataAdapter<T>(@LayoutRes val itemLayout: Int = 0) 
 
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
-        XRvWrapperUtils.onAttachedToRecyclerView(recyclerView, object :
-            XRvWrapperUtils.SpanSizeCallback {
+        com.tzh.myapplication.utils.XRvWrapperUtils.onAttachedToRecyclerView(recyclerView, object :
+            com.tzh.myapplication.utils.XRvWrapperUtils.SpanSizeCallback {
             override fun getSpanSize(layoutManager: GridLayoutManager, oldLookup: GridLayoutManager.SpanSizeLookup, position: Int): Int {
                 if (isShowNoMoreData && position == itemCount - 1) {
                     return layoutManager.spanCount
@@ -163,7 +163,7 @@ abstract class XRvBindingPureDataAdapter<T>(@LayoutRes val itemLayout: Int = 0) 
     override fun onViewAttachedToWindow(holder: XRvBindingHolder) {
         super.onViewAttachedToWindow(holder)
         if (isShowNoMoreData && holder.bindingAdapterPosition == itemCount - 1) {
-            XRvWrapperUtils.setFullSpan(holder)
+            com.tzh.myapplication.utils.XRvWrapperUtils.setFullSpan(holder)
         }
     }
 
