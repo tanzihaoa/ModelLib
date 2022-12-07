@@ -23,13 +23,12 @@ class ParamsInterceptor : Interceptor {
             .host(oldRequest.url.host)
 
         //参数处理,以后再加入签名验证
-        val httpUrl = httUrlBuilder.build()
+        httUrlBuilder.build()
         httUrlBuilder.addQueryParameter("siteid", "3")
         val httpUrlSign = httUrlBuilder.build()
 
         val map = LinkedHashMap<String, Any?>()
 
-//        Log.e("Interceptor-start: ",System.nanoTime().toString());
         httpUrlSign.queryParameterNames.forEach {
             var param: String? = null
             httpUrlSign.queryParameter(it)?.also { value ->
@@ -44,8 +43,6 @@ class ParamsInterceptor : Interceptor {
             }
             map[it] = param
         }
-
-        httUrlBuilder.addQueryParameter("_sign", SignUtil.onSign(map))
 
         val newRequestBuild = oldRequest.newBuilder()
             .method(oldRequest.method, oldRequest.body)

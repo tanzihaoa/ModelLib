@@ -100,7 +100,7 @@ public class Util {
      * 得到手机宽度 返回px
      */
     public static int getPhoneWidth(Context context) {
-        WindowManager windowManager = (WindowManager) context.getApplicationContext().getSystemService("window");
+        WindowManager windowManager = (WindowManager) context.getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
         Display display = windowManager.getDefaultDisplay();
         Point point = new Point();
         display.getSize(point);
@@ -112,7 +112,7 @@ public class Util {
      * 得到手机高度 返回px
      */
     public static int getPhoneHeight(Context context) {
-        WindowManager windowManager = (WindowManager) context.getApplicationContext().getSystemService("window");
+        WindowManager windowManager = (WindowManager) context.getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
         Display display = windowManager.getDefaultDisplay();
         Point point = new Point();
         display.getSize(point);

@@ -30,13 +30,14 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <com.tzh.mylibrary.shapeview.ShapeConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_margin="16dp"
             app:shapeBackgroundColor="@color/color_00f3b8"
+            android:onClick="@{()->v.openDialog()}"
             app:shapeCorners="8dp">
             <com.tzh.mylibrary.image.ImageTextView
                 android:layout_width="wrap_content"

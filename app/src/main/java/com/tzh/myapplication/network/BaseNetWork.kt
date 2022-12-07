@@ -53,7 +53,7 @@ class BaseNetWork : ObservableTransformer<Any?, Any?> {
                 .connectTimeout(15, TimeUnit.SECONDS)
                 .addInterceptor(ParamsInterceptor())
 
-            client.proxy(Proxy.NO_PROXY)
+//            client.proxy(Proxy.NO_PROXY)
 
             client.addNetworkInterceptor(HttpLoggingInterceptor { message ->
                 LogUtils.e(

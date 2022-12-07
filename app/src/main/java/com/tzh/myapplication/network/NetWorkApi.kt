@@ -13,9 +13,9 @@ object NetWorkApi {
     }
 
     /**
-     * 大师-好物推荐-列表数据
+     * 热议列表
      */
-    fun masterShopList(owner: LifecycleOwner, p: Int, keywords: String?, attrid: String?, modelid: String):
+    fun masterShopList(owner: LifecycleOwner, p: Int):
             ObservableSubscribeProxy<BaseResDto<BaseResPageDto<MasterShopListDto>>> {
         return xHttpRequest<NetWorkInterface>().masterShopList(
             ArrayMap<String, Any>().apply {
@@ -23,16 +23,8 @@ object NetWorkApi {
                 put("p", p)
                 //每页数量
                 put("num", HttpHelper.PAGE_LIMIT_10)
-                //关键词搜索
-                if (!keywords.isNullOrEmpty()) {
-                    put("keywords", keywords)
-                }
-                //商品属性id
-                if (!attrid.isNullOrEmpty()) {
-                    put("attrid", attrid)
-                }
-                //模型[Product详测卖货|Quick闪测卖货|Topic话题卖货]
-                put("modelid", modelid)
+
+                put("type", 1)
             }
         ).xWithDefault(owner)
     }

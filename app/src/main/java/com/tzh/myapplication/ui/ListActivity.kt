@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import com.tzh.myapplication.R
 import com.tzh.myapplication.base.AppBaseActivity
+import com.tzh.myapplication.base.MyApplication
 import com.tzh.myapplication.databinding.ActivityListBinding
 import com.tzh.myapplication.network.DefaultError
 import com.tzh.myapplication.network.NetWorkApi
@@ -46,17 +47,19 @@ class ListActivity : AppBaseActivity<ActivityListBinding>(R.layout.activity_list
      * 获取列表数据
      */
     private fun requestData() {
-        NetWorkApi.masterShopList(this, binding.smartLayout.pageIndex, "", "", "")
+        NetWorkApi.masterShopList(this, binding.smartLayout.pageIndex)
             .subscribe({
                 binding.smartLayout.pageCount = it.getDataDto().maxPage
                 if ( binding.smartLayout.isRefresh) {
-                    mAdapter.setDatas(it.getDataDto().getListDto(), true)
+                    mAdapter.setDatas(it.getDataDto().getListDto())
                 } else {
-                    mAdapter.addDatas(it.getDataDto().getListDto(), true)
+                    mAdapter.addDatas(it.getDataDto().getListDto())
                 }
                 ToastUtil.show("hhhh")
                 binding.smartLayout.loadSuccess(mAdapter,binding.loadView)
-            }, DefaultError(binding.loadView, binding.smartLayout))
+            }, {
+                ToastUtil.show(it.message+"错误"+it.message)
+            })
     }
 
 }
