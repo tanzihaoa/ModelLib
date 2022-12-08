@@ -29,6 +29,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.tzh.myapplication.adapter.divider.GradDivider
 import com.tzh.myapplication.adapter.divider.XRvVerticalDivider
 
 
@@ -75,6 +76,16 @@ fun RecyclerView.verDivider(height: Float = 1f, @ColorRes color: Int = android.R
     }
     this.addItemDecoration(vDivider)
     return vDivider
+}
+
+/**
+ * RecyclerView adapter 初始化
+ * 方便直接使用
+ */
+fun RecyclerView.gradDivider(height: Float = 1f, space: Float, num: Int, heightSpace: Float = space ): GradDivider {
+    val gDivider = GradDivider(context,space, num, heightSpace)
+    this.addItemDecoration(gDivider)
+    return gDivider
 }
 
 /**
