@@ -29,6 +29,7 @@ class ListActivity : AppBaseActivity<ActivityListBinding>(R.layout.activity_list
 
     override fun initView() {
         binding.recyclerView.linear().initAdapter(mAdapter).verDivider(8f)
+
         binding.smartLayout.setOnRefreshLoadMoreListener {
             requestData()
         }
@@ -57,9 +58,8 @@ class ListActivity : AppBaseActivity<ActivityListBinding>(R.layout.activity_list
                 }
                 ToastUtil.show("hhhh")
                 binding.smartLayout.loadSuccess(mAdapter,binding.loadView)
-            }, {
-                ToastUtil.show(it.message+"错误"+it.message)
-            })
+            }, DefaultError()
+            )
     }
 
 }
