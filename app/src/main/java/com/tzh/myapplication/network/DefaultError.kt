@@ -20,7 +20,7 @@ import java.net.UnknownHostException
 /**
  * 错误收集处理
  */
-class DefaultError : Consumer<Throwable> {
+open class DefaultError : Consumer<Throwable> {
     /**
      * 是否允许显示错误toast
      */
@@ -207,24 +207,10 @@ class ApiThrowable(val status: Int, message: String? = null, case: Throwable? = 
         const val HTTP_REQUEST_ERROR = -99
 
         /**
-         * 用户端- 预约大师时间 错误
-         */
-        const val APPOINTMENT_TIME_ERROR = -2
-
-        /**
-         * 搜索违规
-         */
-        const val HTTP_ERROR_SEARCH_VIOLATION = -1002
-
-        /**
          * xx 不存在或已删除
          */
         const val HTTP_ERROR_NO_EXIT_OR_DELETE = -1003
 
-        /**
-         * 用户需要重新登录
-         */
-        const val HTTP_ERROR_USER_RESET_LOGIN = -1004
 
 
         /**

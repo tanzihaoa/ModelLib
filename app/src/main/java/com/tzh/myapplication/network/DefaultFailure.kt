@@ -35,11 +35,6 @@ class DefaultFailure : Consumer<BaseResDto<*>> {
 
                 throw ApiThrowable(responseDto.status, responseDto.info.toDefault(""))
             }
-            ApiThrowable.HTTP_ERROR_USER_RESET_LOGIN -> {
-                //用户数据出现错误，需要重新登录
-                ToastUtil.showToast(responseDto.info.toDefault(""))
-                throw ApiThrowable(responseDto.status, responseDto.info.toDefault(""))
-            }
 
             else -> throw ApiThrowable(responseDto.status, responseDto.info.toDefault(""))
         }

@@ -4,7 +4,7 @@ import android.content.Context
 import com.tzh.myapplication.R
 import com.tzh.myapplication.base.BaseBindingDialog
 import com.tzh.myapplication.databinding.DialogMyBinding
-import com.tzh.mylibrary.utils.setOnClickNoDouble
+import com.tzh.myapplication.utils.setOnClickNoDouble
 
 class MyDialog(context : Context) : BaseBindingDialog<DialogMyBinding>(context,R.layout.dialog_my){
     init {

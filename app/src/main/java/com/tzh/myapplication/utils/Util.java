@@ -1,11 +1,18 @@
 package com.tzh.myapplication.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Point;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
+import android.provider.Settings;
 import android.view.Display;
 import android.view.WindowManager;
+
+import androidx.core.app.NotificationManagerCompat;
+
+import com.tzh.myapplication.ui.service.MediaControllerService;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -15,6 +22,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class Util {
 
@@ -198,5 +206,28 @@ public class Util {
         }
         return true;
     }
+    /**
+     * 是否开启通知权限
+     * @param context
+     * @return
+     */
+    public static boolean isNotificationListenerEnabled(Context context) {
+        Set<String> packageNames = NotificationManagerCompat.getEnabledListenerPackages(context);
+        if (packageNames.contains(context.getPackageName())) {
+            return true;
+        }
+        return false;
+    }
 
+    /**
+     * 开启通知权限
+     */
+    public static void openNotificationListenSettings(Context context) {
+        try {
+            Intent intent = new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS);
+            context.startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

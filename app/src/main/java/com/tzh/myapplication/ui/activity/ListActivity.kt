@@ -1,10 +1,9 @@
-package com.tzh.myapplication.ui
+package com.tzh.myapplication.ui.activity
 
 import android.content.Context
 import android.content.Intent
 import com.tzh.myapplication.R
 import com.tzh.myapplication.base.AppBaseActivity
-import com.tzh.myapplication.base.MyApplication
 import com.tzh.myapplication.databinding.ActivityListBinding
 import com.tzh.myapplication.network.DefaultError
 import com.tzh.myapplication.network.NetWorkApi

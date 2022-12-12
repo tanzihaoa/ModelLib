@@ -108,7 +108,6 @@ dependencies {
     api 'com.uber.autodispose:autodispose-android-archcomponents:1.4.0'
     // rxandroid   (https://github.com/ReactiveX/RxAndroid)
     api 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    api 'io.reactivex.rxjava2:rxandroid:2.1.1'
     //retrofit (https://github.com/square/retrofit)
     api 'com.squareup.retrofit2:retrofit:2.9.0'
     api 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'

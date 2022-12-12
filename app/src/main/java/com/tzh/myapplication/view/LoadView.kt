@@ -53,16 +53,6 @@ class LoadView @JvmOverloads constructor(
          */
         private const val STATE_EMPTY = 4
 
-        /**
-         * 搜索 空
-         */
-        private const val STATE_SEARCH_EMPTY = 5
-
-        /**
-         * 老师为 空
-         */
-        private const val STATE_MASTER_EMPTY = 6
-
     }
 
     /**
@@ -246,7 +236,7 @@ class LoadView @JvmOverloads constructor(
                 }
             }
 
-            STATE_SUCCESS, STATE_ERROR, STATE_EMPTY, STATE_SEARCH_EMPTY,STATE_MASTER_EMPTY, ApiThrowable.HTTP_ERROR_NO_EXIT_OR_DELETE -> {
+            STATE_SUCCESS, STATE_ERROR, STATE_EMPTY-> {
                 bindingInflateLayout<StatusLayoutStateBinding>(R.layout.status_layout_state).let { binding ->
                     updateView(binding.stateImg, binding.stateLayout)
 
@@ -279,18 +269,7 @@ class LoadView @JvmOverloads constructor(
                                 binding.stateImg.setImageResource(R.mipmap.load_state_error)
                             }
                         }
-                        ApiThrowable.HTTP_ERROR_NO_EXIT_OR_DELETE -> {
-                            //数据不存在，或已删除
-                            if (mStateBigTipStr.isNullOrEmpty()) {
-                                mStateBigTipStr = "不存在或已删除"
-                            }
-                            binding.stateLayout.visibility = View.VISIBLE
-                            if (!mGoButtonText.isNullOrEmpty()) {
-                                binding.stateGoLayout.visibility = View.VISIBLE
-                            }
-                            binding.stateImg.setWillNotDraw(false)
-                            binding.stateImg.setImageResource(R.mipmap.load_state_empty)
-                        }
+
                         STATE_EMPTY -> {
                             //加载没有数据
                             if (mStateBigTipStr.isNullOrEmpty()) {
@@ -302,30 +281,6 @@ class LoadView @JvmOverloads constructor(
                             }
                             binding.stateImg.setWillNotDraw(false)
                             binding.stateImg.setImageResource(R.mipmap.load_state_empty)
-                        }
-                        STATE_SEARCH_EMPTY -> {
-                            //搜索为空
-                            if (mStateBigTipStr.isNullOrEmpty()) {
-                                mStateBigTipStr = "暂无数据"
-                            }
-                            binding.stateLayout.visibility = View.VISIBLE
-                            if (!mGoButtonText.isNullOrEmpty()) {
-                                binding.stateGoLayout.visibility = View.VISIBLE
-                            }
-                            binding.stateImg.setWillNotDraw(false)
-                            binding.stateImg.setImageResource(R.mipmap.load_state_search_empty)
-                        }
-                        STATE_MASTER_EMPTY -> {
-                            //老师为空
-                            if (mStateBigTipStr.isNullOrEmpty()) {
-                                mStateBigTipStr = "暂无数据"
-                            }
-                            binding.stateLayout.visibility = View.VISIBLE
-                            if (!mGoButtonText.isNullOrEmpty()) {
-                                binding.stateGoLayout.visibility = View.VISIBLE
-                            }
-                            binding.stateImg.setWillNotDraw(false)
-                            binding.stateImg.setImageResource(R.mipmap.load_state_master_empty)
                         }
                     }
 
@@ -408,75 +363,13 @@ class LoadView @JvmOverloads constructor(
     }
 
     /**
-     *  搜索 加载数据
-     * @param list  数据集合
-     * @param bigTip 大字提示
-     * @param minTip 小字提示
-     */
-    @JvmOverloads
-    fun loadingForSearch(list: MutableList<*>?, bigTip: String? = "暂无数据", minTip: String? = "") {
-        loadingForSearch(list?.size.toDefault(0) > 0, bigTip, minTip)
-    }
-
-
-    /**
-     *  搜索 加载数据
-     * @param haveData 是否有数据
-     * @param bigTip 大字提示
-     * @param minTip 小字提示
-     */
-    @JvmOverloads
-    fun loadingForSearch(haveData: Boolean, bigTip: String? = "暂无数据", minTip: String? = "") {
-        visibility = View.VISIBLE
-        mStateBigTipStr = bigTip.toDefault("暂无数据")
-        mStateMinTipStr = minTip.toDefault("")
-        if (haveData) {
-            show(STATE_SUCCESS)
-        } else {
-            show(STATE_SEARCH_EMPTY)
-        }
-    }
-
-    /**
-     *  搜索 加载数据
-     * @param haveData 是否有数据
-     * @param bigTip 大字提示
-     * @param minTip 小字提示
-     */
-    @JvmOverloads
-    fun loadingForMaster(haveData: Boolean, bigTip: String? = "暂无数据", minTip: String? = "") {
-        visibility = View.VISIBLE
-        mStateBigTipStr = bigTip.toDefault("暂无数据")
-        mStateMinTipStr = minTip.toDefault("")
-        if (haveData) {
-            show(STATE_SUCCESS)
-        } else {
-            show(STATE_MASTER_EMPTY)
-        }
-    }
-
-
-    /**
      * 加载失败
      */
     @JvmOverloads
     fun loadingError(throwable: Throwable?, showReload: Boolean = true) {
         throwable?.printStackTrace()
         if (throwable is ApiThrowable) {
-            when (throwable.status) {
-                ApiThrowable.HTTP_ERROR_SEARCH_VIOLATION -> {
-                    //搜索违规错误
-                    loadingError(throwable.message, false)
-                    return
-                }
-                ApiThrowable.HTTP_ERROR_NO_EXIT_OR_DELETE -> {
-                    //不存在或已删除
-                    visibility = View.VISIBLE
-                    mStateBigTipStr = throwable.message
-                    show(ApiThrowable.HTTP_ERROR_NO_EXIT_OR_DELETE)
-                    return
-                }
-            }
+
             if (throwable.message.toDefault("").contains("不存在或已删除")) {
                 //返回的api异常中，带有不存在或已删除的 需要显示这个错误
                 visibility = View.VISIBLE

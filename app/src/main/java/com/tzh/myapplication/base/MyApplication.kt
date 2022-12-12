@@ -1,9 +1,13 @@
 package com.tzh.myapplication.base
 
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
+import android.os.Build
 import androidx.multidex.MultiDex
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
+import com.tzh.myapplication.ui.service.MediaControllerService
+import com.tzh.myapplication.utils.Util
 import com.tzh.myapplication.view.load.AppLoadLayout
 import com.tzh.myapplication.view.load.AppRefreshLayout
 
@@ -33,6 +37,16 @@ class MyApplication : BaseApplication() {
 
     override fun onCreate() {
         super.onCreate()
+        startService()
+    }
+
+    private fun startService() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            //8.0以上系统启动为前台服务, 否则在后台, 测试中发现过几分钟后MediaController监听不到音乐信息
+            context.startForegroundService(Intent(context, MediaControllerService::class.java))
+        } else {
+            context.startService(Intent(context, MediaControllerService::class.java))
+        }
     }
 
     /**
