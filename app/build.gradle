@@ -34,16 +34,16 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled true  //开启混淆
+            minifyEnabled false  //开启混淆
             zipAlignEnabled true  //压缩优化
-            shrinkResources true  //打开资源压缩。
+            shrinkResources false  //打开资源压缩。
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
         }
         debug {
-            minifyEnabled true  //开启混淆
+            minifyEnabled false  //开启混淆
             zipAlignEnabled true  //压缩优化
-            shrinkResources true  //打开资源压缩。
+            shrinkResources false  //打开资源压缩。
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
         }
