@@ -5,15 +5,10 @@ import android.content.Intent;
 import android.graphics.Point;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Build;
 import android.provider.Settings;
 import android.view.Display;
 import android.view.WindowManager;
-
 import androidx.core.app.NotificationManagerCompat;
-
-import com.tzh.myapplication.ui.service.MediaControllerService;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.NetworkInterface;

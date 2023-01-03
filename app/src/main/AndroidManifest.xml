@@ -55,17 +55,6 @@
             android:name="notch.config"
             android:value="portrait|landscape" /> <!-- Required SDK 核心功能 -->
 
-        <service
-            android:name=".ui.service.MediaControllerService"
-            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
-            android:foregroundServiceType="phoneCall|mediaPlayback|dataSync|mediaProjection|connectedDevice|location"
-            android:label="通知监控"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.service.notification.NotificationListenerService" />
-            </intent-filter>
-        </service>
-
         <activity
             android:name="com.tzh.myapplication.MainActivity"
             android:screenOrientation="portrait"

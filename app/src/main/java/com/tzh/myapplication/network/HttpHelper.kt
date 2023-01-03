@@ -134,38 +134,6 @@ object HttpHelper {
         }
         return mInterfaceMap[interfaceClass.name] as T
     }
-
-    /**
-     * RxJava 增加一个 onNext层，处理错误
-     * 一般请求处理code不为0时的错误
-     */
-    fun <T : BaseResDto<*>> withDefault(observable: Observable<T>): Observable<T> {
-        return observable
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnNext(DefaultFailure())
-    }
-
-    /**
-     * RxJava 增加一个 onNext层，处理错误
-     * 一般请求处理code不为0时的错误
-     */
-    fun <T : BaseResDto<*>> withDefault(
-        owner: LifecycleOwner,
-        observable: Observable<T>
-    ): ObservableSubscribeProxy<T> {
-        return observable
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnNext(DefaultFailure())
-            .`as`(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(owner, Lifecycle.Event.ON_DESTROY)))
-    }
-
-
-    @JvmStatic
-    fun <T> autoDisposable(owner: LifecycleOwner): AutoDisposeConverter<T> {
-        return AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(owner, Lifecycle.Event.ON_DESTROY))
-    }
 }
 
 inline fun <reified T> xHttpRequest(): T {
