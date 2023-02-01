@@ -3,6 +3,7 @@ package com.tzh.myapplication
 import com.tzh.myapplication.base.AppBaseActivity
 import com.tzh.myapplication.databinding.ActivityMainBinding
 import com.tzh.myapplication.livedata.LoginStateLiveData
+import com.tzh.myapplication.ui.activity.ImageActivity
 import com.tzh.myapplication.ui.activity.ListActivity
 import com.tzh.myapplication.ui.dialog.MyDialog
 
@@ -33,5 +34,9 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
 
     fun openDialog(){
         mDialog.show()
+    }
+
+    fun toImage(){
+        ImageActivity.start(this)
     }
 }
