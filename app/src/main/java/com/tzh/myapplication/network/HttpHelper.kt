@@ -119,7 +119,6 @@ object HttpHelper {
     /**
      * 根据传入的 interface 自动生成 各个接口类的实例，且不会重复生成
      */
-    @Synchronized
     inline fun <reified T> getInterfaceObject(interfaceClass: Class<T>): T {
         //当 interface 没有实例
         if (mInterfaceMap[interfaceClass.name] == null) {

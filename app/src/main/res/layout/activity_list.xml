@@ -9,7 +9,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:xtbTitleText=""/>
-        <com.tzh.myapplication.view.XSmartRefreshLayout
+        <com.tzh.mylibrary.view.XSmartRefreshLayout
             android:id="@+id/smart_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -19,12 +19,6 @@
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
-        </com.tzh.myapplication.view.XSmartRefreshLayout>
-        <com.tzh.myapplication.view.LoadView
-            android:id="@+id/load_view"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@+id/title_bar"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+        </com.tzh.mylibrary.view.XSmartRefreshLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

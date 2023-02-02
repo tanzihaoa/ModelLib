@@ -5,14 +5,11 @@ import android.content.Intent
 import com.tzh.myapplication.R
 import com.tzh.myapplication.base.AppBaseActivity
 import com.tzh.myapplication.databinding.ActivityListBinding
-import com.tzh.myapplication.network.DefaultError
 import com.tzh.myapplication.network.NetWorkApi
 import com.tzh.myapplication.ui.adapter.ListAdapter
-import com.tzh.myapplication.view.LoadView
-import com.tzh.myapplication.utils.ToastUtil
-import com.tzh.myapplication.utils.initAdapter
-import com.tzh.myapplication.utils.linear
-import com.tzh.myapplication.utils.verDivider
+import com.tzh.mylibrary.util.initAdapter
+import com.tzh.mylibrary.util.linear
+import com.tzh.mylibrary.util.verDivider
 
 class ListActivity : AppBaseActivity<ActivityListBinding>(R.layout.activity_list) {
     companion object {
@@ -28,14 +25,8 @@ class ListActivity : AppBaseActivity<ActivityListBinding>(R.layout.activity_list
 
     override fun initView() {
         binding.recyclerView.linear().initAdapter(mAdapter).verDivider(8f)
-
         binding.smartLayout.setOnRefreshLoadMoreListener {
             requestData()
-        }
-        binding.loadView.onStateListener = object : LoadView.OnStateListener(){
-            override fun onReload() {
-                requestData()
-            }
         }
         requestData()
     }
@@ -43,6 +34,7 @@ class ListActivity : AppBaseActivity<ActivityListBinding>(R.layout.activity_list
     override fun initData() {
 
     }
+
     /**
      * 获取列表数据
      */
@@ -55,10 +47,9 @@ class ListActivity : AppBaseActivity<ActivityListBinding>(R.layout.activity_list
                 } else {
                     mAdapter.addDatas(it.getDataDto().getListDto())
                 }
-                ToastUtil.show("hhhh")
-                binding.smartLayout.loadSuccess(mAdapter,binding.loadView)
-            }, DefaultError()
-            )
-    }
+                binding.smartLayout.loadSuccess(mAdapter)
+            },{
 
+            })
+    }
 }

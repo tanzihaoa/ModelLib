@@ -5,7 +5,8 @@ import android.view.inputmethod.InputMethodManager
 import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
 import com.gyf.immersionbar.ImmersionBar
-import com.tzh.myapplication.utils.LogUtils
+import com.tzh.mylibrary.util.LogUtils
+import com.tzh.mylibrary.base.XBaseBindingActivity
 
 abstract class AppBaseActivity<B : ViewDataBinding>(@LayoutRes LayoutId: Int = 0) : XBaseBindingActivity<B>(LayoutId) {
 

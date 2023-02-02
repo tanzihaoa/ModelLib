@@ -6,7 +6,7 @@ import java.io.IOException
 import java.util.LinkedHashMap
 
 /**
- * update by xz
+ * update by tzh
  * 因 CommonInterceptor 有请求并发冲突，
  * 修改为 ParamsInterceptor
  */

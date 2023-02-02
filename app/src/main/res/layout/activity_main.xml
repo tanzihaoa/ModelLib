@@ -39,7 +39,7 @@
             app:shapeBackgroundColor="@color/color_00f3b8"
             android:onClick="@{()->v.openDialog()}"
             app:shapeCorners="8dp">
-            <com.tzh.myapplication.view.ImageTextView
+            <com.tzh.mylibrary.view.ImageTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:itvText="to"

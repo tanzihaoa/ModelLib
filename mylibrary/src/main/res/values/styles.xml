@@ -1,4 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+    <!--从底部进入退出动画-->
+    <style name="BottomAnimation" parent="android:Animation">
+        <!-- //弹入动画-->
+        <item name="android:windowEnterAnimation">@anim/dialog_bottom_in</item>
+        <!-- //弹出动画-->
+        <item name="android:windowExitAnimation">@anim/dialog_bottom_out</item>
+    </style>
+
+    <style name="dialog_float_translucent" parent="@android:style/Theme.Dialog">
+        <!--背景悬浮半透明的dialog样式-->
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.2</item>
+        <item name="android:windowDrawsSystemBarBackgrounds" >false</item>
+    </style>
+
+    <declare-styleable name="ImageTextView">
+        <!--图片宽-->
+        <attr name="itvImgWidth" format="dimension" />
+        <!--图片高-->
+        <attr name="itvImgHeight" format="dimension" />
+        <!--图片选中图片路径-->
+        <attr name="itvImgSelectSrc" format="reference|color" />
+        <!-- 选中图片染色-->
+        <attr name="itvImgSelectColor" format="color" />
+        <!-- 未选中图片路径-->
+        <attr name="itvImgUnSelectSrc" format="reference|color" />
+        <!-- 未选中图片染色-->
+        <attr name="itvImgUnSelectColor" format="color" />
+        <!--间隔-->
+        <attr name="itvSpace" format="dimension" />
+        <!-- 文字大小-->
+        <attr name="itvTextSize" format="dimension" />
+        <!-- 文字选中颜色-->
+        <attr name="itvTextSelectColor" format="color" />
+        <!--文字未选中颜色-->
+        <attr name="itvTextUnSelectColor" format="color" />
+        <!--文字-->
+        <attr name="itvText" format="string" />
+        <!--文字是否加粗-->
+        <attr name="itvTextIsBold" format="boolean" />
+
+
+        <!--右边显示的控件-->
+        <attr name="itvShowLocal" format="enum">
+            <!--图片在文字的上面-->
+            <enum name="TO_TEXT_TOP" value="0" />
+            <!--图片在文字的下面-->
+            <enum name="TO_TEXT_BOTTOM" value="1" />
+            <!--图片在文字的左边-->
+            <enum name="TO_TEXT_LEFT" value="2" />
+            <!--图片在文字的右边-->
+            <enum name="TO_TEXT_RIGHT" value="3" />
+        </attr>
+
+    </declare-styleable>
 </resources>

@@ -1,7 +1,7 @@
 package com.tzh.myapplication.network
 
 import com.google.gson.JsonSyntaxException
-import com.tzh.myapplication.utils.LogUtils
+import com.tzh.mylibrary.util.LogUtils
 import io.reactivex.Observable
 import io.reactivex.ObservableSource
 import io.reactivex.ObservableTransformer

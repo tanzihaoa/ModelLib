@@ -16,10 +16,6 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
     override fun initView() {
         binding.v = this
 
-        LoginStateLiveData.instance.observe(this) { isLogin ->
-
-        }
-
     }
 
 
