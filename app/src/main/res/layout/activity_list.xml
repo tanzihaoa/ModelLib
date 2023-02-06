@@ -8,7 +8,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
-            app:xtbTitleText=""/>
+            app:xtbLeftImgSrc="@mipmap/icon_back"
+            app:xtbTitleText="列表页面"/>
         <com.tzh.mylibrary.view.XSmartRefreshLayout
             android:id="@+id/smart_layout"
             android:layout_width="match_parent"

@@ -104,7 +104,7 @@ class XAppTitleBar @JvmOverloads constructor(
     private fun init(attrs: AttributeSet) {
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.XAppTitleBar)
 
-        val backIconColor = typedArray.getResourceId(R.styleable.XAppTitleBar_xtbBackIconColor, R.color.transparent)
+        val backIconColor = typedArray.getResourceId(R.styleable.XAppTitleBar_xtbBackIconColor,-1)
 
         val backIconIsShow = typedArray.getBoolean(R.styleable.XAppTitleBar_xtbBackIconIsShow, true)
 
