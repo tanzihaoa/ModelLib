@@ -2,7 +2,6 @@ package com.tzh.myapplication
 
 import com.tzh.myapplication.base.AppBaseActivity
 import com.tzh.myapplication.databinding.ActivityMainBinding
-import com.tzh.myapplication.livedata.LoginStateLiveData
 import com.tzh.myapplication.ui.activity.ImageActivity
 import com.tzh.myapplication.ui.activity.ListActivity
 import com.tzh.myapplication.ui.dialog.MyDialog
@@ -15,7 +14,7 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
 
     override fun initView() {
         binding.v = this
-
+        binding.lottie.setAnimation("data_sy.json")
     }
 
 
@@ -35,4 +34,11 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
     fun toImage(){
         ImageActivity.start(this)
     }
+
+    fun start(){
+        binding.lottie.setAnimation("data_sy.json")
+        binding.lottie.playAnimation()
+    }
+
+
 }

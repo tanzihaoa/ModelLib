@@ -42,6 +42,7 @@ public class ToastUtil {
     public static void show(CharSequence message) {
         if (TextUtils.isEmpty(message)) return;
         initToast(message, Toast.LENGTH_SHORT);
+
     }
 
     /**
