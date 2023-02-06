@@ -108,7 +108,7 @@ dependencies {
     //okttp  (https://github.com/square/okhttp)
     api 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
     api 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
-
+    implementation 'com.airbnb.android:lottie:5.2.0'
     api 'androidx.multidex:multidex:2.0.1'
     implementation project(':mylibrary')
 }
