@@ -36,7 +36,7 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
     }
 
     fun start(){
-        binding.lottie.setAnimation("data_sy.json")
+        binding.lottie.setAnimation("data_an.json")
         binding.lottie.playAnimation()
     }
 
