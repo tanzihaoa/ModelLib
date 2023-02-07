@@ -46,4 +46,14 @@
         <!--右边图片高-->
         <attr name="xtbRightImgHeight" format="dimension" />
     </declare-styleable>
+
+    <!--BMIView-->
+    <declare-styleable name="BMIView">
+        <!--BMI值-->
+        <attr name="bvBMI" format="float" />
+
+        <!--指针图片资源-->
+        <attr name="bvImgSrc" format="reference|color" />
+
+    </declare-styleable>
 </resources>

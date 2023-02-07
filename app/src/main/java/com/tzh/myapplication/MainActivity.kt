@@ -14,7 +14,13 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
 
     override fun initView() {
         binding.v = this
+        binding.bmiView.setBmi(28f)
 
+        // 体重标尺
+        binding.mrvRuler.mVlaueListener = {
+            binding.tvTz.text = it.toString()
+        }
+        binding.mrvRuler.setValue(60f, 0f, 120f, 0.1f)
     }
 
 

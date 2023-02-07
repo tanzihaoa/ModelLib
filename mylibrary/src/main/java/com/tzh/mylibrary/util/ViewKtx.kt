@@ -450,6 +450,21 @@ inline fun View?.updatePaddingKtx(
     setPaddingRelative(startF, topF, endF, bottomF)
 }
 
+inline fun View?.updatePaddingKtxToPx(
+    start: Float = -1f,
+    top: Float = -1f,
+    end: Float = -1f,
+    bottom: Float = -1f
+) {
+    this ?: return
+    val startF = if (start == -1f) paddingStart else start
+    val topF = if (top == -1f) paddingTop else top
+    val endF = if (end == -1f) paddingEnd else end
+    val bottomF = if (bottom == -1f) paddingBottom else bottom
+
+    setPaddingRelative(startF.toInt(), topF.toInt(), endF.toInt(), bottomF.toInt())
+}
+
 inline fun <T : ViewGroup.LayoutParams> View?.updateMarginKtx(
     start: Float = -1f,
     top: Float = -1f,
