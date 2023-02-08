@@ -37,9 +37,9 @@ class MyRulerView : View {
     private var mOffset = 0f            // 刻度尺当前值 位于尺子总刻度的位置
     private var mMaxOffset = 0          // 所有刻度 共有多长
 
-    private var mScaleSpace = 25f       // 刻度2条线之间的距离
+    private var mScaleSpace = 15f       // 刻度2条线之间的距离
     private var mScaleWidth = 4f        // 刻度线的宽度(粗细)
-    private var mScaleHeight = 40f      // 刻度线的长度(基础长度)
+    private var mScaleHeight = 20f      // 刻度线的长度(基础长度)
 
     private var mCenterColor = Color.parseColor("#fa6521")  // 亮色刻度 色值
     private var mTextColor = Color.parseColor("#333333")    // 文字, 普通刻度 的颜色
@@ -47,7 +47,7 @@ class MyRulerView : View {
     var mVlaueListener: ((Float) -> Unit)? = null    // 滑动后数值回调
 
     // 刻度值 文字参数
-    private var mTextSize = 30f         // 尺子刻度下方数字 textsize
+    private var mTextSize = 20f         // 尺子刻度下方数字 textsize
     private val mTextHeight: Float      // 刻度数值文字 的高度
     private var mTextLoc = 0f           // 文字基线的位置;
 
@@ -86,12 +86,12 @@ class MyRulerView : View {
 
     //指针宽度
     private val mBitmapWidth by lazy {
-        DpToUtil.dip2px(context,9f)
+        DpToUtil.dip2px(context,7f)
     }
 
     //指针高度
     private val mBitmapHeight by lazy {
-        DpToUtil.dip2px(context,5.5f)
+        DpToUtil.dip2px(context,4f)
     }
 
     companion object{
@@ -119,6 +119,7 @@ class MyRulerView : View {
             it.strokeCap = Paint.Cap.ROUND
         }
     }
+
     /**
      * 设置标尺参数. 在未设置之前, View将会显示空白
      * @param currentValue  默认值
