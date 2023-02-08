@@ -1,9 +1,8 @@
 package com.tzh.mylibrary.view
 
+import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
+import android.graphics.*
 import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
@@ -11,6 +10,9 @@ import android.view.VelocityTracker
 import android.view.View
 import android.view.ViewConfiguration
 import android.widget.Scroller
+import com.tzh.mylibrary.R
+import com.tzh.mylibrary.util.BitmapUtil
+import com.tzh.mylibrary.util.DpToUtil
 import java.lang.Math.abs
 import kotlin.math.roundToInt
 
@@ -38,8 +40,6 @@ class MyRulerView : View {
     private var mScaleSpace = 25f       // 刻度2条线之间的距离
     private var mScaleWidth = 4f        // 刻度线的宽度(粗细)
     private var mScaleHeight = 40f      // 刻度线的长度(基础长度)
-
-    private var mTextDistance = 4f      // 文字 与刻度 之间的距离;
 
     private var mCenterColor = Color.parseColor("#fa6521")  // 亮色刻度 色值
     private var mTextColor = Color.parseColor("#333333")    // 文字, 普通刻度 的颜色
@@ -71,6 +71,28 @@ class MyRulerView : View {
 
     private var mLastX = 0      // 滑动初始 按下坐标值
     private var mMove: Int = 0  // 滑动X轴 偏移量;
+
+    private val mBitmap by lazy {
+        BitmapUtil.resToBitmap(context, R.drawable.icon_zz)
+    }
+
+
+    private var mTextDistance = 4f      // 文字 与刻度 之间的距离;
+
+    //指针与刻度 之间的距离
+    private val mImageDistance by lazy {
+        DpToUtil.dip2px(context,4f)
+    }
+
+    //指针宽度
+    private val mBitmapWidth by lazy {
+        DpToUtil.dip2px(context,9f)
+    }
+
+    //指针高度
+    private val mBitmapHeight by lazy {
+        DpToUtil.dip2px(context,5.5f)
+    }
 
     companion object{
         const val TAG = "MyRulerView"
@@ -131,12 +153,12 @@ class MyRulerView : View {
         val heithtSpecSize = MeasureSpec.getSize(heightMeasureSpec)
         if (widthSpecMode == MeasureSpec.AT_MOST && heightSpecMode == MeasureSpec.AT_MOST) {
             // 这里 mScaleHeight * 2 是因为分为长线和短线. 亮色线最长为 2倍 基础长度;
-            val height = paddingBottom + paddingTop + mTextHeight + mTextDistance + mScaleHeight * 2
+            val height = paddingBottom + paddingTop + mTextHeight + mTextDistance + mScaleHeight * 2 + mImageDistance + mBitmapHeight
             setMeasuredDimension(widthSpecSize, height.toInt())
         } else if (widthSpecMode == MeasureSpec.AT_MOST) {
             setMeasuredDimension(widthSpecSize, heithtSpecSize)
         } else if (heightSpecMode == MeasureSpec.AT_MOST) {
-            val height = paddingBottom + paddingTop + mTextHeight + mTextDistance + mScaleHeight * 2
+            val height = paddingBottom + paddingTop + mTextHeight + mTextDistance + mScaleHeight * 2 + mImageDistance + mBitmapHeight
             setMeasuredDimension(widthSpecSize, height.toInt())
         }
     }
@@ -148,42 +170,43 @@ class MyRulerView : View {
         }
     }
 
+    @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         var xInView: Float          // 刻度 在View中的理论位置; (如果超出屏幕, 则不需要去绘制)
-        var realScaleheigh: Float   // 真实的刻度长度; 中间亮色部分 长度越大;
+        var realScaleHeight: Float   // 真实的刻度长度; 中间亮色部分 长度越大;
         var value: String           // 刻度值 的数值文字
         val halfWidth = width / 2   // 一半 View 的宽度. 也就是: 当前选中刻度的位置
-//        canvas.drawBitmap()
+
         for (i in 0 until mTotalScale) {
             xInView = halfWidth + mOffset + i * mScaleSpace
             if (xInView < paddingStart || xInView > (width - paddingEnd)) {
                 // 超出 View 外的刻度线. 就不画了
                 continue
             }
-            val dis = abs(xInView - halfWidth)
-            if (dis <= mScaleSpace * 3) {
-                // 当刻度距离中间较近时, 绘制量色刻度线. 计算刻度的长度 及 刻度的粗细;
-                val rate = 1 - dis / (mScaleSpace * 3)
-                realScaleheigh = (1.1f + rate * 0.5f) * mScaleHeight
-                mCenterScalePaint.strokeWidth = mScaleWidth * (1.5f * rate + 1.5f)
+//            val dis = abs(xInView - halfWidth)
+//            if (dis <= mScaleSpace * 3) {
+//                // 当刻度距离中间较近时, 绘制量色刻度线. 计算刻度的长度 及 刻度的粗细;
+//                val rate = 1 - dis / (mScaleSpace * 3)
+//                realScaleHeight = (1.1f + rate * 0.5f) * mScaleHeight
+//                mCenterScalePaint.strokeWidth = mScaleWidth * (1.5f * rate + 1.5f)
+//
+//                // 绘制刻度线
+//                canvas.drawLine(xInView, height - mTextHeight - mTextDistance - paddingBottom, xInView,
+//                    height - paddingBottom - mTextHeight - mTextDistance - realScaleHeight,
+//                    mCenterScalePaint
+//                )
+//            }
 
-                // 绘制刻度线
-                canvas.drawLine(xInView, height - mTextHeight - mTextDistance - paddingBottom, xInView,
-                    height - paddingBottom - mTextHeight - mTextDistance - realScaleheigh,
-                    mCenterScalePaint
-                )
-            } else {
-                // 当刻度超出中间值过多时, 绘制暗色刻度线
-                realScaleheigh = mScaleHeight
-                if(i % 10 == 0){
-                    realScaleheigh +=  mScaleHeight / 2
-                }
-                canvas.drawLine(xInView, height - mTextHeight - mTextDistance - paddingBottom, xInView,
-                    height - paddingBottom - mTextHeight - mTextDistance - realScaleheigh,
-                    mScalePaint
-                )
+            // 当刻度超出中间值过多时, 绘制暗色刻度线
+            realScaleHeight = mScaleHeight
+            if(i % 10 == 0){
+                realScaleHeight +=  mScaleHeight / 2
             }
+            canvas.drawLine(xInView, height - mTextHeight - mTextDistance - paddingBottom, xInView,
+                height - paddingBottom - mTextHeight - mTextDistance - realScaleHeight,
+                mScalePaint
+            )
             if (i % 10 == 0) {
                 // 整数时 绘制 刻度值
                 value = (mMinValue + i * mPerValue / 10).toInt().toString()
@@ -193,6 +216,11 @@ class MyRulerView : View {
                 )
             }
         }
+
+
+        canvas.drawBitmap(mBitmap,null, RectF(
+            (width / 2 - mBitmapWidth / 2).toFloat(), height - mTextHeight - mTextDistance - paddingBottom - mImageDistance - mScaleHeight * 1.5f  - mBitmapHeight,
+            (width / 2 + mBitmapWidth / 2).toFloat(), height - mTextHeight - mTextDistance - paddingBottom - mImageDistance - mScaleHeight * 1.5f), null)
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {

@@ -79,7 +79,9 @@ class BMIView @JvmOverloads constructor(context: Context, attrs: AttributeSet? =
         }
     }
 
-
+    /**
+     * 设置BMI值 设置最大为60
+     */
     fun setBmi(bmi : Float){
         mBmi = bmi
         if(mBmi<0){

@@ -23,8 +23,6 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
         binding.mrvRuler.setValue(60f, 0f, 120f, 0.1f)
     }
 
-
-
     override fun initData() {
 
     }
