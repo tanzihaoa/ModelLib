@@ -32,7 +32,7 @@ class MyRulerView : View {
     private var mCurrentValue = 50.0f   // 刻度尺 当前值.
     private var mPerValue = 1f          // 刻度精度, 例如: 身高为1cm  体重为0.1Kg
     private var mMaxValue = 200f        // 刻度最大值上限
-    private var mMinValue = 100f        // 刻度最小值
+    private var mMinValue = 0f        // 刻度最小值
     private var mTotalScale = 0         // 共有多少条 刻度
     private var mOffset = 0f            // 刻度尺当前值 位于尺子总刻度的位置
     private var mMaxOffset = 0          // 所有刻度 共有多长
@@ -119,6 +119,15 @@ class MyRulerView : View {
             it.strokeCap = Paint.Cap.ROUND
         }
     }
+    /**
+     * 设置标尺参数. 在未设置之前, View将会显示空白
+     * @param currentValue  默认值
+     */
+    fun setValue(currentValue: Float) {
+        mCurrentValue = currentValue
+
+        calculation()
+    }
 
     /**
      * 设置标尺参数. 在未设置之前, View将会显示空白
@@ -133,6 +142,13 @@ class MyRulerView : View {
         mMinValue = minValue
         mPerValue = per * 10.0f
 
+        calculation()
+    }
+
+    /**
+     * 计算数值
+     */
+    private fun calculation(){
         // 计算总刻度数. 两头都有线,所以+1
         mTotalScale = ((mMaxValue - mMinValue) * 10 / mPerValue + 1).toInt()
 
