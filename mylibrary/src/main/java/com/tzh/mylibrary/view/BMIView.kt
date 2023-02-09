@@ -100,7 +100,7 @@ class BMIView @JvmOverloads constructor(context: Context, attrs: AttributeSet? =
         binding?.let {
             //BMI偏低
             if(mBmi < 18.5f){
-                mMargin = mView1Width*(mBmi/18.5f)
+                mMargin = mView1Width*(mBmi/18.5f) + interval / 3
                 it.ivZUp.setImageTint(R.color.color_9ac6e1)
                 it.ivZDown.setImageTint(R.color.color_9ac6e1)
                 setTextColor(1)
@@ -111,7 +111,7 @@ class BMIView @JvmOverloads constructor(context: Context, attrs: AttributeSet? =
             //BMI标准
             if(mBmi >= 18.5f){
                 if(mBmi < 24f){
-                    mMargin += interval + mView2Width*((mBmi-18.5f)/(24f - 18.5f))
+                    mMargin += mView2Width*((mBmi-18.5f)/(24f - 18.5f)) + interval / 3
                     it.ivZUp.setImageTint(R.color.color_9ebf6a)
                     it.ivZDown.setImageTint(R.color.color_9ebf6a)
                     setTextColor(2)
@@ -123,7 +123,7 @@ class BMIView @JvmOverloads constructor(context: Context, attrs: AttributeSet? =
             //BMI超重
             if(mBmi >= 24f){
                 if(mBmi < 28f){
-                    mMargin += interval + mView3Width*((mBmi-24f)/(28f - 24f))
+                    mMargin += mView3Width*((mBmi-24f)/(28f - 24f)) + interval / 3
                     it.ivZUp.setImageTint(R.color.color_ffbc5c)
                     it.ivZDown.setImageTint(R.color.color_ffbc5c)
                     setTextColor(3)
