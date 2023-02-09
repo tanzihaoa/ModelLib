@@ -101,5 +101,10 @@
             android:id="@+id/tv_tz"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
+        <com.tzh.mylibrary.view.pickerview.ScrollPickerView
+            android:id="@+id/scroll_picker_view"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"/>
     </LinearLayout>
 </layout>

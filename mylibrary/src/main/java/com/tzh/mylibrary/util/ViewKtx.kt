@@ -92,7 +92,7 @@ fun RecyclerView.verDivider(height: Float = 1f, @ColorRes color: Int = android.R
  * RecyclerView adapter 初始化
  * 方便直接使用
  */
-fun RecyclerView.gradDivider(height: Float = 1f, space: Float, num: Int, heightSpace: Float = space ): GradDivider {
+fun RecyclerView.gradDivider(space: Float, num: Int, heightSpace: Float = space ): GradDivider {
     val gDivider = GradDivider(context,space, num, heightSpace)
     this.addItemDecoration(gDivider)
     return gDivider
