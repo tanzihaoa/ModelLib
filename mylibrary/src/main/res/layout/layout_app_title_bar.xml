@@ -9,8 +9,8 @@
         android:id="@+id/atb_back_iv"
         android:layout_width="42dp"
         android:layout_height="match_parent"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="4dp"
         app:srcCompat="@drawable/svg_left_jiantou" />
 
     <TextView

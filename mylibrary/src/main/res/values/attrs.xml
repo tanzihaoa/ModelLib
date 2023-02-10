@@ -41,6 +41,10 @@
         <attr name="xtbRightImgSrc" format="reference|color" />
         <!--右边图片颜色-->
         <attr name="xtbRightImgColor" format="integer" />
+        <!--左边图片距离左边距离-->
+        <attr name="xtbLeftImgPaddingLeft" format="dimension" />
+        <!--左边图片距离右边距离-->
+        <attr name="xtbLeftImgPaddingRight" format="dimension" />
         <!--右边图片宽-->
         <attr name="xtbRightImgWidth" format="dimension" />
         <!--右边图片高-->

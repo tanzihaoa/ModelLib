@@ -88,12 +88,10 @@ public class GsonUtil {
      * @return
      */
     public static <T> List<Map<String, T>> GsonToListMaps(String gsonString) {
-        List<Map<String, T>> list = null;
-        if (GSON != null) {
-            list = GSON.fromJson(gsonString,
-                    new TypeToken<List<Map<String, T>>>() {
-                    }.getType());
-        }
+        List<Map<String, T>> list;
+        list = GSON.fromJson(gsonString,
+                new TypeToken<List<Map<String, T>>>() {
+                }.getType());
         return list;
     }
 
