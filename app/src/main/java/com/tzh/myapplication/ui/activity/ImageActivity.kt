@@ -15,7 +15,7 @@ class ImageActivity : AppBaseActivity<ActivityImageBinding>(R.layout.activity_im
     }
 
     override fun initView() {
-
+        binding.startView.setStartNum(4.5f)
     }
 
     override fun initData() {

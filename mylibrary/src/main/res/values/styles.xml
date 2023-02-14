@@ -89,4 +89,26 @@
             <enum name="bottomToTop" value="3" />
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="StarView">
+        <!--星星间隔-->
+        <attr name="stv_padding" format="dimension" />
+        <!--星星图片的大小  宽高一致-->
+        <attr name="stv_image_width" format="dimension" />
+        <!--星星的类型-->
+        <attr name="stv_type" format="enum">
+            <!--只显示星星-->
+            <enum name="VIEW_SHOW" value="0" />
+            <!--可以点击评价-->
+            <enum name="VIEW_CLICK" value="1" />
+            <!--可以点击评价-->
+            <enum name="VIEW_SHOW_NO_CLICK" value="2" />
+        </attr>
+        <!-- 是否可以点击 -->
+        <attr name="stv_is_click" format="boolean" />
+
+        <!-- 是否显示背景图标 -->
+        <attr name="stv_is_show_bg" format="boolean" />
+
+    </declare-styleable>
 </resources>

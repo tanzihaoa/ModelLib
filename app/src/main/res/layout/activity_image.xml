@@ -17,5 +17,15 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
+        <com.tzh.mylibrary.view.StarView
+            android:id="@+id/start_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/dv_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:stv_type="VIEW_SHOW_NO_CLICK"
+            app:stv_image_width="20dp"
+            app:stv_padding="2dp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
