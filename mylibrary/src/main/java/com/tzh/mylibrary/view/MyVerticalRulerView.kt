@@ -13,6 +13,7 @@ import android.widget.Scroller
 import com.tzh.mylibrary.R
 import com.tzh.mylibrary.util.BitmapUtil
 import com.tzh.mylibrary.util.DpToUtil
+import com.tzh.mylibrary.util.MathUtil
 import java.lang.Math.abs
 import kotlin.math.roundToInt
 
@@ -140,7 +141,9 @@ class MyVerticalRulerView : View {
         mMaxOffset = (-(mTotalScale - 1) * mScaleSpace).toInt()
 
         // 算当前位置. 也是负数
-        mOffset = (mMaxValue - mCurrentValue) / mPerValue * mScaleSpace * 10
+//        mOffset = (mMinValue - mCurrentValue) / mPerValue * mScaleSpace * 10
+
+        mOffset = (-(mMaxValue - mCurrentValue)) * 10.0f / mPerValue * mScaleSpace
         invalidate()
     }
 
@@ -175,7 +178,7 @@ class MyVerticalRulerView : View {
         var xInView: Float          // 刻度 在View中的理论位置; (如果超出屏幕, 则不需要去绘制)
         var realScaleHeight: Float   // 真实的刻度长度; 中间亮色部分 长度越大;
         var value: String           // 刻度值 的数值文字
-        val halfWidth = height / 3   // 一半 View 的宽度. 也就是: 当前选中刻度的位置
+        val halfWidth = height / 4   // 一半 View 的宽度. 也就是: 当前选中刻度的位置
 
         for (i in mTotalScale downTo  0) {
             xInView = halfWidth + mOffset + i * mScaleSpace
@@ -184,7 +187,7 @@ class MyVerticalRulerView : View {
                 continue
             }
             val dis = abs(xInView - halfWidth)
-            if (dis < mScaleSpace * 1) {
+            if (dis < mScaleSpace * 0.5) {
                 // 当刻度距离中间较近时, 绘制量色刻度线. 计算刻度的长度 及 刻度的粗细;
                 val rate = 1 - dis / (mScaleSpace * 3)
                 realScaleHeight = (1.1f + rate * 0.5f) * mScaleHeight
@@ -212,7 +215,7 @@ class MyVerticalRulerView : View {
                 value = (mMaxValue - i * mPerValue / 10).toInt().toString()
                 canvas.drawText(
                     value,
-                    (width - mTextHeight * 2),xInView + mTextPaint.measureText(value) / 2, mTextPaint
+                    (width - mTextHeight * 2),xInView + mTextPaint.measureText(value) / 3, mTextPaint
                 )
             }
         }
@@ -276,7 +279,6 @@ class MyVerticalRulerView : View {
         mCurrentValue =
             mMaxValue - (abs(mOffset) / mScaleSpace).roundToInt() * mPerValue / 10.0f
         mOffset = (-(mMaxValue - mCurrentValue)) * 10.0f / mPerValue * mScaleSpace
-        Log.e("countMoveEnd===",mCurrentValue.toString()+"==="+mOffset)
         notifyValueChange()
         postInvalidate()
     }
@@ -297,12 +299,12 @@ class MyVerticalRulerView : View {
         }
         mCurrentValue =
             mMaxValue - (abs(mOffset) / mScaleSpace).roundToInt() * mPerValue / 10.0f
-        Log.e("countMoveEnd===",mCurrentValue.toString()+"==="+mOffset)
         notifyValueChange()
         postInvalidate()
     }
 
     private fun notifyValueChange() {
+        mCurrentValue = MathUtil.roundedNumber(mCurrentValue,1)
         mVlaueListener?.invoke(mCurrentValue)
     }
 

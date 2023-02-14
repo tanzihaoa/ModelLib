@@ -8,10 +8,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <com.tzh.myapplication.view.XImageView
-            android:id="@+id/x_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@mipmap/like"/>
+        <com.tzh.mylibrary.view.DirectionView
+            android:id="@+id/dv_view"
+            android:layout_width="20dp"
+            android:layout_height="200dp"
+            app:dv_corners="20dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

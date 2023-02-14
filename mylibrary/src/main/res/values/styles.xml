@@ -64,4 +64,29 @@
         </attr>
 
     </declare-styleable>
+
+    <declare-styleable name="DirectionView">
+        <attr name="dv_progress" format="float" />
+        <attr name="dv_max" format="float" />
+        <attr name="dv_unfinished_color" format="color" />
+        <attr name="dv_text_color" format="color" />
+        <attr name="dv_finished_color" format="color" />
+        <attr name="dv_hasline" format="boolean" />
+        <attr name="dv_hasText" format="boolean" />
+        <attr name="dv_cornerBottomLeft" format="dimension" />
+        <attr name="dv_cornerBottomRight" format="dimension" />
+        <attr name="dv_cornerTopLeft" format="dimension" />
+        <attr name="dv_cornerTopRight" format="dimension" />
+        <attr name="dv_corners" format="dimension" />
+        <attr name="dv_direction" format="enum">
+            <!--从左到右-->
+            <enum name="leftToRight" value="0" />
+            <!--从右到左-->
+            <enum name="rightToLeft" value="1" />
+            <!--从上到下-->
+            <enum name="topToBottom" value="2" />
+            <!--从下到上-->
+            <enum name="bottomToTop" value="3" />
+        </attr>
+    </declare-styleable>
 </resources>
