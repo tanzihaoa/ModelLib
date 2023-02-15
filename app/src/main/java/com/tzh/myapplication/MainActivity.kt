@@ -15,13 +15,17 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
 
     override fun initView() {
         binding.v = this
-        binding.bmiView.setBmi(27.9f)
+        binding.myRuler.setValue(27.9f)
+        // 体重标尺
+        binding.mrvRuler.mVlaueListener = {
+            binding.tvRuler.text = it.toString()
+        }
 
         // 体重标尺
         binding.mrvRuler.mVlaueListener = {
             binding.tvTz.text = it.toString()
         }
-        binding.mrvRuler.setValue(23.9f)
+        binding.mrvRuler.setValue(23.9f,0f,230f,1f)
     }
 
     override fun initData() {

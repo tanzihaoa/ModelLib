@@ -4,14 +4,11 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.VelocityTracker
 import android.view.View
 import android.view.ViewConfiguration
 import android.widget.Scroller
-import com.tzh.mylibrary.R
-import com.tzh.mylibrary.util.BitmapUtil
 import com.tzh.mylibrary.util.DpToUtil
 import com.tzh.mylibrary.util.MathUtil
 import java.lang.Math.abs
@@ -25,6 +22,9 @@ class MyVerticalRulerView : View {
 
     //************ Paint *************
     private val mTextPaint: Paint   // 刻度数值
+
+    private val mCenterTextPaint: Paint   // 刻度数值
+
     private val mScalePaint: Paint   // 刻度线 - 暗色
     private val mCenterScalePaint: Paint    // 刻度线 - 亮色
 
@@ -42,14 +42,15 @@ class MyVerticalRulerView : View {
     private var mScaleWidth = 4f        // 刻度线的宽度(粗细)
     private var mScaleHeight = 40f      // 刻度线的长度(基础长度)
 
-    private var mCenterColor = Color.parseColor("#fa6521")  // 亮色刻度 色值
+    private var mCenterColor = Color.parseColor("#72b7f9")  // 亮色刻度 色值
     private var mTextColor = Color.parseColor("#333333")    // 文字, 普通刻度 的颜色
 
     var mVlaueListener: ((Float) -> Unit)? = null    // 滑动后数值回调
 
     // 刻度值 文字参数
     private var mTextSize = 16f         // 尺子刻度下方数字 textsize
-    private val mTextHeight: Float      // 刻度数值文字 的高度
+
+    private val mTextWidth: Float      // 刻度数值文字 的高度
     private var mTextLoc = 0f           // 文字基线的位置;
 
 
@@ -89,8 +90,15 @@ class MyVerticalRulerView : View {
             it.color = mTextColor
 
             // 获取文字高度
-            val fm = it.fontMetrics
-            mTextHeight = fm.descent - fm.ascent
+            val value = mMaxValue.toString()
+            val rect = Rect()
+            it.getTextBounds(value,0,value.length,rect)
+            mTextWidth = rect.width().toFloat()
+        }
+
+        mCenterTextPaint  = Paint(Paint.ANTI_ALIAS_FLAG).also {
+            it.textSize = DpToUtil.dip2px(context,mTextSize).toFloat()
+            it.color = mCenterColor
         }
 
         mScalePaint = Paint(Paint.ANTI_ALIAS_FLAG).also {
@@ -155,10 +163,10 @@ class MyVerticalRulerView : View {
         val heithtSpecSize = MeasureSpec.getSize(heightMeasureSpec)
         if (widthSpecMode == MeasureSpec.AT_MOST && heightSpecMode == MeasureSpec.AT_MOST) {
             // 这里 mScaleHeight * 2 是因为分为长线和短线. 亮色线最长为 2倍 基础长度;
-            val width = paddingStart + paddingEnd + mTextHeight * 2 + mTextDistance + mScaleHeight * 2
+            val width = paddingStart + paddingEnd + mTextWidth * 1.2 + mTextDistance + mScaleHeight * 2
             setMeasuredDimension(width.toInt(),heithtSpecSize)
         } else if (widthSpecMode == MeasureSpec.AT_MOST) {
-            val width = paddingStart + paddingEnd + mTextHeight * 2 + mTextDistance + mScaleHeight * 2
+            val width = paddingStart + paddingEnd + mTextWidth * 1.2 + mTextDistance + mScaleHeight * 2
             setMeasuredDimension(width.toInt(), heithtSpecSize)
         } else if (heightSpecMode == MeasureSpec.AT_MOST) {
             setMeasuredDimension(widthSpecSize, heithtSpecSize)
@@ -194,9 +202,24 @@ class MyVerticalRulerView : View {
                 mCenterScalePaint.strokeWidth = mScaleWidth * (1.5f * rate + 1.5f)
 
                 // 绘制刻度线
-                canvas.drawLine(width - paddingBottom - mTextHeight * 2 - mTextDistance - realScaleHeight,xInView,
-                    width - mTextHeight * 2 - mTextDistance - paddingBottom,xInView,
+                canvas.drawLine(width - paddingBottom - mTextWidth * 1.2f - mTextDistance - realScaleHeight,xInView,
+                    width - mTextWidth * 1.2f - mTextDistance - paddingBottom,xInView,
                     mCenterScalePaint
+                )
+
+                // 整数时 绘制 刻度值
+                val mun = (mMaxValue - i * mPerValue / 10)
+                if(mPerValue  % 10 == 0f){
+                    value = mun.toInt().toString()
+                }else{
+                    value = MathUtil.roundedNumber(mun,1).toString()
+                }
+
+                val rect = Rect()
+                mCenterTextPaint.getTextBounds(value,0,value.length,rect)
+                canvas.drawText(
+                    value,
+                    (width - mTextWidth * 1.2f),xInView + rect.height() / 2, mCenterTextPaint
                 )
             }else{
                 // 当刻度超出中间值过多时, 绘制暗色刻度线
@@ -204,20 +227,23 @@ class MyVerticalRulerView : View {
                 if(i % 10 == 0){
                     realScaleHeight +=  mScaleHeight / 2
                 }
-                canvas.drawLine(width - mTextHeight * 2 - mTextDistance - paddingBottom- realScaleHeight,xInView,
-                    width - paddingBottom - mTextHeight * 2 - mTextDistance , xInView,
+                canvas.drawLine(width - mTextWidth * 1.2f - mTextDistance - paddingBottom- realScaleHeight,xInView,
+                    width - paddingBottom - mTextWidth * 1.2f - mTextDistance , xInView,
                     mScalePaint
                 )
+
+                if (i % 10 == 0 && dis > mScaleSpace * 5) {
+                    // 整数时 绘制 刻度值
+                    value = (mMaxValue - i * mPerValue / 10).toInt().toString()
+                    val rect = Rect()
+                    mCenterTextPaint.getTextBounds(value,0,value.length,rect)
+                    canvas.drawText(
+                        value,
+                        (width - mTextWidth * 1.2f),xInView + rect.height() / 2, mTextPaint
+                    )
+                }
             }
 
-            if (i % 10 == 0) {
-                // 整数时 绘制 刻度值
-                value = (mMaxValue - i * mPerValue / 10).toInt().toString()
-                canvas.drawText(
-                    value,
-                    (width - mTextHeight * 2),xInView + mTextPaint.measureText(value) / 3, mTextPaint
-                )
-            }
         }
     }
 

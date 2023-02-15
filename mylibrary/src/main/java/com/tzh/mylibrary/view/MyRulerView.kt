@@ -158,7 +158,6 @@ class MyRulerView : View {
 
         // 算当前位置. 也是负数
         mOffset = (mMinValue - mCurrentValue) / mPerValue * mScaleSpace * 10
-        Log.d(TAG, "mOffset--" + mOffset + "=====mMaxOffset" + mMaxOffset + "mTotalLine" + mTotalScale)
         invalidate()
     }
 
@@ -241,7 +240,6 @@ class MyRulerView : View {
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
-        Log.d(TAG, "onTouchEvent-")
         val action = event.action
         val xPosition = event.x.toInt()
         if (mVelocityTracker == null) {
@@ -266,6 +264,7 @@ class MyRulerView : View {
             }
         }
         mLastX = xPosition
+        Log.d("changeMoveAndValue==", mLastX.toString())
         return true
     }
 
@@ -273,7 +272,6 @@ class MyRulerView : View {
      * 根据滑动速率, 启动惯性滑动
      */
     private fun countVelocityTracker() {
-        Log.d(TAG, "countVelocityTracker-")
         mVelocityTracker!!.computeCurrentVelocity(1000) //初始化速率的单位
         val xVelocity = mVelocityTracker!!.xVelocity //当前的速度
         if (abs(xVelocity) > mMinVelocity) {
@@ -329,16 +327,16 @@ class MyRulerView : View {
     }
 
     override fun computeScroll() {
-        Log.d(TAG, "computeScroll-")
         //mScroller.computeScrollOffset()返回 true表示滑动还没有结束
         if (mScroller.computeScrollOffset()) {
             if (mScroller.currX == mScroller.finalX) {
                 countMoveEnd()
             } else {
-                val xPosition = mScroller.currX
-                mMove = mLastX - xPosition
-                changeMoveAndValue()
-                mLastX = xPosition
+//                val xPosition = mScroller.currX
+//                mMove = mLastX - xPosition
+//                Log.d("changeMoveAndValue==", mMove.toString()+"==="+mLastX+"==="+xPosition)
+//                changeMoveAndValue()
+//                mLastX = xPosition
             }
         }
     }

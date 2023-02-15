@@ -164,12 +164,12 @@ class XAppTitleBar @JvmOverloads constructor(
 
         mLeftImgPaddingLeft = typedArray.getDimensionPixelOffset(
             R.styleable.XAppTitleBar_xtbLeftImgPaddingLeft,
-            DpToUtil.dip2px(context, 16f)
+            16
         )
 
         mLeftImgPaddingRight = typedArray.getDimensionPixelOffset(
             R.styleable.XAppTitleBar_xtbLeftImgPaddingRight,
-            DpToUtil.dip2px(context, 4f)
+            4
         )
 
         /**
@@ -193,7 +193,7 @@ class XAppTitleBar @JvmOverloads constructor(
                 setWillNotDraw(true)
             }
 
-            updatePaddingKtx(mLeftImgPaddingLeft.toFloat(),-1f,mLeftImgPaddingRight.toFloat(),-1f)
+            updatePaddingKtx(mLeftImgPaddingLeft.toFloat(),0f,mLeftImgPaddingRight.toFloat(),0f)
         }
         mTitleTv = findViewById<TextView>(R.id.atb_title_tv).apply {
             text = titleStr
