@@ -111,4 +111,31 @@
         <attr name="stv_is_show_bg" format="boolean" />
 
     </declare-styleable>
+
+
+    <declare-styleable name="RoundProgressBar">
+        <!--max 　　　　             最大进度-->
+        <attr name="max" format="integer"/>
+        <!--startAngle 　　        进度从圆环的哪个角度开始走-->
+        <attr name="startAngle" format="integer"/>
+        <!--backColor 　　          圆环内部的填充色-->
+        <attr name="backColor" format="color|reference"/>
+        <!--roundColor 　　　     圆环的颜色-->
+        <attr name="roundColor" format="color|reference"/>
+        <!--roundProgressColor 圆环进度的颜色-->
+        <attr name="roundProgressColor" format="color|reference"/>
+        <!--roundWidth　　　　  圆环宽度-->
+        <attr name="roundWidth" format="dimension"/>
+        <!--textColor　　　　　   中心文字的颜色-->
+        <!--textSize 　　　　　　	中心文字的大小-->
+        <!--<attr name="textColor" format="color|reference"></attr>
+        <attr name="textSize" format="dimension"></attr>-->
+        <!--textIsDisplayable    中心文字是否显示-->
+        <attr name="textIsDisplayable" format="boolean"/>
+        <!--style = 0/1 　　　　 进度的风格，实心或者空心-->
+        <attr name="style">
+            <enum name="STROKE" value="0"/>
+            <enum name="FILL" value="1"/>
+        </attr>
+    </declare-styleable>
 </resources>

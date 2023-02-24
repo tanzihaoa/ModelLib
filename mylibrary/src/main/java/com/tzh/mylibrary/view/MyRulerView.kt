@@ -51,6 +51,8 @@ class MyRulerView : View {
     private val mTextHeight: Float      // 刻度数值文字 的高度
     private var mTextLoc = 0f           // 文字基线的位置;
 
+    //是否可以手动滑动
+    private var isSlide = true
 
     //************** 手势滑动相关 **************
     /**
@@ -128,6 +130,13 @@ class MyRulerView : View {
         mCurrentValue = currentValue
 
         calculation()
+    }
+
+    /**
+     * 设置是否可以滑动
+     */
+    fun setSlide(slide : Boolean){
+        isSlide = slide
     }
 
     /**
@@ -239,33 +248,37 @@ class MyRulerView : View {
             (width / 2 + mBitmapWidth / 2).toFloat(), height - mTextHeight - mTextDistance - paddingBottom - mImageDistance - mScaleHeight * 1.5f), null)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
-        val action = event.action
-        val xPosition = event.x.toInt()
-        if (mVelocityTracker == null) {
-            mVelocityTracker = VelocityTracker.obtain()
+        if(isSlide){
+            val action = event.action
+            val xPosition = event.x.toInt()
+            if (mVelocityTracker == null) {
+                mVelocityTracker = VelocityTracker.obtain()
+            }
+            mVelocityTracker!!.addMovement(event)
+            when (action) {
+                MotionEvent.ACTION_DOWN -> {
+                    mScroller.forceFinished(true)
+                    mLastX = xPosition
+                    mMove = 0
+                }
+                MotionEvent.ACTION_MOVE -> {
+                    // 计算移动值, 让标尺跟随移动
+                    mMove = mLastX - xPosition
+                    changeMoveAndValue()
+                }
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    // 根据滑动速率, 判断 启动 Scroller 的惯性滑动;
+                    countVelocityTracker()
+                    return false
+                }
+            }
+            mLastX = xPosition
+            Log.d("changeMoveAndValue==", mLastX.toString())
+            return true
         }
-        mVelocityTracker!!.addMovement(event)
-        when (action) {
-            MotionEvent.ACTION_DOWN -> {
-                mScroller.forceFinished(true)
-                mLastX = xPosition
-                mMove = 0
-            }
-            MotionEvent.ACTION_MOVE -> {
-                // 计算移动值, 让标尺跟随移动
-                mMove = mLastX - xPosition
-                changeMoveAndValue()
-            }
-            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-                // 根据滑动速率, 判断 启动 Scroller 的惯性滑动;
-                countVelocityTracker()
-                return false
-            }
-        }
-        mLastX = xPosition
-        Log.d("changeMoveAndValue==", mLastX.toString())
-        return true
+        return super.onTouchEvent(event)
     }
 
     /**
