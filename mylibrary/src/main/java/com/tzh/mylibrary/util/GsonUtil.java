@@ -26,6 +26,7 @@ public class GsonUtil {
 
 
     private GsonUtil() {
+
     }
 
 
