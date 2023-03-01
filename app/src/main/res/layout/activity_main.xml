@@ -22,6 +22,7 @@
             android:layout_margin="16dp"
             android:text="toRecycle"
             app:shapeCorners="20dp"
+            app:shapeGradientAngle="BL_TR"
             android:gravity="center"
             app:shapeBackgroundColor="@color/color_00f3b8"
             app:shapeBorderColor="@color/color_333"
