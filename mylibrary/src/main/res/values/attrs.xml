@@ -41,9 +41,23 @@
         <attr name="xtbRightImgSrc" format="reference|color" />
         <!--右边图片颜色-->
         <attr name="xtbRightImgColor" format="integer" />
+        <!--左边图片距离左边距离-->
+        <attr name="xtbLeftImgPaddingLeft" format="dimension" />
+        <!--左边图片距离右边距离-->
+        <attr name="xtbLeftImgPaddingRight" format="dimension" />
         <!--右边图片宽-->
         <attr name="xtbRightImgWidth" format="dimension" />
         <!--右边图片高-->
         <attr name="xtbRightImgHeight" format="dimension" />
+    </declare-styleable>
+
+    <!--BMIView-->
+    <declare-styleable name="BMIView">
+        <!--BMI值-->
+        <attr name="bvBMI" format="float" />
+
+        <!--指针图片资源-->
+        <attr name="bvImgSrc" format="reference|color" />
+
     </declare-styleable>
 </resources>

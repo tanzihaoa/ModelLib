@@ -10,6 +10,17 @@
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACTION_NOTIFICATION_LISTENER_SETTINGS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.BODY_SENSORS" />
+    <uses-permission android:name="android.permission.HIGH_SAMPLING_RATE_SENSORS"
+        tools:ignore="HighSamplingRate" />
+    <uses-permission
+        android:name="android.permission.MEDIA_CONTENT_CONTROL"
+        tools:ignore="ProtectedPermissions" />
 
     <application
         android:name=".base.MyApplication"
@@ -53,6 +64,7 @@
         <activity
             android:name="com.tzh.myapplication.MainActivity"
             android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:theme="@style/AppBaseTheme"
             android:exported="true">
             <intent-filter>
@@ -70,13 +82,19 @@
                 <data
                     android:host="test.app"
                     android:pathPrefix="/openwith"
-                    android:scheme="taroandroid" />
+                    android:scheme="qdsandroid" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.ListActivity"
+        <activity android:name=".ui.activity.ListActivity"
             android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:exported="false"/>
+
+        <activity android:name=".ui.activity.ImageActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="LockedOrientationActivity" />
     </application>
 
 </manifest>

@@ -17,15 +17,15 @@ public class ToastUtil {
     private static View view;
     private static TextView tv;
 
-    private static Handler handler = new Handler(Looper.getMainLooper());
+    private static final Handler handler = new Handler(Looper.getMainLooper());
 
     private synchronized static void initToast(CharSequence msg, int duration) {
         if (toast != null) {
             toast.cancel();
         }
-        toast = new Toast(MyApplication.sContext);
+        toast = new Toast(MyApplication.mContext);
         if (view == null) {
-            view = LayoutInflater.from(MyApplication.sContext).inflate(R.layout.toast_custom_tv, null);
+            view = LayoutInflater.from(MyApplication.mContext).inflate(R.layout.toast_custom_tv, null);
             tv = (TextView) view;
         }
         tv.setText(TextUtils.isEmpty(msg) ? "" : msg);
@@ -42,6 +42,7 @@ public class ToastUtil {
     public static void show(CharSequence message) {
         if (TextUtils.isEmpty(message)) return;
         initToast(message, Toast.LENGTH_SHORT);
+
     }
 
     /**
@@ -89,11 +90,6 @@ public class ToastUtil {
         if (TextUtils.isEmpty(str)) {
             return;
         }
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                showShort(str);
-            }
-        });
+        handler.post(() -> showShort(str));
     }
 }

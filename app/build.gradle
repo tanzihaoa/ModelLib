@@ -21,6 +21,7 @@ android {
 //            abiFilters 'armeabi-v7a', 'armeabi', 'arm64-v8a', "x86_64"
         }
 
+        vectorDrawables.useSupportLibrary = true
     }
 
     signingConfigs {
@@ -99,23 +100,23 @@ dependencies {
     api 'io.github.scwang90:refresh-header-classics:2.0.5'   //经典刷新头
     api 'io.github.scwang90:refresh-footer-classics:2.0.5'    //经典加载
     api  'io.github.scwang90:refresh-header-material:2.0.5'    //谷歌刷新头
+    api 'androidx.core:core-ktx:1.7.0'
+    api 'androidx.appcompat:appcompat:1.4.1'
+    api 'com.google.android.material:material:1.5.0'
 
     //RxJava2.0+ retrofit2
     api 'com.uber.autodispose:autodispose:1.4.0'
     api 'com.uber.autodispose:autodispose-android-archcomponents:1.4.0'
     // rxandroid   (https://github.com/ReactiveX/RxAndroid)
     api 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    api 'io.reactivex.rxjava2:rxandroid:2.1.1'
     //retrofit (https://github.com/square/retrofit)
     api 'com.squareup.retrofit2:retrofit:2.9.0'
     api 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
     api 'com.squareup.retrofit2:converter-gson:2.9.0'
     //okttp  (https://github.com/square/okhttp)
-    api 'com.squareup.okhttp3:okhttp:4.10.0'
-    api 'com.squareup.okhttp3:logging-interceptor:4.10.0'
-
-    api 'pl.droidsonroids.gif:android-gif-drawable:1.2.25'
-
+    api 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
+    api 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
+    implementation 'com.airbnb.android:lottie:5.2.0'
     api 'androidx.multidex:multidex:2.0.1'
     implementation project(':mylibrary')
 }

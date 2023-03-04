@@ -47,6 +47,18 @@
     <color name="lw_write_color">#f0f0f0</color>
     <color name="main_red_light_color">#D73B11</color>
     <color name="main_yellow_sub_color">#fd9b00</color>
+
+    <style name="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.AppCompat.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
     <style name="lw_AppProgressDialog" parent="Theme.AppCompat.Dialog.Alert">
         
         <item name="android:textSize">18sp</item>

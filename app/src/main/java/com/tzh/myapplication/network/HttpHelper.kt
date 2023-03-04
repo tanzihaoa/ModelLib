@@ -119,7 +119,6 @@ object HttpHelper {
     /**
      * 根据传入的 interface 自动生成 各个接口类的实例，且不会重复生成
      */
-    @Synchronized
     inline fun <reified T> getInterfaceObject(interfaceClass: Class<T>): T {
         //当 interface 没有实例
         if (mInterfaceMap[interfaceClass.name] == null) {
@@ -133,38 +132,6 @@ object HttpHelper {
             throw RuntimeException("BaseHttpRequest Error: Retrofit 未实例化，请使用 onBindingBaseUrl 初始化接口类！")
         }
         return mInterfaceMap[interfaceClass.name] as T
-    }
-
-    /**
-     * RxJava 增加一个 onNext层，处理错误
-     * 一般请求处理code不为0时的错误
-     */
-    fun <T : BaseResDto<*>> withDefault(observable: Observable<T>): Observable<T> {
-        return observable
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnNext(DefaultFailure())
-    }
-
-    /**
-     * RxJava 增加一个 onNext层，处理错误
-     * 一般请求处理code不为0时的错误
-     */
-    fun <T : BaseResDto<*>> withDefault(
-        owner: LifecycleOwner,
-        observable: Observable<T>
-    ): ObservableSubscribeProxy<T> {
-        return observable
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnNext(DefaultFailure())
-            .`as`(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(owner, Lifecycle.Event.ON_DESTROY)))
-    }
-
-
-    @JvmStatic
-    fun <T> autoDisposable(owner: LifecycleOwner): AutoDisposeConverter<T> {
-        return AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(owner, Lifecycle.Event.ON_DESTROY))
     }
 }
 

@@ -15,8 +15,7 @@ object NetWorkApi {
     /**
      * 热议列表
      */
-    fun masterShopList(owner: LifecycleOwner, p: Int):
-            ObservableSubscribeProxy<BaseResDto<BaseResPageDto<MasterShopListDto>>> {
+    fun masterShopList(owner: LifecycleOwner, p: Int): ObservableSubscribeProxy<BaseResDto<BaseResPageDto<MasterShopListDto>>> {
         return xHttpRequest<NetWorkInterface>().masterShopList(
             ArrayMap<String, Any>().apply {
                 //当前页数

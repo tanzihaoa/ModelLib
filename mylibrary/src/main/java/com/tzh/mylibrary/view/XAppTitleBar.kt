@@ -80,6 +80,16 @@ class XAppTitleBar @JvmOverloads constructor(
     private var mRightImgColor = 0
 
     /**
+     * 左边图片距离左边距离
+     */
+    private var mLeftImgPaddingLeft = 0
+
+    /**
+     * 左边图片距离右边距离
+     */
+    private var mLeftImgPaddingRight = 0
+
+    /**
      * 右边图片宽 px
      */
     private var mRightImgWidth = 0
@@ -104,7 +114,7 @@ class XAppTitleBar @JvmOverloads constructor(
     private fun init(attrs: AttributeSet) {
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.XAppTitleBar)
 
-        val backIconColor = typedArray.getResourceId(R.styleable.XAppTitleBar_xtbBackIconColor, R.color.color_333)
+        val backIconColor = typedArray.getResourceId(R.styleable.XAppTitleBar_xtbBackIconColor,-1)
 
         val backIconIsShow = typedArray.getBoolean(R.styleable.XAppTitleBar_xtbBackIconIsShow, true)
 
@@ -152,6 +162,16 @@ class XAppTitleBar @JvmOverloads constructor(
             DpToUtil.dip2px(context, 24f)
         )
 
+        mLeftImgPaddingLeft = typedArray.getDimensionPixelOffset(
+            R.styleable.XAppTitleBar_xtbLeftImgPaddingLeft,
+            16
+        )
+
+        mLeftImgPaddingRight = typedArray.getDimensionPixelOffset(
+            R.styleable.XAppTitleBar_xtbLeftImgPaddingRight,
+            4
+        )
+
         /**
          * 顶部状态栏是否透明
          */
@@ -172,6 +192,8 @@ class XAppTitleBar @JvmOverloads constructor(
             } else {
                 setWillNotDraw(true)
             }
+
+            updatePaddingKtx(mLeftImgPaddingLeft.toFloat(),0f,mLeftImgPaddingRight.toFloat(),0f)
         }
         mTitleTv = findViewById<TextView>(R.id.atb_title_tv).apply {
             text = titleStr

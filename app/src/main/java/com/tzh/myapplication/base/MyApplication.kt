@@ -1,24 +1,23 @@
 package com.tzh.myapplication.base
 
+import android.app.Application
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
+import android.os.Build
 import androidx.multidex.MultiDex
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
-import com.tzh.myapplication.view.load.AppLoadLayout
-import com.tzh.myapplication.view.load.AppRefreshLayout
+import com.tzh.mylibrary.view.load.AppLoadLayout
+import com.tzh.mylibrary.view.load.AppRefreshLayout
 
-class MyApplication : BaseApplication() {
-
-    val context by lazy {
-        applicationContext
-    }
+class MyApplication : Application() {
 
     companion object {
         init {
             //关闭彩蛋
             SmartRefreshLayout.setDefaultRefreshInitializer { _, layout -> layout.layout.tag = "close egg" }
             //设置全局的Header构建器
-            SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, layout -> //全局设置主题颜色
+            SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, _ -> //全局设置主题颜色
                 //  layout.setEnableHeaderTranslationContent(true);
                 AppRefreshLayout(context)
             }
@@ -29,10 +28,12 @@ class MyApplication : BaseApplication() {
             }
         }
 
+        lateinit var mContext: Context
     }
 
     override fun onCreate() {
         super.onCreate()
+        mContext = this
     }
 
     /**
@@ -45,13 +46,5 @@ class MyApplication : BaseApplication() {
         super.attachBaseContext(base)
         MultiDex.install(this)
     }
-
-    fun isNetwork(): Boolean {
-        val connectivityManager =
-            context.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
-        val activeNetworkInfo = connectivityManager.activeNetworkInfo
-        return activeNetworkInfo?.isAvailable ?: false
-    }
-
 
 }

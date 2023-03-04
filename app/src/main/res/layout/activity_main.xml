@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tool="http://schemas.android.com/tools">
     <data>
         <variable
             name="v"
@@ -40,7 +40,7 @@
             app:shapeBackgroundColor="@color/color_00f3b8"
             android:onClick="@{()->v.openDialog()}"
             app:shapeCorners="8dp">
-            <com.tzh.myapplication.view.ImageTextView
+            <com.tzh.mylibrary.view.ImageTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:itvText="to"
@@ -54,5 +54,43 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
         </com.tzh.mylibrary.shapeview.ShapeConstraintLayout>
+
+        <com.tzh.mylibrary.shapeview.ShapeTextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="16dp"
+            android:text="toImage"
+            app:shapeCorners="20dp"
+            android:gravity="center"
+            app:shapeBackgroundColor="@color/color_00f3b8"
+            app:shapeBorderColor="@color/color_333"
+            app:shapeBorderWidth="1dp"
+            android:onClick="@{()->v.toImage()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <com.tzh.mylibrary.shapeview.ShapeTextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="16dp"
+            android:text="start"
+            app:shapeCorners="20dp"
+            android:gravity="center"
+            app:shapeBackgroundColor="@color/color_00f3b8"
+            app:shapeBorderColor="@color/color_333"
+            app:shapeBorderWidth="1dp"
+            android:onClick="@{()->v.start()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <TextView
+            android:id="@+id/tv_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tool:text="设备检测到您当前走了"/>
+
     </LinearLayout>
 </layout>
