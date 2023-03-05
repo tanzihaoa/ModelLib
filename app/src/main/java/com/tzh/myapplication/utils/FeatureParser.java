@@ -45,6 +45,7 @@ public class FeatureParser {
                 steps.add(s);
             } while (cursor.moveToNext());
         }
+
         return steps;
     }
 }

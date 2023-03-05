@@ -51,6 +51,7 @@ class AppLoadLayout @JvmOverloads constructor(
                 }
                 RefreshState.Refreshing -> {
                 }
+                else -> {}
             }
         }
     }

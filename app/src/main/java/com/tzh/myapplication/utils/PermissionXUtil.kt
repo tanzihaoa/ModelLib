@@ -1,4 +1,4 @@
-package com.tzh.mylibrary.util
+package com.tzh.myapplication.utils
 
 import android.Manifest
 import androidx.appcompat.app.AppCompatActivity
