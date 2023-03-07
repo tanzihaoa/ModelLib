@@ -30,12 +30,13 @@ public class FeatureParser {
         return defaultValue;
     }
 
+    //查询小米手机步数数据
     public static LinkedList<StepDto> getAllSteps(Context context) {
         LinkedList<StepDto> steps = new LinkedList<StepDto>();
         Cursor cursor = context.getContentResolver().query(
                 Steps.CONTENT_URI, projection,
-                Steps.BEGIN_TIME + " >= ?" ,
-                new String[]{DateTime.getInstance().getNowTime_Long()+""},
+                Steps.BEGIN_TIME + " >= ?" ,//查询条件  begin_time大于今天0点 为今天的值
+                new String[]{DateTime.getInstance().getNowTime_Long()+""},//判断值
                 Steps.DEFAULT_SORT_ORDER);
         if (cursor.moveToFirst()) {
             do {

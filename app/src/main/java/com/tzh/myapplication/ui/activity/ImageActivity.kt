@@ -17,7 +17,9 @@ import com.tzh.mylibrary.util.GsonUtil
 import com.tzh.mylibrary.util.LogUtils
 import com.tzh.myapplication.utils.OnPermissionCallBackListener
 import com.tzh.myapplication.utils.PermissionXUtil
+import com.tzh.myapplication.utils.SystemUtil
 import com.tzh.mylibrary.util.setOnClickNoDouble
+import com.tzh.mylibrary.util.toDefault
 
 
 class ImageActivity : AppBaseActivity<ActivityImageBinding>(R.layout.activity_image) {
@@ -34,7 +36,7 @@ class ImageActivity : AppBaseActivity<ActivityImageBinding>(R.layout.activity_im
                 PermissionXUtil.requestAnyPermission(this, Manifest.permission.ACTIVITY_RECOGNITION,object :
                     OnPermissionCallBackListener {
                     override fun onAgree() {
-                        getXiaomi()
+                        getStep()
                     }
 
                     override fun onDisAgree() {
@@ -42,7 +44,7 @@ class ImageActivity : AppBaseActivity<ActivityImageBinding>(R.layout.activity_im
                     }
                 })
             }else{
-                getXiaomi()
+                getStep()
             }
         }
     }
@@ -51,8 +53,18 @@ class ImageActivity : AppBaseActivity<ActivityImageBinding>(R.layout.activity_im
 
     }
 
+    fun getStep(){
+        LogUtils.e("步数====",SystemUtil.getDeviceBrand().toDefault(""))
+        if(SystemUtil.isXiaomi()){
+            getXiaomi()
+        }else if(SystemUtil.isHuaWei()){
+            getHuawei()
+        }
+    }
+
     @SuppressLint("SetTextI18n")
     fun getXiaomi(){
+        LogUtils.e("步数====","小米")
         val allSteps = FeatureParser.getAllSteps(this)
         var step = 0
         allSteps.forEach {
@@ -63,9 +75,15 @@ class ImageActivity : AppBaseActivity<ActivityImageBinding>(R.layout.activity_im
     }
 
     fun getHuawei(){
+        LogUtils.e("步数====","华为")
         val dataController = HuaweiHiHealth.getDataController(this)
         val todaySummationTask: Task<SampleSet> = dataController.readTodaySummation(DataType.DT_CONTINUOUS_STEPS_DELTA)
         todaySummationTask.addOnSuccessListener {
+            LogUtils.e("步数====",GsonUtil.GsonString(it))
+            binding.tvText.text = GsonUtil.GsonString(it)
+        }
+
+        todaySummationTask.addOnFailureListener {
             LogUtils.e("步数====",GsonUtil.GsonString(it))
             binding.tvText.text = GsonUtil.GsonString(it)
         }
