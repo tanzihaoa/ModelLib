@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="activity"
+            type="com.tzh.myapplication.ui.activity.SendMessageActivity" />
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <com.tzh.mylibrary.view.XAppTitleBar
+            android:id="@+id/title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:xtbTitleText="发送短信"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <com.tzh.mylibrary.shapeview.ShapeEditText
+            android:id="@+id/et_phone"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="请输入手机号码"
+            android:textSize="14sp"
+            android:gravity="center_vertical"
+            app:shapeBackgroundColor="#f4f4f4"
+            app:shapeCorners="20dp"
+            android:paddingHorizontal="16dp"
+            android:layout_margin="16dp"
+            android:inputType="phone"
+            android:maxLines="1"
+            android:maxLength="11"/>
+
+        <com.tzh.mylibrary.shapeview.ShapeEditText
+            android:id="@+id/et_content"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:hint="请输入发送内容"
+            android:textSize="14sp"
+            android:padding="16dp"
+            app:shapeBackgroundColor="#f4f4f4"
+            app:shapeCorners="20dp"
+            android:paddingHorizontal="16dp"
+            android:layout_margin="16dp"/>
+
+        <com.tzh.mylibrary.shapeview.ShapeTextView
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            app:shapeBackgroundColor="@color/teal_200"
+            android:text="发送"
+            android:onClick="@{()->activity.send()}"
+            android:textSize="16sp"
+            android:gravity="center"/>
+    </LinearLayout>
+</layout>
