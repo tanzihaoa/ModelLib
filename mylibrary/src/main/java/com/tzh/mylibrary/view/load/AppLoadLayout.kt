@@ -113,5 +113,10 @@ class AppLoadLayout @JvmOverloads constructor(
         return false
     }
 
+    override fun autoOpen(duration: Int, dragRate: Float, animationOnly: Boolean): Boolean {
+
+        return false
+    }
+
 
 }

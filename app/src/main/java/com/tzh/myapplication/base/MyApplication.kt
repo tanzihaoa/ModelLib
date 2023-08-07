@@ -2,9 +2,6 @@ package com.tzh.myapplication.base
 
 import android.app.Application
 import android.content.Context
-import android.content.Intent
-import android.net.ConnectivityManager
-import android.os.Build
 import androidx.multidex.MultiDex
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.tzh.mylibrary.view.load.AppLoadLayout

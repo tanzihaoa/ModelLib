@@ -11,17 +11,17 @@ abstract class XRvPureBindingAdapter : RecyclerView.Adapter<XRvBindingHolder>() 
      * 设置某些layout不能点击
      */
 
-    protected val noClickLayouts = mutableListOf<@LayoutRes Int>()
+    protected val noClickLayouts = mutableListOf<@receiver:LayoutRes Int>()
 
     /**
      * 设置某些layout不能长按
      */
-    protected val noLongClickLayouts = mutableListOf<@LayoutRes Int>()
+    protected val noLongClickLayouts = mutableListOf<@receiver:LayoutRes Int>()
 
     /**
      * 设置某些layout不能选中
      */
-    protected val noFocusableLayouts = mutableListOf<@LayoutRes Int>()
+    protected val noFocusableLayouts = mutableListOf<@receiver:LayoutRes Int>()
 
     /**
      * 点击事件

@@ -63,6 +63,8 @@ class AppRefreshLayout @JvmOverloads constructor(
                 mStateTv?.text = "释放立即刷新"
 //                mStateGif?.setImageResource(R.mipmap.loading_green)
             }
+
+            else -> {}
         }
     }
 
@@ -149,6 +151,11 @@ class AppRefreshLayout @JvmOverloads constructor(
     }
 
     override fun isSupportHorizontalDrag(): Boolean {
+        return false
+    }
+
+    override fun autoOpen(duration: Int, dragRate: Float, animationOnly: Boolean): Boolean {
+
         return false
     }
 }
