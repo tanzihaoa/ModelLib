@@ -7,6 +7,7 @@ import com.tzh.myapplication.ui.activity.ImageActivity
 import com.tzh.myapplication.ui.activity.ListActivity
 import com.tzh.myapplication.ui.activity.SendMessageActivity
 import com.tzh.myapplication.ui.dialog.MyDialog
+import com.tzh.myapplication.utils.SkUtil
 import com.tzh.myapplication.utils.TimeUtil
 
 
@@ -22,6 +23,15 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
         binding.v = this
 
         curSelDate = TimeUtil.getCurrentDate()
+
+        binding.tvWza.setOnClickListener {
+            SkUtil.start(this)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.tvWza.text = if(SkUtil.isAccessibilitySettingsOn(this)) "已开启无障碍模式" else "未开启无障碍"
     }
 
     override fun initData() {

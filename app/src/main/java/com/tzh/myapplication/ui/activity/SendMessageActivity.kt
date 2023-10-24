@@ -99,6 +99,7 @@ class SendMessageActivity : AppBaseActivity<ActivitySendMessageBinding>(R.layout
                         manager.sendTextMessage(phone, null, content, sentPI, deliveredPI)
                     }
                     ToastUtil.show("发送成功")
+                    binding.etContent.setText("")
                 }
             }
 

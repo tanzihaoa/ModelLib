@@ -1,8 +1,46 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-plugins {
-    id 'com.android.application' version '7.1.2' apply false
-    id 'com.android.library' version '7.1.2' apply false
-    id 'org.jetbrains.kotlin.android' version '1.8.0' apply false
+buildscript {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+        maven {url 'https://developer.huawei.com/repo/'}
+        maven { url 'https://jitpack.io' }
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://repo1.maven.org/maven2/' }
+        maven { url "https://artifact.bytedance.com/repository/pangle"}//GroMore SDK依赖
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.3.1'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+        //华为厂商通知
+        maven { url 'https://developer.huawei.com/repo/' }
+
+        maven { url 'https://gitee.com/YuanArcheanNovice/archean_android_lib/raw/master/maven' }
+
+        maven { url "https://nexus-sdk.cm253.com/repository/maven-public/" }
+
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+
+        maven { url 'https://repo1.maven.org/maven2/' }
+        maven { url "https://artifact.bytedance.com/repository/pangle"}//GroMore SDK依赖
+    }
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+        }
+    }
 }
 
 task clean(type: Delete) {

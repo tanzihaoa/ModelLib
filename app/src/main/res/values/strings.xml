@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="access_desc">收款助手使用无障碍服务监听收款信息</string>
 </resources>
