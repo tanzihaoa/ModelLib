@@ -1,26 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
-        <variable
-            name="dto"
-            type="com.tzh.myapplication.ui.dto.MasterShopListDto" />
+
     </data>
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <com.tzh.mylibrary.view.SwipeMenuView
+        android:id="@+id/swipe_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <com.tzh.mylibrary.shapeview.ShapeTextView
-            android:id="@+id/title"
+        android:layout_height="wrap_content"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp">
+
+        <com.tzh.mylibrary.shapeview.ShapeFrameLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:text="@{dto.title}"
-            app:shapeCorners="20dp"
-            android:gravity="center"
-            app:shapeBackgroundColor="@color/color_00f3b8"
-            app:shapeBorderColor="@color/color_333"
-            app:shapeBorderWidth="1dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            app:shapeBackgroundColor="@color/color_fff"
+            app:shapeCorners="8dp">
+
+            <com.tzh.mylibrary.shapeview.ShapeTextView
+                android:id="@+id/content_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="12dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="32dp"
+                android:paddingBottom="16dp"
+                android:textColor="@color/color_333"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="你好啊！忙碌中，晚点回复您。" />
+
+            <ImageView
+                android:id="@+id/control_iv"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="end|center_vertical"
+                android:padding="8dp"
+                android:src="@mipmap/icon_kj_dd"
+                app:layout_constraintBottom_toBottomOf="@id/content_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/content_tv" />
+
+        </com.tzh.mylibrary.shapeview.ShapeFrameLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:gravity="center_vertical">
+
+            <com.tzh.mylibrary.shapeview.ShapeImageView
+                android:id="@+id/update_iv"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="12dp"
+                android:padding="12dp"
+                android:src="@mipmap/gc_icon_fb"
+                app:shapeBackgroundColor="@color/color_fff"
+                app:shapeCorners="100dp" />
+
+            <com.tzh.mylibrary.shapeview.ShapeImageView
+                android:id="@+id/delete_iv"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:padding="12dp"
+                android:src="@mipmap/xx_icon_del"
+                app:shapeBackgroundColor="@color/color_ff174a"
+                app:shapeCorners="100dp" />
+
+        </LinearLayout>
+    </com.tzh.mylibrary.view.SwipeMenuView>
 </layout>

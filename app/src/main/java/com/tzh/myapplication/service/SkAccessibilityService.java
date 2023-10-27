@@ -23,7 +23,6 @@ import java.util.regex.Pattern;
  */
 public class SkAccessibilityService extends AccessibilityService{
     String TAG = "SkAccessibilityService";
-    private PowerManager.WakeLock wakeLock = null;
 
     /**
      * 当服务启动的时候会被调用
@@ -45,18 +44,25 @@ public class SkAccessibilityService extends AccessibilityService{
         switch (eventType) {
             //当通知栏发生改变时
             case AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED:
+                LogUtils.e( TAG,"通知栏发生改变时");
                 break;
             //当窗口的状态发生改变时（界面改变）
             case AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED:
+                LogUtils.e( TAG,"界面改变");
+                break;
+            //内容改变
+            case AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED:
+                LogUtils.e( TAG,"内容改变");
                 String className = event.getClassName().toString();
                 //获取界面信息
                 getUiInfo(className);
                 break;
-            //内容改变
-            case AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED:
-                break;
             //滑动变化
             case AccessibilityEvent.TYPE_VIEW_SCROLLED:
+                LogUtils.e( TAG,"滑动变化");
+                break;
+            default:
+                LogUtils.e( TAG,"===="+eventType);
                 break;
         }
     }
@@ -70,8 +76,7 @@ public class SkAccessibilityService extends AccessibilityService{
 
     /**
      * 通过控件ID获取节点信息
-     * @param id
-     * @return
+     * @param id 控件Id
      */
     @SuppressLint("NewApi")
     public String getNodeInfo(String id){
@@ -89,7 +94,7 @@ public class SkAccessibilityService extends AccessibilityService{
             List<AccessibilityNodeInfo> list = nodeInfo.findAccessibilityNodeInfosByViewId(id);
             for (AccessibilityNodeInfo item : list) {
                 String str=item.getText().toString();
-                if (str != null && str.length() != 0){
+                if (str.length() != 0){
                     result=str;
                     break;
                 }
@@ -108,7 +113,7 @@ public class SkAccessibilityService extends AccessibilityService{
 
     /**
      * 获取界面信息
-     * @param classname
+     * @param classname 类名
      */
     @SuppressLint("NewApi")
     public void getUiInfo(String classname){
@@ -125,17 +130,16 @@ public class SkAccessibilityService extends AccessibilityService{
                 postmap.put("title",title);
                 postmap.put("money",extractMoney(content));
                 postmap.put("content",content);
-                SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 postmap.put("time",sdf.format(new Date()));
-                LogUtils.e( TAG,"获取到的信息集合："+postmap.toString());
+                LogUtils.e( TAG,"获取到的信息集合："+ postmap);
             }
         }
     }
 
     /**
      * 从字符串里提取金额
-     * @param content
-     * @return
+     * @param content 提取的字符串
      */
     protected  String extractMoney(String content){
         Pattern pattern = Pattern.compile("(收款|收款￥|向你付款|向您付款|入账|到帐)(([1-9]{1}\\d*)|([0]{1}))(\\.(\\d){0,2})?元");
@@ -146,12 +150,11 @@ public class SkAccessibilityService extends AccessibilityService{
         }
         if(list.size()>0){
             String tmp=list.get(list.size()-1);
-            Pattern patternnum = Pattern.compile("(([1-9]{1}\\d*)|([0]{1}))(\\.(\\d){0,2})?");
-            Matcher matchernum = patternnum.matcher(tmp);
-            if(matchernum.find())
-                return matchernum.group();
-            return null;
-        }else
-            return null;
+            Pattern patternNum = Pattern.compile("(([1-9]{1}\\d*)|([0]{1}))(\\.(\\d){0,2})?");
+            Matcher matcherNum = patternNum.matcher(tmp);
+            if(matcherNum.find())
+                return matcherNum.group();
+        }
+        return null;
     }
 }

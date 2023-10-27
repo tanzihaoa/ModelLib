@@ -60,4 +60,10 @@
         <attr name="bvImgSrc" format="reference|color" />
 
     </declare-styleable>
+
+    <declare-styleable name="SwipeMenuView">
+        <attr name="swipeEnable" format="boolean" />
+        <attr name="ios" format="boolean" />
+        <attr name="leftSwipe" format="boolean" />
+    </declare-styleable>
 </resources>
