@@ -45,7 +45,7 @@ class BaseNetWork : ObservableTransformer<Any?, Any?> {
 
     companion object {
         fun baseUrl(): String {
-            return "https://w.bangbangce.com/rest.php/"
+            return "https://api.uubook.cn"
         }
 
         fun getRetrofit(baseUrl: String): Retrofit {

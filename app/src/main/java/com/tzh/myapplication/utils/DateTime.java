@@ -21,7 +21,6 @@ import java.util.GregorianCalendar;
  */
 @SuppressLint("SimpleDateFormat")
 public class DateTime {
-
     public static final String GROUP_BY_EACH_DAY = "yyyyMMdd";
     public static final String GROUP_BY_EACH_DAYSM = "yyyyMMddHHmmss";
     public static final String GROUP_BY_EACH_SECOND = "yyyyMMddHHmm";

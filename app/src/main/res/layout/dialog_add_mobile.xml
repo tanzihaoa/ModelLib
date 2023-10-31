@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.tzh.mylibrary.shapeview.ShapeLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:shapeBackgroundColor="@color/color_fff"
+        app:shapeCorners="12dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_333"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="添加手机号码"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"/>
+        <com.tzh.mylibrary.shapeview.ShapeEditText
+            android:id="@+id/et_phone"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="请输入手机号码"
+            android:maxLength="11"
+            android:inputType="phone"
+            android:maxLines="1"
+            android:gravity="center_vertical"
+            android:layout_marginHorizontal="16dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#f7f7f7"
+            android:layout_marginHorizontal="16dp"/>
+        <com.tzh.mylibrary.shapeview.ShapeTextView
+            android:id="@+id/tv_ok"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            app:shapeBackgroundColor="@color/color_00f3b8"
+            app:shapeCorners="12dp"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:text="确定"
+            android:layout_marginHorizontal="36dp"
+            android:layout_marginBottom="30dp"
+            android:textSize="14sp"
+            android:textColor="@color/color_000"
+            android:textStyle="bold"/>
+    </com.tzh.mylibrary.shapeview.ShapeLinearLayout>
+</layout>

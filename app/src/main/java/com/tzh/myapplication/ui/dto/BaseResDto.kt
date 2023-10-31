@@ -4,7 +4,7 @@ open class BaseResDto<T>() {
     /**
      * 状态码
      */
-    var status: Int = 0
+    var code: Int = 0
 
     /**
      * 请使用 getDataDto 获取数据
@@ -14,7 +14,7 @@ open class BaseResDto<T>() {
     /**
      * 消息提示
      */
-    var info: String? = null
+    var msg: String? = null
 
 
     fun getDataDto(): T {

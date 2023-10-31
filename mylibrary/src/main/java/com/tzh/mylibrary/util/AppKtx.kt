@@ -16,6 +16,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import java.util.regex.Pattern
 
 object AppKtx {
 
@@ -201,4 +202,17 @@ fun Long.supplement(length: Int, default: String = "0"): String {
         }
     }
     return thisStr
+}
+
+/**
+ * 判断是否是手机号
+ */
+fun String.isMobile() : Boolean{
+    if(this.length != 11){
+        return false
+    }
+    val pattern = "^(\\+?\\d{1,4}[-.\\s]?)?\\(?\\d{1,3}\\)?[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}$"
+    val regex = Pattern.compile(pattern)
+    val matcher = regex.matcher(this)
+    return matcher.matches()
 }

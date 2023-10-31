@@ -5,6 +5,7 @@ import androidx.lifecycle.LifecycleOwner
 import com.tzh.myapplication.ui.dto.BaseResDto
 import com.tzh.myapplication.ui.dto.BaseResPageDto
 import com.tzh.myapplication.ui.dto.MasterShopListDto
+import com.tzh.myapplication.ui.dto.SmsDto
 import com.uber.autodispose.ObservableSubscribeProxy
 
 object NetWorkApi {
@@ -24,6 +25,32 @@ object NetWorkApi {
                 put("num", HttpHelper.PAGE_LIMIT_10)
 
                 put("type", 1)
+            }
+        ).xWithDefault(owner)
+    }
+
+    /**
+     * 获取发送任务
+     */
+    fun httpSmsTaskGet(owner: LifecycleOwner, appMobile : String): ObservableSubscribeProxy<BaseResDto<SmsDto>> {
+        return xHttpRequest<NetWorkInterface>().httpSmsTaskGet(
+            ArrayMap<String, Any>().apply {
+                //当前手机号码
+                put("app_mobile", appMobile)
+            }
+        ).xWithDefault(owner)
+    }
+
+    /**
+     * 反馈发送任务结果
+     */
+    fun httpSmsTaskRet(owner: LifecycleOwner, id : String, status : Int): ObservableSubscribeProxy<BaseResDto<Any>> {
+        return xHttpRequest<NetWorkInterface>().httpSmsTaskRet(
+            ArrayMap<String, Any>().apply {
+                //短信ID
+                put("id", id)
+                //1表示发送成功，2表示发送失败
+                put("status", status)
             }
         ).xWithDefault(owner)
     }
