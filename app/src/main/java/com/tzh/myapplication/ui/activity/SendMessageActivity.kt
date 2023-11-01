@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.telephony.SmsManager
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.tzh.myapplication.R
 import com.tzh.myapplication.base.AppBaseActivity
@@ -17,11 +18,13 @@ import com.tzh.myapplication.ui.adapter.SmsListAdapter
 import com.tzh.myapplication.ui.dialog.AddMobileDialog
 import com.tzh.myapplication.ui.dto.SmsDto
 import com.tzh.myapplication.utils.ConfigUtil
+import com.tzh.myapplication.utils.DateTime
 import com.tzh.myapplication.utils.ObservableUtil
 import com.tzh.myapplication.utils.OnPermissionCallBackListener
 import com.tzh.myapplication.utils.PermissionXUtil
 import com.tzh.myapplication.utils.ToastUtil
 import com.tzh.mylibrary.util.LogUtils
+import com.tzh.mylibrary.util.divideMessageArray
 import com.tzh.mylibrary.util.initAdapter
 import com.tzh.mylibrary.util.linear
 import com.tzh.mylibrary.util.toDefault
@@ -40,7 +43,10 @@ class SendMessageActivity : AppBaseActivity<ActivitySendMessageBinding>(R.layout
                     }
                 }).show()
             }else{
-                PermissionXUtil.requestAnyPermission(context, Manifest.permission.SEND_SMS,object : OnPermissionCallBackListener{
+                PermissionXUtil.requestAnyPermission(context, mutableListOf<String>().apply {
+                    add(Manifest.permission.SEND_SMS)
+                    add(Manifest.permission.CALL_PHONE)
+                },object : OnPermissionCallBackListener{
                     override fun onAgree() {
                         context.startActivity(Intent(context, SendMessageActivity::class.java))
                     }
@@ -60,6 +66,7 @@ class SendMessageActivity : AppBaseActivity<ActivitySendMessageBinding>(R.layout
     var SENT = "SMS_SENT"
 
     override fun initView() {
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         binding.activity = this
         binding.recyclerView.linear().initAdapter(mAdapter).verDivider(10f)
         registerReceiver(smsSentReceiver, IntentFilter(SENT))
@@ -100,7 +107,15 @@ class SendMessageActivity : AppBaseActivity<ActivitySendMessageBinding>(R.layout
             val sentPendingIntent = PendingIntent.getBroadcast(this@SendMessageActivity, 0, sentIntent, PendingIntent.FLAG_IMMUTABLE)
             binding.root.post {
                 val manager = SmsManager.getDefault()
-                manager.sendTextMessage(mDto?.mobile.toDefault(""), null, mDto?.content.toDefault(""), sentPendingIntent, null)
+                val list = mDto?.content.toDefault("").divideMessageArray()
+                if(list.size > 1){
+                    manager.sendMultipartTextMessage(mDto?.mobile.toDefault(""), null,list, arrayListOf<PendingIntent?>().apply {
+                            add(sentPendingIntent)
+                    }, null)
+                }else{
+                    manager.sendTextMessage(mDto?.mobile.toDefault(""), null,mDto?.content.toDefault(""),sentPendingIntent, null)
+                }
+
             }
         }
     }
@@ -114,25 +129,25 @@ class SendMessageActivity : AppBaseActivity<ActivitySendMessageBinding>(R.layout
                     // 短信发送成功
                     LogUtils.e("signal", "成功")
                     ToastUtil.show("短信发送成功yyyyy")
-                    taskRet(1)
+                    taskRet(1,resultCode.toString())
                 }
 
                 SmsManager.RESULT_ERROR_GENERIC_FAILURE -> {
                     // 短信发送失败
                     LogUtils.e("signal", "失败")
                     ToastUtil.show("短信发送失败")
-                    taskRet(2)
+                    taskRet(2,resultCode.toString())
                 }
 
                 SmsManager.RESULT_ERROR_NO_SERVICE -> {
                     // 手机没有信号，无法发送短信
                     LogUtils.e("signal", "失败")
                     ToastUtil.show("手机无信号，无法发送短信")
-                    taskRet(2)
+                    taskRet(2,resultCode.toString())
                 }
 
                 else->{
-                    taskRet(2)
+                    taskRet(2,resultCode.toString())
                 }
             }
         }
@@ -142,18 +157,22 @@ class SendMessageActivity : AppBaseActivity<ActivitySendMessageBinding>(R.layout
      * 反馈发送任务结果
      * @param status 1表示发送成功，2表示发送失败
      */
-    fun taskRet(status : Int){
+    fun taskRet(status : Int,statusNote : String){
         mDto?.apply {
-            mAdapter.addData(this)
+            this.status = if(status == 1) "发送成功" else "发送失败"
+            this.time = DateTime.getNowTime()
+            mAdapter.addData20(this)
         }
-
-        NetWorkApi.httpSmsTaskRet(this,mDto?.id.toDefault(""),status).subscribe({
-            mDto = null
-            getTask()
+        NetWorkApi.httpSmsTaskRet(this,mDto?.id.toDefault(""),status,statusNote).subscribe({
+            binding.root.postDelayed({
+                mDto = null
+                getTask()
+            },10*1000)
         },{
-            mDto = null
-            ToastUtil.show(it.message)
-            getTask()
+            binding.root.postDelayed({
+                mDto = null
+                getTask()
+            },10*1000)
         })
     }
 

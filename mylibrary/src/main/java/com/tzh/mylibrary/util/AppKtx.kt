@@ -11,8 +11,6 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.annotation.DrawableRes
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -215,4 +213,50 @@ fun String.isMobile() : Boolean{
     val regex = Pattern.compile(pattern)
     val matcher = regex.matcher(this)
     return matcher.matches()
+}
+
+/**
+ * 截取短信
+ */
+fun String.divideMessage() : MutableList<String>{
+    if(this.length <= 70){
+        return mutableListOf<String>().apply {
+            add(this@divideMessage)
+        }
+    }else{
+        val list = mutableListOf<String>()
+        val totalLength = this.length
+        val chunkLength = 100
+        val chunkCount = (totalLength + chunkLength - 1) / chunkLength // 计算需要截取多少个块
+        for (i in 0 until chunkCount) {
+            val start = i * chunkLength
+            val end = (start + chunkLength).coerceAtMost(totalLength)
+            val chunk: String = this.substring(start, end) // 从字符串中截取指定长度的子串
+            list.add(chunk) // 将子串添加到数组中
+        }
+        return list
+    }
+}
+
+/**
+ * 截取短信
+ */
+fun String.divideMessageArray() : ArrayList<String>{
+    if(this.length <= 70){
+        return arrayListOf<String>().apply {
+            add(this@divideMessageArray)
+        }
+    }else{
+        val list = arrayListOf<String>()
+        val totalLength = this.length
+        val chunkLength = 67
+        val chunkCount = (totalLength + chunkLength - 1) / chunkLength // 计算需要截取多少个块
+        for (i in 0 until chunkCount) {
+            val start = i * chunkLength
+            val end = (start + chunkLength).coerceAtMost(totalLength)
+            val chunk: String = this.substring(start, end) // 从字符串中截取指定长度的子串
+            list.add(chunk) // 将子串添加到数组中
+        }
+        return list
+    }
 }

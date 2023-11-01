@@ -44,13 +44,15 @@ object NetWorkApi {
     /**
      * 反馈发送任务结果
      */
-    fun httpSmsTaskRet(owner: LifecycleOwner, id : String, status : Int): ObservableSubscribeProxy<BaseResDto<Any>> {
+    fun httpSmsTaskRet(owner: LifecycleOwner, id : String, status : Int,statusNote : String): ObservableSubscribeProxy<BaseResDto<Any>> {
         return xHttpRequest<NetWorkInterface>().httpSmsTaskRet(
             ArrayMap<String, Any>().apply {
                 //短信ID
                 put("id", id)
                 //1表示发送成功，2表示发送失败
                 put("status", status)
+                //错误描述
+                put("status_note", statusNote)
             }
         ).xWithDefault(owner)
     }

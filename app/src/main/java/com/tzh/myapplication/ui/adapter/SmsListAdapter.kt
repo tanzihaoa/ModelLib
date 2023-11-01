@@ -13,8 +13,16 @@ import com.tzh.mylibrary.util.toDefault
 class SmsListAdapter : XRvBindingPureDataAdapter<SmsDto>(R.layout.adapter_sms_list){
     override fun onBindViewHolder(holder: XRvBindingHolder, position: Int, data: SmsDto) {
         holder.getBinding<AdapterSmsListBinding>().run {
-            this.contentTv.text = data.mobile
-            this.statusTv.text = data.content
+            this.tvPhone.text = data.mobile
+            this.tvContent.text = data.content
+            this.tvStatus.text = data.status + "    " + data.time
         }
+    }
+
+    fun addData20(dto : SmsDto){
+        if(listData.size >= 20){
+            removeData(listData.size-1)
+        }
+        addData(0,dto)
     }
 }

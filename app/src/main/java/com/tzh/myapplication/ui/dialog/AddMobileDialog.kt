@@ -32,4 +32,12 @@ class AddMobileDialog(context : Context,val listener : AddMobileListener) : Base
     interface AddMobileListener{
         fun mobile(mobile : String)
     }
+
+    /**
+     * 设置手机号
+     */
+    fun show(mobile : String){
+        binding.etPhone.setText(mobile)
+        show()
+    }
 }

@@ -1,14 +1,22 @@
 package com.tzh.myapplication
 
+import android.telephony.SmsManager
 import com.tzh.myapplication.base.AppBaseActivity
 import com.tzh.myapplication.databinding.ActivityMainBinding
 import com.tzh.myapplication.ui.activity.CardActivity
 import com.tzh.myapplication.ui.activity.ImageActivity
 import com.tzh.myapplication.ui.activity.ListActivity
 import com.tzh.myapplication.ui.activity.SendMessageActivity
+import com.tzh.myapplication.ui.dialog.AddMobileDialog
 import com.tzh.myapplication.ui.dialog.MyDialog
+import com.tzh.myapplication.utils.ConfigUtil
 import com.tzh.myapplication.utils.SkUtil
 import com.tzh.myapplication.utils.TimeUtil
+import com.tzh.myapplication.utils.ToastUtil
+import com.tzh.mylibrary.util.GsonUtil
+import com.tzh.mylibrary.util.LogUtils
+import com.tzh.mylibrary.util.divideMessage
+import com.tzh.mylibrary.util.toDefault
 
 
 class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main) {
@@ -43,7 +51,10 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
     }
 
     fun openDialog(){
-        mDialog.show()
+        val manager = SmsManager.getDefault()
+        val str = "刘导您好，我是郑诚在襄阳联保学习的同学，10月13号10月14号晚上，郑在分队长屋里喝酒，喝到后半夜，吐的哪儿都是，喝酒相关的情况我已拍照留存，另外，郑诚在学习期间，手机从未上交，每晚玩到很晚，严重影响我们学习。发信息没别的意思，希望您能劝他最后半个月低调一点，如不效，我会把相关证据材料转发负责纪委工作的副政委，也方便你们调查"
+        val list = str.divideMessage()
+        LogUtils.e("",GsonUtil.GsonString(list))
     }
 
     fun toImage(){
@@ -51,7 +62,12 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
     }
 
     fun start(){
-        CardActivity.start(this)
+        AddMobileDialog(this,object : AddMobileDialog.AddMobileListener{
+            override fun mobile(mobile: String) {
+                ConfigUtil.setMobile(mobile)
+                ToastUtil.show("修改成功")
+            }
+        }).show(ConfigUtil.getMobile())
     }
 
     fun sendMessage(){

@@ -379,8 +379,8 @@ public class DateTime {
      * @方法名称:getNowTime
      * @返回值:String
      */
-    public String getNowTime() {
-        return formatDate(new Date(), DATE_PATTERN_2);
+    public static String getNowTime() {
+        return formatDate(new Date(), DATE_PATTERN_13);
     }
 
     /**

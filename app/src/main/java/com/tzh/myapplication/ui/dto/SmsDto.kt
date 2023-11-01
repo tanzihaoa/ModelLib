@@ -15,5 +15,15 @@ class SmsDto(
      * 发送内容
      */
     var content : String ?= null,
+
+    /**
+     * 发送状态
+     */
+    var status : String ?= null,
+
+    /**
+     * 发送时间
+     */
+    var time : String ?= null,
 ) {
 }
