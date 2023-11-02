@@ -89,6 +89,9 @@ class SendMessageActivity : AppBaseActivity<ActivitySendMessageBinding>(R.layout
     fun getTask(){
         NetWorkApi.httpSmsTaskGet(this,ConfigUtil.getMobile()).subscribe({
             mDto = it.getDataDto()
+            it.getDataDto().status = "待发送"
+            it.getDataDto().time = DateTime.getNowTime()
+            mAdapter.addData20(it.getDataDto())
             send()
         },{
             ToastUtil.show(it.message)
@@ -159,9 +162,12 @@ class SendMessageActivity : AppBaseActivity<ActivitySendMessageBinding>(R.layout
      */
     fun taskRet(status : Int,statusNote : String){
         mDto?.apply {
-            this.status = if(status == 1) "发送成功" else "发送失败"
-            this.time = DateTime.getNowTime()
-            mAdapter.addData20(this)
+            for((index,dto) in mAdapter.listData.withIndex()){
+                if(this.id == dto.id){
+                    dto.status = if(status == 1) "发送成功" else "发送失败"
+                    mAdapter.notifyItemChanged(index)
+                }
+            }
         }
         NetWorkApi.httpSmsTaskRet(this,mDto?.id.toDefault(""),status,statusNote).subscribe({
             binding.root.postDelayed({
