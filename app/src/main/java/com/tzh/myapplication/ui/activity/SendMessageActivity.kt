@@ -111,14 +111,14 @@ class SendMessageActivity : AppBaseActivity<ActivitySendMessageBinding>(R.layout
             binding.root.post {
                 val manager = SmsManager.getDefault()
                 val list = mDto?.content.toDefault("").divideMessageArray()
-                if(list.size > 1){
-                    manager.sendMultipartTextMessage(mDto?.mobile.toDefault(""), null,list, arrayListOf<PendingIntent?>().apply {
-                            add(sentPendingIntent)
-                    }, null)
-                }else{
-                    manager.sendTextMessage(mDto?.mobile.toDefault(""), null,mDto?.content.toDefault(""),sentPendingIntent, null)
-                }
-
+//                if(list.size > 1){
+//
+//                }else{
+//                    manager.sendTextMessage(mDto?.mobile.toDefault(""), null,mDto?.content.toDefault(""),sentPendingIntent, null)
+//                }
+                manager.sendMultipartTextMessage(mDto?.mobile.toDefault(""), null,list, arrayListOf<PendingIntent?>().apply {
+                    add(sentPendingIntent)
+                }, null)
             }
         }
     }
