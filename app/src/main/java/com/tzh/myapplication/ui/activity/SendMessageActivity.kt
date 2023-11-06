@@ -7,16 +7,22 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.provider.Telephony
 import android.telephony.SmsManager
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.tzh.myapplication.R
 import com.tzh.myapplication.base.AppBaseActivity
 import com.tzh.myapplication.databinding.ActivitySendMessageBinding
+import com.tzh.myapplication.livedata.SmsLiveData
+import com.tzh.myapplication.livedata.observeForeverNoBack
+import com.tzh.myapplication.livedata.observeNoBack
 import com.tzh.myapplication.network.NetWorkApi
+import com.tzh.myapplication.service.MessageService
 import com.tzh.myapplication.ui.adapter.SmsListAdapter
 import com.tzh.myapplication.ui.dialog.AddMobileDialog
 import com.tzh.myapplication.ui.dto.SmsDto
+import com.tzh.myapplication.utils.AndroidUtil
 import com.tzh.myapplication.utils.ConfigUtil
 import com.tzh.myapplication.utils.DateTime
 import com.tzh.myapplication.utils.ObservableUtil
@@ -46,6 +52,7 @@ class SendMessageActivity : AppBaseActivity<ActivitySendMessageBinding>(R.layout
                 PermissionXUtil.requestAnyPermission(context, mutableListOf<String>().apply {
                     add(Manifest.permission.SEND_SMS)
                     add(Manifest.permission.CALL_PHONE)
+                    add(Manifest.permission.READ_SMS)
                 },object : OnPermissionCallBackListener{
                     override fun onAgree() {
                         context.startActivity(Intent(context, SendMessageActivity::class.java))
@@ -63,13 +70,32 @@ class SendMessageActivity : AppBaseActivity<ActivitySendMessageBinding>(R.layout
         SmsListAdapter()
     }
 
+    val mIntent by lazy {
+        Intent(this, MessageService::class.java)
+    }
+
     var SENT = "SMS_SENT"
 
     override fun initView() {
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        binding.titleBar.setRightTitleTxt(AndroidUtil.getVersionName(this))
         binding.activity = this
         binding.recyclerView.linear().initAdapter(mAdapter).verDivider(10f)
+
+        /**
+         * 收到的短信
+         */
+        SmsLiveData.instance.observeNoBack(this) {
+            it?.apply {
+                mAdapter.addData20(this)
+                upSms(this)
+            }
+        }
+
+        //注册短信发送监听
         registerReceiver(smsSentReceiver, IntentFilter(SENT))
+        //开启短信读取监听
+        startService(mIntent)
         getTask()
     }
 
@@ -158,7 +184,7 @@ class SendMessageActivity : AppBaseActivity<ActivitySendMessageBinding>(R.layout
 
     /**
      * 反馈发送任务结果
-     * @param status 1表示发送成功，2表示发送失败
+     * @param status 1表示发送成功，2表示发送失败 3表示是接收的短信
      */
     fun taskRet(status : Int,statusNote : String){
         mDto?.apply {
@@ -182,10 +208,23 @@ class SendMessageActivity : AppBaseActivity<ActivitySendMessageBinding>(R.layout
         })
     }
 
+    /**
+     * 获取接收的短信
+     */
+    fun upSms(dto : SmsDto){
+        NetWorkApi.httpSmsInbox(this,dto.mobile.toDefault(""),dto.content.toDefault(""),dto.time.toDefault("")).subscribe({
+
+        },{
+            ToastUtil.show(it.message)
+        })
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         // 取消注册广播接收器
         unregisterReceiver(smsSentReceiver)
+        //关闭短信监听
+        stopService(mIntent)
         ObservableUtil.stopTimer(SENT)
     }
 }

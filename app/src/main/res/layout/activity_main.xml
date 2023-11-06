@@ -20,14 +20,14 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_margin="16dp"
-            android:text="toRecycle"
+            android:text="监听短信"
             app:shapeCorners="20dp"
-            android:visibility="gone"
             app:shapeGradientAngle="BL_TR"
             android:gravity="center"
             app:shapeBackgroundColor="@color/color_00f3b8"
             app:shapeBorderColor="@color/color_333"
             app:shapeBorderWidth="1dp"
+            android:visibility="gone"
             android:onClick="@{()->v.toRecycler()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -122,6 +122,5 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
-
     </LinearLayout>
 </layout>

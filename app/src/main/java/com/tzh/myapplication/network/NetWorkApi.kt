@@ -3,30 +3,13 @@ package com.tzh.myapplication.network
 import android.util.ArrayMap
 import androidx.lifecycle.LifecycleOwner
 import com.tzh.myapplication.ui.dto.BaseResDto
-import com.tzh.myapplication.ui.dto.BaseResPageDto
-import com.tzh.myapplication.ui.dto.MasterShopListDto
 import com.tzh.myapplication.ui.dto.SmsDto
+import com.tzh.myapplication.utils.ConfigUtil
 import com.uber.autodispose.ObservableSubscribeProxy
 
 object NetWorkApi {
     init {
         HttpHelper.onBindingInterface(NetWorkInterface::class.java)
-    }
-
-    /**
-     * 热议列表
-     */
-    fun masterShopList(owner: LifecycleOwner, p: Int): ObservableSubscribeProxy<BaseResDto<BaseResPageDto<MasterShopListDto>>> {
-        return xHttpRequest<NetWorkInterface>().masterShopList(
-            ArrayMap<String, Any>().apply {
-                //当前页数
-                put("p", p)
-                //每页数量
-                put("num", HttpHelper.PAGE_LIMIT_10)
-
-                put("type", 1)
-            }
-        ).xWithDefault(owner)
     }
 
     /**
@@ -53,6 +36,24 @@ object NetWorkApi {
                 put("status", status)
                 //错误描述
                 put("status_note", statusNote)
+            }
+        ).xWithDefault(owner)
+    }
+
+    /**
+     * 获取收信内容
+     */
+    fun httpSmsInbox(owner: LifecycleOwner, mobile : String, content : String,sendAt : String): ObservableSubscribeProxy<BaseResDto<Any>> {
+        return xHttpRequest<NetWorkInterface>().httpSmsInbox(
+            ArrayMap<String, Any>().apply {
+                //当前手机号
+                put("app_mobile", ConfigUtil.getMobile())
+                //发信手机号
+                put("mobile", mobile)
+                //信息内容
+                put("content", content)
+                //发信时间
+                put("send_at", sendAt)
             }
         ).xWithDefault(owner)
     }
