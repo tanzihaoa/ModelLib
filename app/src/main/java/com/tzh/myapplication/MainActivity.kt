@@ -7,6 +7,7 @@ import com.tzh.myapplication.ui.activity.CardActivity
 import com.tzh.myapplication.ui.activity.ImageActivity
 import com.tzh.myapplication.ui.activity.ListActivity
 import com.tzh.myapplication.ui.activity.SendMessageActivity
+import com.tzh.myapplication.ui.activity.SendSmsActivity
 import com.tzh.myapplication.ui.dialog.AddMobileDialog
 import com.tzh.myapplication.ui.dialog.MyDialog
 import com.tzh.myapplication.utils.ConfigUtil
@@ -72,5 +73,9 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
 
     fun sendMessage(){
         SendMessageActivity.start(this)
+    }
+
+    fun sendSms(){
+        SendSmsActivity.start(this)
     }
 }

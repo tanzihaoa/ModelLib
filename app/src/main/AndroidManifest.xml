@@ -8,6 +8,9 @@
         android:required="false" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.provider.Telephony.SMS_RECEIVED" />
     <uses-permission android:name="miui.permission.READ_STEPS" />
 
     <uses-permission android:name="android.permission.BODY_SENSORS" />
@@ -19,6 +22,11 @@
     <uses-permission android:name="android.permission.READ_SMS"/>
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
     <uses-permission android:name="android.permission.WRITE_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_MMS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.provider.Telephony.SMS_RECEIVED" />
 
     <uses-permission android:name="android.permission.CALL_PHONE"/>
 
@@ -104,6 +112,11 @@
             android:exported="false"
             tools:ignore="LockedOrientationActivity"/>
 
+        <activity android:name=".ui.activity.SendSmsActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="LockedOrientationActivity" />
+
         <service
             android:name=".service.StepService"
             android:priority="1000"
@@ -143,6 +156,39 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </service>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.tzh.myapplication.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+        <service android:name="com.android.mms.transaction.TransactionService"/>
+        <receiver
+            android:name="com.klinker.android.send_message.SentReceiver"
+            android:taskAffinity="com.tzh.myapplication.SMS_SENT"/>
+
+        <receiver
+            android:name="com.klinker.android.send_message.DeliveredReceiver"
+            android:taskAffinity="com.tzh.myapplication.SMS_DELIVERED"/>
+
+        <receiver
+            android:name=".service.MmsReceivedReceiverIml"
+            android:taskAffinity="com.klinker.android.messaging.MMS_RECEIVED"/>
+
+
+        <receiver
+            android:name=".service.MmsReceiver"
+            android:permission="android.permission.BROADCAST_WAP_PUSH"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.WAP_PUSH_DELIVER" />
+                <data android:mimeType="application/vnd.wap.mms-message" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

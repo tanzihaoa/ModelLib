@@ -16,6 +16,7 @@
             android:layout_height="wrap_content"
             app:xtbTitleText="发送短信"
             app:xtbRightShowView="VIEW_TEXT"
+            app:xtbRightText=""
             app:layout_constraintTop_toTopOf="parent"/>
 
         <androidx.recyclerview.widget.RecyclerView
