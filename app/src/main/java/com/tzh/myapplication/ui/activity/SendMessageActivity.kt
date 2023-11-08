@@ -209,7 +209,7 @@ class SendMessageActivity : AppBaseActivity<ActivitySendMessageBinding>(R.layout
     }
 
     /**
-     * 获取接收的短信
+     * 上传接收的短信
      */
     fun upSms(dto : SmsDto){
         NetWorkApi.httpSmsInbox(this,dto.mobile.toDefault(""),dto.content.toDefault(""),dto.time.toDefault("")).subscribe({
