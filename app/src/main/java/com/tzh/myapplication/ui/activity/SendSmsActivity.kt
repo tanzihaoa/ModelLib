@@ -34,9 +34,9 @@ class SendSmsActivity : AppBaseActivity<ActivitySendSmsBinding>(R.layout.activit
                 add(Manifest.permission.READ_SMS)
                 add(Manifest.permission.RECEIVE_SMS)
                 add(Manifest.permission.RECEIVE_MMS)
-                add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 add(Manifest.permission.READ_PHONE_STATE)
                 add(Manifest.permission.CHANGE_NETWORK_STATE)
+                add(Manifest.permission.READ_EXTERNAL_STORAGE)
             },object : OnPermissionCallBackListener{
                 override fun onAgree() {
                     context.startActivity(Intent(context, SendSmsActivity::class.java))
@@ -116,7 +116,7 @@ class SendSmsActivity : AppBaseActivity<ActivitySendSmsBinding>(R.layout.activit
         val sentIntent = Intent(SENT)
         val sentPendingIntent = PendingIntent.getBroadcast(this, 0, sentIntent, PendingIntent.FLAG_IMMUTABLE)
         img?.apply {
-            SendUtil.sendMms(this@SendSmsActivity,phone,content,BitmapUtil.getCacheBitmapFromView(binding.ivImg))
+            SendUtil.sendSms(this@SendSmsActivity,phone,content,this.file,sentPendingIntent)
         }
 
     }

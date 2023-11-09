@@ -1,5 +1,6 @@
 package com.tzh.myapplication.utils;
 
+
 import android.app.PendingIntent;
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,21 +10,15 @@ import android.net.Uri;
 import android.os.Build;
 import android.provider.Telephony;
 import android.telephony.SmsManager;
-
 import com.klinker.android.send_message.Message;
 import com.klinker.android.send_message.Settings;
 import com.klinker.android.send_message.Transaction;
 import com.tzh.myapplication.R;
-
 import java.io.File;
 import java.util.ArrayList;
 
 public class SendUtil {
     public static void sendSms(Context context, String phone, String text, File file, PendingIntent intent){
-        // 创建一个ContentValues对象，用于存储彩信的相关信息
-        ContentValues values = new ContentValues();
-        values.put(Telephony.Mms.Addr.ADDRESS,phone); // 收件人号码
-        values.put(Telephony.Mms.Addr.CHARSET, "彩信主题");
 
         // 创建一个ArrayList对象，用于存储彩信的附件
         ArrayList<ContentValues> attachments = new ArrayList<>();
@@ -40,7 +35,7 @@ public class SendUtil {
         attachments.add(attachment);
 
         // 插入彩信的Uri
-        Uri uri = context.getContentResolver().insert(Telephony.Mms.Outbox.CONTENT_URI, values);
+        Uri uri = Uri.fromFile(file);
 
         // 将附件插入到Uri中
         for (ContentValues att : attachments) {
@@ -63,4 +58,6 @@ public class SendUtil {
         message.setImage(BitmapFactory.decodeResource(mContext.getResources(), R.mipmap.load_state_empty));
         transaction.sendNewMessage(message, Transaction.NO_THREAD_ID);
     }
+
+
 }
