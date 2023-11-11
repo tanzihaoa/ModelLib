@@ -46,7 +46,7 @@ public class SendUtil {
         }
 
         // 发送彩信
-        SmsManager.getDefault().sendMultimediaMessage(context, uri, phone, null, intent);
+        SmsManager.getDefault().sendMultimediaMessage(context, uri, null, null, intent);
     }
 
 
@@ -59,5 +59,7 @@ public class SendUtil {
         transaction.sendNewMessage(message, Transaction.NO_THREAD_ID);
     }
 
+    public static void send(Context mContext){
 
+    }
 }
