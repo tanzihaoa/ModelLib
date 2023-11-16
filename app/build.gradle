@@ -8,7 +8,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.myapplication"
+        applicationId "com.tzh.myapplication"
         minSdk 23
         targetSdk 33
         versionCode 1
@@ -113,7 +113,7 @@ dependencies {
     implementation 'com.huawei.hms:hmscoreinstaller:6.9.0.300'
 
     implementation 'com.guolindev.permissionx:permissionx:1.6.4'
-    implementation 'com.klinkerapps:android-smsmms:5.2.6'
     implementation 'com.huawei.hms:health:6.9.0.300'
+    implementation 'org.apache.httpcomponents:httpclient-android:4.3.5.1'
     implementation project(':mylibrary')
 }
