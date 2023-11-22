@@ -25,7 +25,7 @@ public class SendUtil {
         intent.setType("image/*");
 
         // 发送彩信
-        SmsManager.getDefault().sendMultimediaMessage(context, Uri.parse("content://mms/sent"),"application/vnd.wap.mms-message", intent.getExtras(), mIntent);
+        SmsManager.getDefault().sendMultimediaMessage(context, fileUri,"application/vnd.wap.mms-message", intent.getExtras(), mIntent);
     }
 
     public static void send(Context mContext){

@@ -114,7 +114,6 @@
             android:text="无障碍模式"
             app:shapeCorners="20dp"
             android:gravity="center"
-            android:visibility="gone"
             app:shapeBackgroundColor="@color/color_00f3b8"
             app:shapeBorderColor="@color/color_333"
             app:shapeBorderWidth="1dp"
