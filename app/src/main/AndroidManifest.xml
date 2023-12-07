@@ -12,6 +12,7 @@
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.provider.Telephony.SMS_RECEIVED" />
     <uses-permission android:name="miui.permission.READ_STEPS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <uses-permission android:name="android.permission.BODY_SENSORS" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />

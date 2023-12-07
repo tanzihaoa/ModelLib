@@ -14,6 +14,7 @@ import com.tzh.myapplication.utils.ConfigUtil
 import com.tzh.myapplication.utils.SkUtil
 import com.tzh.myapplication.utils.TimeUtil
 import com.tzh.myapplication.utils.ToastUtil
+import com.tzh.mylibrary.activity.WebActivity
 import com.tzh.mylibrary.util.GsonUtil
 import com.tzh.mylibrary.util.LogUtils
 import com.tzh.mylibrary.util.divideMessage
@@ -77,5 +78,9 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
 
     fun sendSms(){
         SendSmsActivity.start(this)
+    }
+
+    fun toWebView(){
+        WebActivity.start(this,"https://www.v5kf.com/public/chat/chat?sid=168648&entry=5&ref=link&accountid=292c80301047d")
     }
 }
