@@ -1,9 +1,9 @@
 package com.tzh.myapplication
 
+import android.os.Build
 import android.telephony.SmsManager
 import com.tzh.myapplication.base.AppBaseActivity
 import com.tzh.myapplication.databinding.ActivityMainBinding
-import com.tzh.myapplication.ui.activity.CardActivity
 import com.tzh.myapplication.ui.activity.ImageActivity
 import com.tzh.myapplication.ui.activity.ListActivity
 import com.tzh.myapplication.ui.activity.SendMessageActivity
@@ -18,7 +18,6 @@ import com.tzh.mylibrary.activity.WebActivity
 import com.tzh.mylibrary.util.GsonUtil
 import com.tzh.mylibrary.util.LogUtils
 import com.tzh.mylibrary.util.divideMessage
-import com.tzh.mylibrary.util.toDefault
 
 
 class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main) {
@@ -81,6 +80,15 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
     }
 
     fun toWebView(){
-        WebActivity.start(this,"https://www.v5kf.com/public/chat/chat?sid=168648&entry=5&ref=link&accountid=292c80301047d")
+        WebActivity.start(this,getUrl())
+    }
+
+    fun getUrl(): String {
+        val list: MutableMap<String, String> = HashMap()
+        list["用户名"] = "15197841559"
+        list["APP名称"] = getString(R.string.app_name)
+        list["手机"] = Build.BRAND
+        val mUrl = "https://article.uubook.cn/chat.html??channelId=oF21cA"
+        return mUrl + "&customer=" + GsonUtil.GsonString(list)
     }
 }

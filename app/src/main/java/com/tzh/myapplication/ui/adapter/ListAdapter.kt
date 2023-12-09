@@ -22,7 +22,7 @@ class ListAdapter : XRvBindingPureDataAdapter<SmsListDto>(R.layout.adapter_list)
             }
             this.deleteIv.setOnClickNoDouble {
                 if (holder.bindingAdapterPosition >= 0) {
-
+                    removeData(data)
                 }
             }
         }

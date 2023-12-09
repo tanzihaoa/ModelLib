@@ -8,6 +8,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
+import android.util.Log
 import android.view.View
 import android.webkit.CookieManager
 import android.webkit.GeolocationPermissions
@@ -22,6 +23,7 @@ import android.widget.ProgressBar
 import com.tzh.mylibrary.R
 import com.tzh.mylibrary.base.XBaseBindingActivity
 import com.tzh.mylibrary.databinding.ActivityWebViewBinding
+import com.tzh.mylibrary.util.GsonUtil
 import com.tzh.mylibrary.util.OnPermissionCallBackListener
 import com.tzh.mylibrary.util.PermissionXUtil
 import com.tzh.mylibrary.util.toDefault

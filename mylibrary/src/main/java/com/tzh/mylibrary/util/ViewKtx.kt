@@ -26,11 +26,17 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.widget.ImageViewCompat
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.tzh.mylibrary.adapter.FlyAnimator
 import com.tzh.mylibrary.divider.GradDivider
 import com.tzh.mylibrary.divider.XRvVerticalDivider
+
+fun RecyclerView.setAnimator(){
+    this.itemAnimator = DefaultItemAnimator()
+}
 
 fun View?.setOnClickNoDouble(time: Int = 800, block: (view: View) -> Unit) {
     this ?: return
