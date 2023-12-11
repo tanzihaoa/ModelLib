@@ -74,9 +74,10 @@
             android:value="portrait|landscape" /> <!-- Required SDK 核心功能 -->
 
         <activity
-            android:name="com.tzh.myapplication.MainActivity"
+            android:name="com.tzh.myapplication.ui.activity.main.SpreadActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity"
+            android:launchMode="singleTask"
             android:theme="@style/AppBaseTheme"
             android:exported="true">
             <intent-filter>
@@ -97,6 +98,12 @@
                     android:scheme="qdsandroid" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".ui.activity.main.MainActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            android:launchMode="singleTask"
+            android:exported="false"/>
 
         <activity android:name=".ui.activity.ListActivity"
             android:screenOrientation="portrait"

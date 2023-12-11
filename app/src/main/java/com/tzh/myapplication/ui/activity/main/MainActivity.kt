@@ -1,7 +1,10 @@
-package com.tzh.myapplication
+package com.tzh.myapplication.ui.activity.main
 
+import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.telephony.SmsManager
+import com.tzh.myapplication.R
 import com.tzh.myapplication.base.AppBaseActivity
 import com.tzh.myapplication.databinding.ActivityMainBinding
 import com.tzh.myapplication.ui.activity.ImageActivity
@@ -21,6 +24,13 @@ import com.tzh.mylibrary.util.divideMessage
 
 
 class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main) {
+
+    companion object{
+        fun start(context: Context){
+            context.startActivity(Intent(context,MainActivity::class.java))
+        }
+    }
+
     private var curSelDate: String = ""
 
 

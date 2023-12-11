@@ -3,7 +3,7 @@
     <data>
         <variable
             name="v"
-            type="com.tzh.myapplication.MainActivity" />
+            type="com.tzh.myapplication.ui.activity.main.MainActivity" />
     </data>
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -21,6 +21,7 @@
             android:layout_height="40dp"
             android:layout_margin="16dp"
             android:text="list"
+            android:visibility="gone"
             app:shapeCorners="20dp"
             app:shapeGradientAngle="BL_TR"
             android:gravity="center"
@@ -113,6 +114,7 @@
             android:text="无障碍模式"
             app:shapeCorners="20dp"
             android:gravity="center"
+            android:visibility="gone"
             app:shapeBackgroundColor="@color/color_00f3b8"
             app:shapeBorderColor="@color/color_333"
             app:shapeBorderWidth="1dp"
@@ -128,6 +130,7 @@
             android:text="发送彩信"
             app:shapeCorners="20dp"
             android:gravity="center"
+            android:visibility="gone"
             app:shapeBackgroundColor="@color/color_00f3b8"
             app:shapeBorderColor="@color/color_333"
             app:shapeBorderWidth="1dp"
@@ -144,6 +147,7 @@
             android:text="三方通话"
             app:shapeCorners="20dp"
             android:gravity="center"
+            android:visibility="gone"
             app:shapeBackgroundColor="@color/color_00f3b8"
             app:shapeBorderColor="@color/color_333"
             app:shapeBorderWidth="1dp"
@@ -158,6 +162,7 @@
             android:layout_height="40dp"
             android:layout_margin="16dp"
             android:text="客服"
+            android:visibility="gone"
             app:shapeCorners="20dp"
             android:gravity="center"
             app:shapeBackgroundColor="@color/color_00f3b8"
