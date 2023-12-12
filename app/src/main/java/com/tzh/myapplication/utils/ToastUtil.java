@@ -1,5 +1,6 @@
 package com.tzh.myapplication.utils;
 
+import android.annotation.SuppressLint;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
@@ -19,6 +20,7 @@ public class ToastUtil {
 
     private static final Handler handler = new Handler(Looper.getMainLooper());
 
+    @SuppressLint("InflateParams")
     private synchronized static void initToast(CharSequence msg, int duration) {
         if (toast != null) {
             toast.cancel();

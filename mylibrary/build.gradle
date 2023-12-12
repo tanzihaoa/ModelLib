@@ -58,4 +58,8 @@ dependencies {
     api 'pl.droidsonroids.gif:android-gif-drawable:1.2.25'
 
     api 'com.guolindev.permissionx:permissionx:1.6.4'
+
+    //二维码扫描库
+    api 'com.journeyapps:zxing-android-embedded:3.6.0'
+    api 'com.google.zxing:core:3.3.0'
 }
