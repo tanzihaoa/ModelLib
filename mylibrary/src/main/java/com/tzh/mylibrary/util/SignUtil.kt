@@ -1,4 +1,4 @@
-package com.tzh.myapplication.utils
+package com.tzh.mylibrary.util
 
 import java.nio.ByteBuffer
 import java.nio.CharBuffer

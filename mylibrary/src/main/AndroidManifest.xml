@@ -20,5 +20,17 @@
             android:exported="false"
             tools:ignore="LockedOrientationActivity"
             android:theme="@style/AppBaseTheme"  />
+
+        <activity android:name=".activity.TranslateActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="LockedOrientationActivity"
+            android:theme="@style/AppBaseTheme"   />
+
+        <activity android:name=".activity.PasswordGenerationActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="LockedOrientationActivity"
+            android:theme="@style/AppBaseTheme"    />
     </application>
 </manifest>

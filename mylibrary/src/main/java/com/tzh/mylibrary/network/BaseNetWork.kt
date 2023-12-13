@@ -1,7 +1,6 @@
-package com.tzh.myapplication.network
+package com.tzh.mylibrary.network
 
 import com.google.gson.JsonSyntaxException
-import com.tzh.mylibrary.network.ParamsInterceptor
 import com.tzh.mylibrary.util.LogUtils
 import io.reactivex.Observable
 import io.reactivex.ObservableSource

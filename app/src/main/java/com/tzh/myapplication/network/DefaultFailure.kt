@@ -1,8 +1,7 @@
 package com.tzh.myapplication.network
 
 import com.tzh.myapplication.ui.dto.BaseResDto
-import com.tzh.mylibrary.util.LogUtils
-import com.tzh.mylibrary.util.GsonUtil
+import com.tzh.mylibrary.network.ApiThrowable
 import com.tzh.mylibrary.util.toDefault
 import io.reactivex.functions.Consumer
 

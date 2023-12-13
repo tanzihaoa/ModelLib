@@ -23,6 +23,7 @@ import com.tzh.myapplication.utils.SkUtil
 import com.tzh.myapplication.utils.TimeUtil
 import com.tzh.myapplication.utils.ToastUtil
 import com.tzh.mylibrary.activity.ScanActivity
+import com.tzh.mylibrary.activity.TranslateActivity
 import com.tzh.mylibrary.activity.WebActivity
 import com.tzh.mylibrary.util.GsonUtil
 import com.tzh.mylibrary.util.LogUtils
@@ -108,7 +109,6 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
         return mUrl + "&customer=" + GsonUtil.GsonString(list)
     }
 
-    val REQUEST_CODE_SCAN_ONE = 100001
     /**
      * 扫码
      */
@@ -122,6 +122,13 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
 
             }
         })
+    }
+
+    /**
+     * 翻译
+     */
+    fun translate(){
+        TranslateActivity.start(this)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

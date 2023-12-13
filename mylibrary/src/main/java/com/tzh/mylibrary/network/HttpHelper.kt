@@ -1,9 +1,8 @@
-package com.tzh.myapplication.network
+package com.tzh.mylibrary.network
 
 import androidx.collection.ArrayMap
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
-import com.tzh.myapplication.ui.dto.BaseResDto
 import com.uber.autodispose.AutoDispose
 import com.uber.autodispose.ObservableSubscribeProxy
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider
@@ -141,7 +140,7 @@ inline fun <reified T> xHttpRequest(): T {
 /**
  * 自动处理activity/fragment 生命周期
  */
-fun <T : BaseResDto<*>> Observable<T>.xWithDefault(owner: LifecycleOwner): ObservableSubscribeProxy<T> {
+fun <T : LibBaseResDto<*>> Observable<T>.xWithDefault(owner: LifecycleOwner): ObservableSubscribeProxy<T> {
     return this.subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .doOnNext(DefaultFailure())

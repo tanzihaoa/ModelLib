@@ -7,7 +7,6 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.provider.Telephony
 import android.telephony.SmsManager
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
@@ -15,7 +14,6 @@ import com.tzh.myapplication.R
 import com.tzh.myapplication.base.AppBaseActivity
 import com.tzh.myapplication.databinding.ActivitySendMessageBinding
 import com.tzh.myapplication.livedata.SmsLiveData
-import com.tzh.myapplication.livedata.observeForeverNoBack
 import com.tzh.myapplication.livedata.observeNoBack
 import com.tzh.myapplication.network.NetWorkApi
 import com.tzh.myapplication.service.MessageService

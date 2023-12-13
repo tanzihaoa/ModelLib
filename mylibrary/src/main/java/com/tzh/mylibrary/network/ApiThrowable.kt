@@ -1,6 +1,4 @@
-package com.tzh.myapplication.network
-
-import com.tzh.mylibrary.network.ApiThrowable
+package com.tzh.mylibrary.network
 
 class ApiThrowable(val status: Int, message: String? = null, case: Throwable? = null) : Throwable(message, case) {
     companion object {
