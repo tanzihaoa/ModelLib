@@ -10,6 +10,7 @@ import com.google.zxing.integration.android.IntentIntegrator
 import com.tzh.myapplication.R
 import com.tzh.myapplication.base.AppBaseActivity
 import com.tzh.myapplication.databinding.ActivityMainBinding
+import com.tzh.myapplication.ui.activity.HandSendMessageActivity
 import com.tzh.myapplication.ui.activity.ImageActivity
 import com.tzh.myapplication.ui.activity.ListActivity
 import com.tzh.myapplication.ui.activity.SendMessageActivity
@@ -90,6 +91,10 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
 
     fun sendMessage(){
         SendMessageActivity.start(this)
+    }
+
+    fun handSendMessage(){
+        HandSendMessageActivity.start(this)
     }
 
     fun sendSms(){

@@ -146,6 +146,11 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".ui.activity.HandSendMessageActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="LockedOrientationActivity" />
+
         <service
             android:name=".service.SkAccessibilityService"
             android:enabled="true"
