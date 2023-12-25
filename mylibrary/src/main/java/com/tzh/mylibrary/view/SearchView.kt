@@ -71,54 +71,49 @@ class SearchView @JvmOverloads constructor(
 
         attributes.recycle()
         binding = bindingInflateLayout<LayoutSearchViewBinding>(R.layout.layout_search_view).also {
-            post {
-                binding?.let {
-                    it.layout.setShapeCorners(mSvCorners.toFloat())
-                    it.layout.setShapeBackgroundColor(mBackColor)
-                    it.etText.textSize = mSvTextSize.toFloat()
-                    it.etText.hint = mHintText
-                    it.etText.setHintTextColor(mTextHintColor)
-                    it.etText.setTextColor(mTextColor)
-                    it.etText.addTextChangedListener(object : TextWatcher{
-                        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-                        }
-
-                        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-                        }
-
-                        override fun afterTextChanged(s: Editable?) {
-                            if(s.toString().isNotEmpty()){
-                                it.ivClear.visibility = VISIBLE
-                            }else{
-                                it.ivClear.visibility = GONE
-                            }
-                        }
-                    })
-
-                    it.ivClear.setOnClickNoDouble {mIt->
-                        it.etText.setText("")
-                        mIt.visibility = GONE
-                    }
-
-                    it.etText.setOnEditorActionListener { _, i, _ ->
-                        if (i == EditorInfo.IME_ACTION_SEARCH) {
-                            if(mNoInputHintText.isNotEmpty() && it.etText.text.toString().isEmpty() && mHintText == it.etText.hint){
-                                Toast.makeText(context,mNoInputHintText,Toast.LENGTH_LONG).show()
-                            }else if(mInputTextLength>0 && it.etText.text.toString().length>mInputTextLength){
-                                Toast.makeText(context,mInputHintText,Toast.LENGTH_LONG).show()
-                            }else{
-                                if( mListener?.search(if(TextUtils.isEmpty(it.etText.text.toString())) it.etText.text.toString() else it.etText.text.toString()).toDefault(true)){
-                                    KeyBoardUtils.closeKeyboard(it.etText,context)
-                                }
-                            }
-                            return@setOnEditorActionListener true
-                        }
-                        false
-                    }
+            it.layout.setShapeCorners(mSvCorners.toFloat())
+            it.layout.setShapeBackgroundColor(mBackColor)
+            it.etText.textSize = mSvTextSize.toFloat()
+            it.etText.hint = mHintText
+            it.etText.setHintTextColor(mTextHintColor)
+            it.etText.setTextColor(mTextColor)
+            it.etText.addTextChangedListener(object : TextWatcher{
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
                 }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+                }
+
+                override fun afterTextChanged(s: Editable?) {
+                    if(s.toString().isNotEmpty()){
+                        it.ivClear.visibility = VISIBLE
+                    }else{
+                        it.ivClear.visibility = GONE
+                    }
+                }
+            })
+
+            it.ivClear.setOnClickNoDouble {mIt->
+                it.etText.setText("")
+                mIt.visibility = GONE
+            }
+
+            it.etText.setOnEditorActionListener { _, i, _ ->
+                if (i == EditorInfo.IME_ACTION_SEARCH) {
+                    if(mNoInputHintText.isNotEmpty() && it.etText.text.toString().isEmpty() && mHintText == it.etText.hint){
+                        Toast.makeText(context,mNoInputHintText,Toast.LENGTH_LONG).show()
+                    }else if(mInputTextLength>0 && it.etText.text.toString().length>mInputTextLength){
+                        Toast.makeText(context,mInputHintText,Toast.LENGTH_LONG).show()
+                    }else{
+                        if( mListener?.search(if(TextUtils.isEmpty(it.etText.text.toString())) it.etText.text.toString() else it.etText.text.toString()).toDefault(true)){
+                            KeyBoardUtils.closeKeyboard(it.etText,context)
+                        }
+                    }
+                    return@setOnEditorActionListener true
+                }
+                false
             }
         }
 
