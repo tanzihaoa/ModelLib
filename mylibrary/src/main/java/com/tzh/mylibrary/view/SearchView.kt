@@ -91,6 +91,7 @@ class SearchView @JvmOverloads constructor(
                         it.ivClear.visibility = VISIBLE
                     }else{
                         it.ivClear.visibility = GONE
+                        mListener?.clear()
                     }
                 }
             })
@@ -157,5 +158,7 @@ class SearchView @JvmOverloads constructor(
      */
     interface  SvSearchListener{
         fun search(text : String): Boolean
-        }
+
+        fun clear()
+    }
 }

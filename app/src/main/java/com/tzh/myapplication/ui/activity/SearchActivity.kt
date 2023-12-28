@@ -25,6 +25,10 @@ class SearchActivity : AppBaseActivity<ActivitySearchBinding>(R.layout.activity_
                 ToastUtil.show(text)
                 return true
             }
+
+            override fun clear() {
+
+            }
         })
     }
 
