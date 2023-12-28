@@ -11,6 +11,7 @@ import com.tzh.myapplication.databinding.ActivityMainBinding
 import com.tzh.myapplication.ui.activity.HandSendMessageActivity
 import com.tzh.myapplication.ui.activity.ImageActivity
 import com.tzh.myapplication.ui.activity.ListActivity
+import com.tzh.myapplication.ui.activity.SearchActivity
 import com.tzh.myapplication.ui.activity.SendMessageActivity
 import com.tzh.myapplication.ui.activity.SendSmsActivity
 import com.tzh.myapplication.ui.dialog.AddMobileDialog
@@ -130,5 +131,12 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
      */
     fun translate(){
         TranslateActivity.start(this)
+    }
+
+    /**
+     * 搜索
+     */
+    fun search(){
+        SearchActivity.start(this)
     }
 }
