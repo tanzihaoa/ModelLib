@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+
+    </data>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <com.tzh.mylibrary.view.RatioImageView
+                android:id="@+id/iv_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="7dp"
+                app:ratio="1"
+                app:WidthOrHeight="Height" />
+            <com.tzh.mylibrary.shapeview.ShapeRelativeLayout
+                android:id="@+id/rl_del"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="4dp"
+                app:shapeBackgroundColor="@color/color_fff"
+                app:shapeCorners="25dp">
+
+                <ImageView
+                    android:id="@+id/iv_close"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/tool_icon_close2" />
+            </com.tzh.mylibrary.shapeview.ShapeRelativeLayout>
+        </RelativeLayout>
+        <com.tzh.mylibrary.shapeview.ShapeRelativeLayout
+            android:id="@+id/ll_img_choose"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="6dp"
+            app:shapeBackgroundColor="#eeeeee"
+            android:layout_marginBottom="10dp"
+            app:shapeCorners="5dp">
+
+            <com.tzh.mylibrary.view.RatioImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="10dp"
+                android:scaleType="centerCrop"
+                android:visibility="invisible"
+                app:ratio="1"
+                app:WidthOrHeight="Height" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/img_camera"
+                    app:tint="#bbbbbb"/>
+                <TextView
+                    android:id="@+id/tv_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#bbbbbb"
+                    android:textSize="10sp"
+                    android:layout_marginTop="10dp"
+                    android:text="照片或视频"/>
+            </LinearLayout>
+        </com.tzh.mylibrary.shapeview.ShapeRelativeLayout>
+
+    </RelativeLayout>
+</layout>

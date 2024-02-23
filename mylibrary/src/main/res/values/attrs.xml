@@ -92,4 +92,22 @@
         <attr name="sv_image_width" format="dimension" />
 
     </declare-styleable>
+
+
+    <declare-styleable name="RatioImageView">
+        <attr name="ratio" format="float"/>
+        <!-- 宽或者高  默认是高 -->
+        <attr name="WidthOrHeight" format="enum">
+            <enum name="Width" value="1"/>
+            <enum name="Height" value="2"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="FlowTagView">
+        <attr name="tagSpacing" format="dimension" />
+        <attr name="lineSpacing2" format="dimension" />
+        <!-- 是否是固定布局 -->
+        <attr name="isFixed" format="boolean" />
+        <attr name="columnSize" format="integer" />
+    </declare-styleable>
 </resources>
