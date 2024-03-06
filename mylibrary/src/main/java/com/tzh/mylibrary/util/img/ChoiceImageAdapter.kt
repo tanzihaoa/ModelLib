@@ -4,6 +4,9 @@ import android.annotation.SuppressLint
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.luck.picture.lib.config.SelectMimeType
+import com.luck.picture.lib.entity.LocalMedia
+import com.luck.picture.lib.interfaces.OnResultCallbackListener
 import com.tzh.mylibrary.adapter.XRvBindingHolder
 import com.tzh.mylibrary.adapter.XRvBindingPureDataAdapter
 import com.tzh.mylibrary.util.GsonUtil
@@ -12,6 +15,9 @@ import com.tzh.mylibrary.util.toDefault
 import com.tzh.mylibrary.R
 import com.tzh.mylibrary.databinding.AdapterChoiceImageBinding
 import com.tzh.mylibrary.util.general.PermissionDetectionUtil
+import com.tzh.mylibrary.util.picture.PictureSelectorHelper
+import java.io.File
+import java.util.ArrayList
 
 class ChoiceImageAdapter(val activity : AppCompatActivity, private val num : Int = 9,val isHaveVideo : Boolean = false) : XRvBindingPureDataAdapter<ImageDTO>(R.layout.adapter_choice_image)  {
 
@@ -32,48 +38,49 @@ class ChoiceImageAdapter(val activity : AppCompatActivity, private val num : Int
                     if (listData.size >= num) {
                         if (listData[num - 1].status == 1) {
                             if(isHaveVideo){
-                                CameraUtil.createAlbumComplex(activity, num - listData.size + 1,
-                                    object : CameraUtil.onSelectCallback{
-                                        override fun onResult(photos: List<ImageDTO>?) {
-                                            addDataList(photos)
+                                PictureSelectorHelper.onPictureSelector(activity, num - listData.size + 1,
+                                    object : OnResultCallbackListener<LocalMedia> {
+
+                                        override fun onResult(result: ArrayList<LocalMedia>?) {
+                                            addDataList(result)
                                         }
 
                                         override fun onCancel() {}
-                                    })
+                                    }, SelectMimeType.ofAll())
                             }else{
-                                CameraUtil.createAlbum(
+                                PictureSelectorHelper.onPictureSelector(
                                     activity,
                                     num - listData.size + 1,
-                                    object : CameraUtil.onSelectCallback{
-                                        override fun onResult(photos: List<ImageDTO>?) {
-                                            addDataList(photos)
+                                    object : OnResultCallbackListener<LocalMedia> {
+                                        override fun onResult(result: ArrayList<LocalMedia>?) {
+                                            addDataList(result)
                                         }
 
                                         override fun onCancel() {}
-                                    })
+                                    }, SelectMimeType.ofImage())
                             }
                         }
                     } else {
                         if(isHaveVideo){
-                            CameraUtil.createAlbumComplex(activity, num - listData.size + 1,
-                                object : CameraUtil.onSelectCallback {
-                                    override fun onResult(photos: List<ImageDTO>?) {
-                                        addDataList(photos)
+                            PictureSelectorHelper.onPictureSelector(activity, num - listData.size + 1,
+                                object : OnResultCallbackListener<LocalMedia> {
+                                    override fun onResult(result: ArrayList<LocalMedia>?) {
+                                        addDataList(result)
                                     }
 
                                     override fun onCancel() {}
-                                })
+                                }, SelectMimeType.ofAll())
                         }else{
-                            CameraUtil.createAlbum(
+                            PictureSelectorHelper.onPictureSelector(
                                 activity,
                                 num - listData.size + 1,
-                                object : CameraUtil.onSelectCallback{
-                                    override fun onResult(photos: List<ImageDTO>?) {
-                                        addDataList(photos)
+                                object : OnResultCallbackListener<LocalMedia> {
+                                    override fun onResult(result: ArrayList<LocalMedia>?) {
+                                        addDataList(result)
                                     }
 
                                     override fun onCancel() {}
-                                })
+                                }, SelectMimeType.ofImage())
                         }
                     }
                 }
@@ -120,16 +127,24 @@ class ChoiceImageAdapter(val activity : AppCompatActivity, private val num : Int
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setDataList(list: List<ImageDTO>?) {
+    fun setDataList(list: List<LocalMedia>?) {
         if (list != null) {
             this.listData.clear()
-            this.listData.addAll(list)
+            for (dto in list){
+                this.listData.add(ImageDTO(File(dto.realPath),0).apply {
+                    type = if(dto.mimeType.contains("video")){
+                        2
+                    }else{
+                        1
+                    }
+                })
+            }
             initView()
             notifyDataSetChanged()
         }
     }
 
-    fun addDataList(list: List<ImageDTO>?) {
+    fun addDataList(list: List<LocalMedia>?) {
         if (list != null) {
             if (listData.size > 0) {
                 if (listData[listData.size - 1].status == 1) {
@@ -137,9 +152,16 @@ class ChoiceImageAdapter(val activity : AppCompatActivity, private val num : Int
                 }
             }
             val lastIndex: Int = this.listData.size - 1
-            if (listData.addAll(list)) {
-                initView()
+            for (dto in list){
+                this.listData.add(ImageDTO(File(dto.realPath),0).apply {
+                    type = if(dto.mimeType.contains("video")){
+                        2
+                    }else{
+                        1
+                    }
+                })
             }
+            initView()
 
             mListener?.change()
         }

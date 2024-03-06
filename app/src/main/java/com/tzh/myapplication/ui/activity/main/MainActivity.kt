@@ -162,7 +162,7 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
                     override fun onCancel() {
 
                     }
-                }, SelectMimeType.ofAll())
+                }, SelectMimeType.ofImage())
             }
         })
 

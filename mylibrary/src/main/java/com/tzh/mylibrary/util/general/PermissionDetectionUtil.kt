@@ -34,11 +34,12 @@ object PermissionDetectionUtil {
     fun getPermission(listener : DetectionListener){
         PermissionXUtil.requestAnyPermission(XAppActivityManager.getInstance().currentActivity() as AppCompatActivity, mutableListOf<String>().apply {
             add(Manifest.permission.CAMERA)
-            add(Manifest.permission.READ_EXTERNAL_STORAGE)
-            add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
                 add(Manifest.permission.READ_MEDIA_IMAGES)
                 add(Manifest.permission.READ_MEDIA_VIDEO)
+            }else{
+                add(Manifest.permission.READ_EXTERNAL_STORAGE)
+                add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
             }
         },object : OnPermissionCallBackListener {
             override fun onAgree() {
