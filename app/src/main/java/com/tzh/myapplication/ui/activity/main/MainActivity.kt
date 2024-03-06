@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Build
 import android.telephony.SmsManager
 import com.google.zxing.integration.android.IntentIntegrator
+import com.luck.picture.lib.config.SelectMimeType
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.interfaces.OnResultCallbackListener
 import com.tzh.myapplication.R
@@ -149,7 +150,7 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
     fun selectImg(){
         PermissionDetectionUtil.detection(this,object : PermissionDetectionUtil.DetectionListener{
             override fun ok() {
-                PictureSelectorHelper.onPictureSelector(this@MainActivity,1,true,object : OnResultCallbackListener<LocalMedia>{
+                PictureSelectorHelper.onPictureSelector(this@MainActivity,2,object : OnResultCallbackListener<LocalMedia>{
                     override fun onResult(result: ArrayList<LocalMedia>?) {
                         if(result?.size.toDefault(0) > 0){
                             val dto = result?.get(0)
@@ -161,7 +162,7 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
                     override fun onCancel() {
 
                     }
-                })
+                }, SelectMimeType.ofAll())
             }
         })
 

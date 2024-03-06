@@ -141,12 +141,13 @@ object PictureSelectorHelper {
      * 选择器总处理
      */
     @JvmStatic
-    fun onPictureSelector(activity: Activity, maxSelectNum: Int = 1,isImage : Boolean = true, listener: OnResultCallbackListener<LocalMedia>? = null) {
+    fun onPictureSelector(activity: Activity, maxSelectNum: Int = 1, listener: OnResultCallbackListener<LocalMedia>? = null,chooseMode : Int = SelectMimeType.ofImage()) {
         val selectionModel = PictureSelector.create(activity)
-            .openGallery(if(isImage) SelectMimeType.ofImage() else SelectMimeType.ofVideo())
+            .openGallery(chooseMode)//SelectMimeType.ofVideo()
             .setImageEngine(GlideEngine.createGlideEngine())
             //图片最大选择数量
             .setMaxSelectNum(maxSelectNum)
+//            .setMaxVideoSelectNum(1)
             //图片最小选择数量
             .setMinSelectNum(1)
             //是否开启点击音效
