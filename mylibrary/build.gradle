@@ -87,10 +87,13 @@ dependencies {
     //可选
     api 'com.github.angcyo.DslTablayout:ViewPager2Delegate:3.5.3'
 
-    api 'top.zibin:Luban:1.1.8'
     api 'com.github.HuanTanSheng:EasyPhotos:3.1.5'
 
     //二维码扫描库
     api 'com.journeyapps:zxing-android-embedded:3.6.0'
     api 'com.google.zxing:core:3.3.3'
+
+    api 'io.github.lucksiege:pictureselector:v3.11.1'
+    api 'io.github.lucksiege:compress:v3.11.1'
+    api 'io.github.lucksiege:ucrop:v3.11.1'
 }

@@ -4,21 +4,17 @@ import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.huantansheng.easyphotos.EasyPhotos;
 import com.huantansheng.easyphotos.callback.SelectCallback;
 import com.huantansheng.easyphotos.models.album.entity.Photo;
 import com.tzh.myapplication.utils.ToastUtil;
 import com.tzh.mylibrary.util.GsonUtil;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
 import top.zibin.luban.Luban;
-import top.zibin.luban.OnCompressListener;
+import top.zibin.luban.OnNewCompressListener;
 
 public class CameraUtil {
     /**
@@ -35,7 +31,7 @@ public class CameraUtil {
 
     private static void createAlbumP(AppCompatActivity activity,int num,onSelectCallback callback){
         EasyPhotos.createAlbum(activity, true, false, GlideEngine.getInstance())
-                .setFileProviderAuthority("com.tzh.myapplication.fileprovider")
+                .setFileProviderAuthority(activity.getPackageName()+".fileprovider")
                 .setCount(num>0?num:1)
 //                .complexSelector(true,1,num>0?num:1)//参数说明：是否只能选择单类型，视频数，图片数。
                 .start(new SelectCallback() {
@@ -70,7 +66,7 @@ public class CameraUtil {
      */
     public static void createAlbumComplex(AppCompatActivity activity,int num,onSelectCallback callback){
         EasyPhotos.createAlbum(activity, true, false, GlideEngine.getInstance())
-                .setFileProviderAuthority("com.tzh.myapplication.fileprovider")
+                .setFileProviderAuthority(activity.getPackageName()+".fileprovider")
 //                .setCount(num>0?num:1)
                 .complexSelector(true,1,num>0?num:1)//参数说明：是否只能选择单类型，视频数，图片数。
                 .start(new SelectCallback() {
@@ -114,7 +110,7 @@ public class CameraUtil {
                 .ignoreBy(100)
                 .setTargetDir(getPath(activity))
                 .filter(path1 -> !(TextUtils.isEmpty(path1) || path1.toLowerCase().endsWith(".gif")))
-                .setCompressListener(new OnCompressListener() {
+                .setCompressListener(new OnNewCompressListener() {
                     @Override
                     public void onStart() {
                         // TODO 压缩开始前调用，可以在方法内启动 loading UI
@@ -122,14 +118,14 @@ public class CameraUtil {
                     }
 
                     @Override
-                    public void onSuccess(File file) {
+                    public void onSuccess(String source, File file) {
                         Log.e("Luban====onSuccess", file.getAbsolutePath());
                         Log.e("Luban====", "onSuccess");
                         callback.onResult(new ImageDTO(file));
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(String source, Throwable e) {
                         Log.e("Luban====", "onError"+e.getMessage());
                         ToastUtil.showLong(e.getMessage());
                         // TODO 当压缩过程出现问题时调用
@@ -150,14 +146,14 @@ public class CameraUtil {
                 .ignoreBy(100)
                 .setTargetDir(getPath(activity))
                 .filter(path1 -> !(TextUtils.isEmpty(path1) || path1.toLowerCase().endsWith(".gif")))
-                .setCompressListener(new OnCompressListener() {
+                .setCompressListener(new OnNewCompressListener() {
                     @Override
                     public void onStart() {
                         Log.e("Luban====", "onStart");
                     }
 
                     @Override
-                    public void onSuccess(File file) {
+                    public void onSuccess(String source, File file) {
                         Log.e("Luban====onSuccess", file.getAbsolutePath());
                         Log.e("Luban====", "onSuccess");
                         dtoList.add(new ImageDTO(file));
@@ -167,7 +163,7 @@ public class CameraUtil {
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(String source, Throwable e) {
                         Log.e("Luban====", "onError"+e.getMessage());
                         ToastUtil.showLong(e.getMessage());
                         callback.onError();
