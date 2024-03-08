@@ -10,8 +10,8 @@ object ChoiceImageUtil {
     /**
      * 绑定适配器
      */
-    fun setChoiceImage(activity: AppCompatActivity, recyclerView: RecyclerView, gridNum: Int, num: Int,isHaveVideo : Boolean = false): ChoiceImageAdapter {
-        val adapter = ChoiceImageAdapter(activity, num,isHaveVideo)
+    fun setChoiceImage(activity: AppCompatActivity, recyclerView: RecyclerView, gridNum: Int, num: Int,isHaveVideo : Boolean = false,isBack : Boolean = false): ChoiceImageAdapter {
+        val adapter = ChoiceImageAdapter(activity, num,isHaveVideo,isBack)
         adapter.initView()
         recyclerView.grid(gridNum).initAdapter(adapter)
         return adapter

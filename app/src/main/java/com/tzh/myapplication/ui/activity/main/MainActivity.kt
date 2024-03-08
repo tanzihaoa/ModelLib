@@ -22,13 +22,15 @@ import com.tzh.myapplication.utils.ConfigUtil
 import com.tzh.myapplication.utils.SkUtil
 import com.tzh.myapplication.utils.TimeUtil
 import com.tzh.myapplication.utils.ToastUtil
+import com.tzh.myapplication.utils.img.PermissionDetectionUtil
 import com.tzh.mylibrary.activity.ScanUtilActivity
 import com.tzh.mylibrary.activity.TranslateActivity
 import com.tzh.mylibrary.activity.WebActivity
 import com.tzh.mylibrary.util.GsonUtil
 import com.tzh.mylibrary.util.LogUtils
 import com.tzh.mylibrary.util.divideMessage
-import com.tzh.mylibrary.util.general.PermissionDetectionUtil
+import com.tzh.mylibrary.util.img.ChoiceImageAdapter
+import com.tzh.mylibrary.util.img.ChoiceImageUtil
 import com.tzh.mylibrary.util.picture.PictureSelectorHelper
 import com.tzh.mylibrary.util.toDefault
 import java.util.ArrayList
@@ -57,6 +59,8 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
         binding.tvWza.setOnClickListener {
             SkUtil.start(this)
         }
+
+        val mAdapter = ChoiceImageUtil.setChoiceImage(this,binding.recyclerView,4,9,false)
     }
 
     override fun onResume() {
@@ -147,7 +151,7 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
     }
 
     fun selectImg(){
-        PermissionDetectionUtil.getPermission(this,object : PermissionDetectionUtil.DetectionListener{
+        PermissionDetectionUtil.getPermission(object : PermissionDetectionUtil.DetectionListener{
             override fun ok() {
                 PictureSelectorHelper.onPictureSelector(this@MainActivity,2,object : OnResultCallbackListener<LocalMedia>{
                     override fun onResult(result: ArrayList<LocalMedia>?) {
@@ -155,7 +159,6 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
                             val dto = result?.get(0)
                             ToastUtil.show(dto?.realPath)
                         }
-
                     }
 
                     override fun onCancel() {
@@ -164,6 +167,5 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
                 }, SelectMimeType.ofImage())
             }
         })
-
     }
 }

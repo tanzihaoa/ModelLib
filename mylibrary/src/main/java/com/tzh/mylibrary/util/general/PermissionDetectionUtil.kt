@@ -12,7 +12,24 @@ import com.tzh.mylibrary.dialog.HintDialog
 
 object PermissionDetectionUtil {
 
-    fun getPermission(activity: AppCompatActivity,listener : DetectionListener){
+    /**
+     * @param isBack 没有权限的时候是否返回
+     */
+    fun getPermission(activity: AppCompatActivity,listener : DetectionListener,isBack : Boolean = false){
+        if(isBack){
+            if(PackageManager.PERMISSION_GRANTED == activity.packageManager.checkPermission(Manifest.permission.CAMERA,activity.packageName)){
+                //有这个权限
+                getPermissionNow(activity,listener)
+            } else {
+                //没有这个权限
+                listener.cancel()
+            }
+        }else{
+            getPermissionNow(activity,listener)
+        }
+    }
+
+    private fun getPermissionNow(activity: AppCompatActivity,listener : DetectionListener){
         PermissionXUtil.requestAnyPermission(activity, mutableListOf<String>().apply {
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
                 add(Manifest.permission.READ_MEDIA_IMAGES)
@@ -35,5 +52,7 @@ object PermissionDetectionUtil {
 
     interface DetectionListener{
         fun ok()
+
+        fun cancel()
     }
 }
