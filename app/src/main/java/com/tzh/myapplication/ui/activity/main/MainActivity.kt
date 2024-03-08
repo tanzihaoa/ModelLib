@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.telephony.SmsManager
-import com.google.zxing.integration.android.IntentIntegrator
 import com.luck.picture.lib.config.SelectMimeType
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.interfaces.OnResultCallbackListener
@@ -23,13 +22,13 @@ import com.tzh.myapplication.utils.ConfigUtil
 import com.tzh.myapplication.utils.SkUtil
 import com.tzh.myapplication.utils.TimeUtil
 import com.tzh.myapplication.utils.ToastUtil
-import com.tzh.myapplication.utils.general.PermissionDetectionUtil
 import com.tzh.mylibrary.activity.ScanUtilActivity
 import com.tzh.mylibrary.activity.TranslateActivity
 import com.tzh.mylibrary.activity.WebActivity
 import com.tzh.mylibrary.util.GsonUtil
 import com.tzh.mylibrary.util.LogUtils
 import com.tzh.mylibrary.util.divideMessage
+import com.tzh.mylibrary.util.general.PermissionDetectionUtil
 import com.tzh.mylibrary.util.picture.PictureSelectorHelper
 import com.tzh.mylibrary.util.toDefault
 import java.util.ArrayList
@@ -148,7 +147,7 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
     }
 
     fun selectImg(){
-        PermissionDetectionUtil.detection(this,object : PermissionDetectionUtil.DetectionListener{
+        PermissionDetectionUtil.getPermission(this,object : PermissionDetectionUtil.DetectionListener{
             override fun ok() {
                 PictureSelectorHelper.onPictureSelector(this@MainActivity,2,object : OnResultCallbackListener<LocalMedia>{
                     override fun onResult(result: ArrayList<LocalMedia>?) {

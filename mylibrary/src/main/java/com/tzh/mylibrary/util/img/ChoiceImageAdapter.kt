@@ -33,7 +33,7 @@ class ChoiceImageAdapter(val activity : AppCompatActivity, private val num : Int
         b.rlDel.setOnClickListener { remove(position) }
 
         b.llImgChoose.setOnClickListener {
-            PermissionDetectionUtil.detection(activity,object : PermissionDetectionUtil.DetectionListener{
+            PermissionDetectionUtil.getPermission(activity,object : PermissionDetectionUtil.DetectionListener{
                 override fun ok() {
                     if (listData.size >= num) {
                         if (listData[num - 1].status == 1) {
