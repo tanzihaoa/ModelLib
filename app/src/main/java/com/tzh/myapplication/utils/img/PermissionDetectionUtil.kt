@@ -52,6 +52,39 @@ object PermissionDetectionUtil {
         })
     }
 
+    fun getPermission(activity: AppCompatActivity,listener : DetectionListener){
+        PermissionXUtil.requestAnyPermission(activity, mutableListOf<String>().apply {
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+                add(Manifest.permission.READ_MEDIA_IMAGES)
+                add(Manifest.permission.READ_MEDIA_VIDEO)
+            }else{
+                add(Manifest.permission.READ_EXTERNAL_STORAGE)
+                add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            }
+            add(Manifest.permission.CAMERA)
+        },object : OnPermissionCallBackListener {
+            override fun onAgree() {
+                listener.ok()
+            }
+
+            override fun onDisAgree() {
+
+            }
+        })
+    }
+
+    fun getPermission(activity: AppCompatActivity,list : MutableList<String>,listener : DetectionListener){
+        PermissionXUtil.requestAnyPermission(activity,list,object : OnPermissionCallBackListener {
+            override fun onAgree() {
+                listener.ok()
+            }
+
+            override fun onDisAgree() {
+
+            }
+        })
+    }
+
     interface DetectionListener{
         fun ok()
     }
