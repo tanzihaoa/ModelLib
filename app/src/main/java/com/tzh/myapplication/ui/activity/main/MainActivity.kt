@@ -10,6 +10,7 @@ import com.google.zxing.integration.android.IntentIntegrator
 import com.tzh.myapplication.R
 import com.tzh.myapplication.base.AppBaseActivity
 import com.tzh.myapplication.databinding.ActivityMainBinding
+import com.tzh.myapplication.ui.activity.BluetoothActivity
 import com.tzh.myapplication.ui.activity.ImageActivity
 import com.tzh.myapplication.ui.activity.ListActivity
 import com.tzh.myapplication.ui.activity.SendMessageActivity
@@ -129,6 +130,13 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
      */
     fun translate(){
         TranslateActivity.start(this)
+    }
+
+    /**
+     * 蓝牙
+     */
+    fun bluetooth(){
+        BluetoothActivity.start(this)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

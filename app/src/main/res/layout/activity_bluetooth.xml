@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="activity"
+            type="com.tzh.myapplication.ui.activity.BluetoothActivity" />
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <com.tzh.mylibrary.view.XAppTitleBar
+            android:id="@+id/title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:xtbTitleText="三方通话"
+            app:xtbRightShowView="VIEW_TEXT"
+            app:xtbRightText=""
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <com.tzh.mylibrary.shapeview.ShapeTextView
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:gravity="center"
+            app:shapeBackgroundColor="@color/color_ffbc5c"
+            app:shapeCorners="12dp"
+            android:onClick="@{()->activity.sendSms()}"
+            android:textColor="@color/color_fff"
+            android:text="拨打电话"
+            android:layout_margin="16dp"/>
+    </LinearLayout>
+</layout>
