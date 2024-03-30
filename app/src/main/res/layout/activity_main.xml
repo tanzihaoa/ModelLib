@@ -81,6 +81,7 @@
             android:text="修改手机号"
             app:shapeCorners="20dp"
             android:gravity="center"
+            android:visibility="gone"
             app:shapeBackgroundColor="@color/color_00f3b8"
             app:shapeBorderColor="@color/color_333"
             app:shapeBorderWidth="1dp"
@@ -97,6 +98,7 @@
             android:text="发短信"
             app:shapeCorners="20dp"
             android:gravity="center"
+            android:visibility="gone"
             app:shapeBackgroundColor="@color/color_00f3b8"
             app:shapeBorderColor="@color/color_333"
             app:shapeBorderWidth="1dp"
@@ -197,6 +199,7 @@
             android:text="扫码"
             app:shapeCorners="20dp"
             android:gravity="center"
+            android:visibility="gone"
             app:shapeBackgroundColor="@color/color_00f3b8"
             app:shapeBorderColor="@color/color_333"
             app:shapeBorderWidth="1dp"
@@ -213,6 +216,7 @@
             android:text="翻译"
             app:shapeCorners="20dp"
             android:gravity="center"
+            android:visibility="gone"
             app:shapeBackgroundColor="@color/color_00f3b8"
             app:shapeBorderColor="@color/color_333"
             app:shapeBorderWidth="1dp"
@@ -229,6 +233,7 @@
             android:text="搜索"
             app:shapeCorners="20dp"
             android:gravity="center"
+            android:visibility="gone"
             app:shapeBackgroundColor="@color/color_00f3b8"
             app:shapeBorderColor="@color/color_333"
             app:shapeBorderWidth="1dp"
@@ -245,6 +250,7 @@
             android:text="选择图片"
             app:shapeCorners="20dp"
             android:gravity="center"
+            android:visibility="gone"
             app:shapeBackgroundColor="@color/color_00f3b8"
             app:shapeBorderColor="@color/color_333"
             app:shapeBorderWidth="1dp"
@@ -254,10 +260,27 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
+        <com.tzh.mylibrary.shapeview.ShapeTextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="16dp"
+            android:text="木鱼"
+            app:shapeCorners="20dp"
+            android:gravity="center"
+            app:shapeBackgroundColor="@color/color_00f3b8"
+            app:shapeBorderColor="@color/color_333"
+            app:shapeBorderWidth="1dp"
+            android:onClick="@{()->v.muYu()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_margin="16dp"/>
     </LinearLayout>
 </layout>

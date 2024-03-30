@@ -26,6 +26,7 @@ import com.tzh.myapplication.utils.img.PermissionDetectionUtil
 import com.tzh.mylibrary.activity.ScanUtilActivity
 import com.tzh.mylibrary.activity.TranslateActivity
 import com.tzh.mylibrary.activity.WebActivity
+import com.tzh.mylibrary.activity.tool.MuYuActivity
 import com.tzh.mylibrary.util.GsonUtil
 import com.tzh.mylibrary.util.LogUtils
 import com.tzh.mylibrary.util.divideMessage
@@ -167,5 +168,12 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
                 }, SelectMimeType.ofImage())
             }
         })
+    }
+
+    /**
+     * 木鱼
+     */
+    fun muYu(){
+        MuYuActivity.start(this)
     }
 }

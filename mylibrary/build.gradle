@@ -42,6 +42,7 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    api 'com.geyifeng.immersionbar:immersionbar:3.2.2'
 
     api 'androidx.appcompat:appcompat:1.6.1'
     api 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -96,4 +97,7 @@ dependencies {
     api 'io.github.lucksiege:pictureselector:v3.11.1'
     api 'io.github.lucksiege:compress:v3.11.1'
     api 'io.github.lucksiege:ucrop:v3.11.1'
+
+    api 'com.liulishuo.okdownload:okdownload:1.0.7'
+    api 'com.liulishuo.okdownload:okhttp:1.0.7'
 }
