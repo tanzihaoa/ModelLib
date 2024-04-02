@@ -72,7 +72,7 @@ dependencies {
     api 'pl.droidsonroids.gif:android-gif-drawable:1.2.25'
 
     api 'com.alipay.sdk:alipaysdk-android:15.8.17@aar'
-    api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.8.0'
+    api 'com.tencent.mm.opensdk:wechat-sdk-android:+'
 
     api 'com.guolindev.permissionx:permissionx:1.6.4'
 
@@ -87,8 +87,6 @@ dependencies {
     api 'com.github.angcyo.DslTablayout:ViewPager1Delegate:3.5.3'
     //可选
     api 'com.github.angcyo.DslTablayout:ViewPager2Delegate:3.5.3'
-
-    api 'com.github.HuanTanSheng:EasyPhotos:3.1.5'
 
     //二维码扫描库
     api 'com.journeyapps:zxing-android-embedded:3.6.0'

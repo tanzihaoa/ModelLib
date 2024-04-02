@@ -13,11 +13,7 @@ import com.tzh.myapplication.utils.AndroidUtil
 import com.tzh.myapplication.utils.OnPermissionCallBackListener
 import com.tzh.myapplication.utils.PermissionXUtil
 import com.tzh.myapplication.utils.SendUtil
-import com.tzh.myapplication.utils.img.CameraUtil
 import com.tzh.myapplication.utils.img.ImageDTO
-import com.tzh.mylibrary.util.LoadImageUtil
-import com.tzh.mylibrary.util.LogUtils
-import com.tzh.mylibrary.util.toDefault
 
 
 class SendSmsActivity : AppBaseActivity<ActivitySendSmsBinding>(R.layout.activity_send_sms) {
@@ -62,21 +58,7 @@ class SendSmsActivity : AppBaseActivity<ActivitySendSmsBinding>(R.layout.activit
         //注册短信发送监听
         registerReceiver(receiver, IntentFilter(SENT))
         binding.layoutImg.setOnClickListener {
-            CameraUtil.createAlbum(this@SendSmsActivity,1,object : CameraUtil.onSelectCallback{
-                override fun onResult(photos: MutableList<ImageDTO>) {
-                    if(photos.size > 0){
-                        img = photos[0]
-                        img?.file?.apply {
-                            LoadImageUtil.loadImageUrl(binding.ivImg,this.absolutePath,12f)
-                            LogUtils.e("图片大小====", (img?.file?.length().toDefault(0) / 1024).toString()+"kb")
-                        }
-                    }
-                }
 
-                override fun onCancel() {
-
-                }
-            })
         }
     }
 
