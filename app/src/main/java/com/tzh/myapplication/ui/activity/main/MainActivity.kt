@@ -1,34 +1,40 @@
 package com.tzh.myapplication.ui.activity.main
 
-import android.R.attr
 import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.telephony.SmsManager
-import android.widget.Toast
-import com.google.zxing.integration.android.IntentIntegrator
+import com.luck.picture.lib.config.SelectMimeType
+import com.luck.picture.lib.entity.LocalMedia
+import com.luck.picture.lib.interfaces.OnResultCallbackListener
 import com.tzh.myapplication.R
 import com.tzh.myapplication.base.AppBaseActivity
 import com.tzh.myapplication.databinding.ActivityMainBinding
-import com.tzh.myapplication.ui.activity.BluetoothActivity
+import com.tzh.myapplication.ui.activity.HandSendMessageActivity
 import com.tzh.myapplication.ui.activity.ImageActivity
 import com.tzh.myapplication.ui.activity.ListActivity
+import com.tzh.myapplication.ui.activity.SearchActivity
 import com.tzh.myapplication.ui.activity.SendMessageActivity
 import com.tzh.myapplication.ui.activity.SendSmsActivity
 import com.tzh.myapplication.ui.dialog.AddMobileDialog
 import com.tzh.myapplication.ui.dialog.MyDialog
 import com.tzh.myapplication.utils.ConfigUtil
-import com.tzh.myapplication.utils.OnPermissionCallBackListener
-import com.tzh.myapplication.utils.PermissionXUtil
 import com.tzh.myapplication.utils.SkUtil
 import com.tzh.myapplication.utils.TimeUtil
 import com.tzh.myapplication.utils.ToastUtil
-import com.tzh.mylibrary.activity.ScanActivity
+import com.tzh.myapplication.utils.img.PermissionDetectionUtil
+import com.tzh.mylibrary.activity.ScanUtilActivity
 import com.tzh.mylibrary.activity.TranslateActivity
 import com.tzh.mylibrary.activity.WebActivity
+import com.tzh.mylibrary.activity.tool.MuYuActivity
 import com.tzh.mylibrary.util.GsonUtil
 import com.tzh.mylibrary.util.LogUtils
 import com.tzh.mylibrary.util.divideMessage
+import com.tzh.mylibrary.util.img.ChoiceImageAdapter
+import com.tzh.mylibrary.util.img.ChoiceImageUtil
+import com.tzh.mylibrary.util.picture.PictureSelectorHelper
+import com.tzh.mylibrary.util.toDefault
+import java.util.ArrayList
 
 
 class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main) {
@@ -54,6 +60,8 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
         binding.tvWza.setOnClickListener {
             SkUtil.start(this)
         }
+
+        val mAdapter = ChoiceImageUtil.setChoiceImage(this,binding.recyclerView,4,9,false)
     }
 
     override fun onResume() {
@@ -93,6 +101,10 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
         SendMessageActivity.start(this)
     }
 
+    fun handSendMessage(){
+        HandSendMessageActivity.start(this)
+    }
+
     fun sendSms(){
         SendSmsActivity.start(this)
     }
@@ -114,13 +126,13 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
      * 扫码
      */
     fun scannerCode(){
-        PermissionXUtil.requestCameraPermission(this,object : OnPermissionCallBackListener{
-            override fun onAgree() {
-                ScanActivity.start(this@MainActivity)
+        ScanUtilActivity.start(this@MainActivity,object : ScanUtilActivity.ScanListener{
+            override fun sure(text: String) {
+                ToastUtil.show(text)
             }
 
-            override fun onDisAgree() {
-
+            override fun cancel() {
+                ToastUtil.show("取消")
             }
         })
     }
@@ -133,22 +145,35 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
     }
 
     /**
-     * 蓝牙
+     * 搜索
      */
-    fun bluetooth(){
-        BluetoothActivity.start(this)
+    fun search(){
+        SearchActivity.start(this)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
-        if (result != null) {
-            if (result.contents == null) {
-                LogUtils.e("=====2","扫码取消")
-            } else {
-                LogUtils.e("=====2",result.contents)
+    fun selectImg(){
+        PermissionDetectionUtil.getPermission(object : PermissionDetectionUtil.DetectionListener{
+            override fun ok() {
+                PictureSelectorHelper.onPictureSelector(this@MainActivity,2,object : OnResultCallbackListener<LocalMedia>{
+                    override fun onResult(result: ArrayList<LocalMedia>?) {
+                        if(result?.size.toDefault(0) > 0){
+                            val dto = result?.get(0)
+                            ToastUtil.show(dto?.realPath)
+                        }
+                    }
+
+                    override fun onCancel() {
+
+                    }
+                }, SelectMimeType.ofImage())
             }
-        } else {
-            super.onActivityResult(requestCode, resultCode,data)
-        }
+        })
+    }
+
+    /**
+     * 木鱼
+     */
+    fun muYu(){
+        MuYuActivity.start(this)
     }
 }

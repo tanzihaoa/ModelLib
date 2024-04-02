@@ -26,7 +26,7 @@ class TranslateActivity : XBaseBindingActivity<ActivityTranslateBinding>(R.layou
 
     var mTo = LanguageDto("英语","en")
 
-    val mDialog by lazy {
+    private val mDialog by lazy {
         SelectTranslateDialog(this,object : SelectTranslateDialog.SelectTranslateListener{
             override fun sure(from: LanguageDto, to: LanguageDto) {
                 mFrom = from

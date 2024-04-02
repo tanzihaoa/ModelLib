@@ -11,8 +11,8 @@ android {
         applicationId "com.example.myapplication"
         minSdk 23
         targetSdk 33
-        versionCode 1002
-        versionName "1.0.2"
+        versionCode 1003
+        versionName "1.0.3"
         multiDexEnabled true
 
         ndk {
@@ -83,24 +83,19 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.core:core-ktx:1.10.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    api 'com.geyifeng.immersionbar:immersionbar:3.2.2'
 
     implementation 'com.airbnb.android:lottie:6.0.0'
     api 'androidx.multidex:multidex:2.0.1'
 
-    implementation 'top.zibin:Luban:1.1.8'
-    implementation 'com.github.HuanTanSheng:EasyPhotos:3.1.5'
-
     implementation 'com.huawei.hms:hmscoreinstaller:6.9.0.300'
 
-    implementation 'com.guolindev.permissionx:permissionx:1.6.4'
     implementation 'com.huawei.hms:health:6.9.0.300'
     implementation 'org.apache.httpcomponents:httpclient-android:4.3.5.1'
 

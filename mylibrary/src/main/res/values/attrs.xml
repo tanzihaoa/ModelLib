@@ -66,4 +66,48 @@
         <attr name="ios" format="boolean" />
         <attr name="leftSwipe" format="boolean" />
     </declare-styleable>
+
+
+
+    <declare-styleable name="SearchView">
+        <!--输入框字文字颜色-->
+        <attr name="sv_text_color" format="color" />
+        <!--输入框提示文字颜色-->
+        <attr name="sv_hint_color" format="color" />
+        <!--背景颜色-->
+        <attr name="sv_back_color" format="color" />
+        <!--提示文字-->
+        <attr name="sv_hint" format="string" />
+        <!--限制输入的最大字数-->
+        <attr name="sv_input_max_length" format="integer" />
+        <!--没有输入文字的时候的提示  不设置默认为不拦截-->
+        <attr name="sv_no_input_hint_text" format="string" />
+        <!--超过最大限制的提示文字-->
+        <attr name="sv_input_hint_text" format="string" />
+        <!--背景弧度-->
+        <attr name="sv_corners" format="dimension" />
+        <!--文字大小-->
+        <attr name="sv_text_size" format="dimension" />
+        <!--左右图片的大小  宽高一致-->
+        <attr name="sv_image_width" format="dimension" />
+
+    </declare-styleable>
+
+
+    <declare-styleable name="RatioImageView">
+        <attr name="ratio" format="float"/>
+        <!-- 宽或者高  默认是高 -->
+        <attr name="WidthOrHeight" format="enum">
+            <enum name="Width" value="1"/>
+            <enum name="Height" value="2"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="FlowTagView">
+        <attr name="tagSpacing" format="dimension" />
+        <attr name="lineSpacing2" format="dimension" />
+        <!-- 是否是固定布局 -->
+        <attr name="isFixed" format="boolean" />
+        <attr name="columnSize" format="integer" />
+    </declare-styleable>
 </resources>

@@ -42,6 +42,7 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    api 'com.geyifeng.immersionbar:immersionbar:3.2.2'
 
     api 'androidx.appcompat:appcompat:1.6.1'
     api 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -70,12 +71,31 @@ dependencies {
     api 'com.github.bumptech.glide:glide:4.15.1'
     api 'pl.droidsonroids.gif:android-gif-drawable:1.2.25'
 
+    api 'com.alipay.sdk:alipaysdk-android:15.8.17@aar'
+    api 'com.tencent.mm.opensdk:wechat-sdk-android:+'
+
     api 'com.guolindev.permissionx:permissionx:1.6.4'
+
+    //banner
+    api 'io.github.youth5201314:banner:2.2.2'
     
     //时间选择器和选项选择器
-    implementation 'com.contrarywind:Android-PickerView:4.1.9'
+    api 'com.contrarywind:Android-PickerView:4.1.9'
+
+    api 'com.github.angcyo.DslTablayout:TabLayout:3.5.3'
+    //可选
+    api 'com.github.angcyo.DslTablayout:ViewPager1Delegate:3.5.3'
+    //可选
+    api 'com.github.angcyo.DslTablayout:ViewPager2Delegate:3.5.3'
 
     //二维码扫描库
     api 'com.journeyapps:zxing-android-embedded:3.6.0'
     api 'com.google.zxing:core:3.3.3'
+
+    api 'io.github.lucksiege:pictureselector:v3.11.1'
+    api 'io.github.lucksiege:compress:v3.11.1'
+    api 'io.github.lucksiege:ucrop:v3.11.1'
+
+    api 'com.liulishuo.okdownload:okdownload:1.0.7'
+    api 'com.liulishuo.okdownload:okhttp:1.0.7'
 }

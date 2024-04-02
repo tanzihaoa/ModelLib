@@ -14,7 +14,7 @@ import com.tzh.myapplication.R
 import com.tzh.myapplication.base.AppBaseActivity
 import com.tzh.myapplication.databinding.ActivitySendMessageBinding
 import com.tzh.myapplication.livedata.SmsLiveData
-import com.tzh.myapplication.livedata.observeNoBack
+import com.tzh.mylibrary.livedata.observeNoBack
 import com.tzh.myapplication.network.NetWorkApi
 import com.tzh.myapplication.service.MessageService
 import com.tzh.myapplication.ui.adapter.SmsListAdapter

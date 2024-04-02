@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+
+    </data>
+    <com.tzh.mylibrary.shapeview.ShapeFrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:shapeBackgroundColor="@color/color_f7f7f7"
+        app:shapeCorners="99dp">
+        <ImageView
+            android:id="@+id/iv_search"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/icon_search"
+            android:layout_marginStart="9dp"
+            android:layout_gravity="center_vertical"/>
+        <com.tzh.mylibrary.shapeview.ShapeEditText
+            android:id="@+id/et_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_marginStart="33dp"
+            android:layout_marginEnd="33dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:imeOptions="actionSearch"
+            android:padding="0dp"
+            android:hint="请输入搜索内容"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_clear"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:padding="5dp"
+            app:srcCompat="@drawable/svg_search_clear"
+            android:layout_gravity="center_vertical|end"
+            android:visibility="gone"
+            android:layout_marginEnd="4dp"/>
+    </com.tzh.mylibrary.shapeview.ShapeFrameLayout>
+</layout>
