@@ -3,7 +3,6 @@ package com.tzh.myapplication.ui.activity.main
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.telephony.SmsManager
 import com.luck.picture.lib.config.SelectMimeType
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.interfaces.OnResultCallbackListener
@@ -28,9 +27,6 @@ import com.tzh.mylibrary.activity.TranslateActivity
 import com.tzh.mylibrary.activity.WebActivity
 import com.tzh.mylibrary.activity.tool.MuYuActivity
 import com.tzh.mylibrary.util.GsonUtil
-import com.tzh.mylibrary.util.LogUtils
-import com.tzh.mylibrary.util.divideMessage
-import com.tzh.mylibrary.util.img.ChoiceImageAdapter
 import com.tzh.mylibrary.util.img.ChoiceImageUtil
 import com.tzh.mylibrary.util.picture.PictureSelectorHelper
 import com.tzh.mylibrary.util.toDefault
@@ -78,10 +74,7 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
     }
 
     fun openDialog(){
-        val manager = SmsManager.getDefault()
-        val str = "刘导您好，我是郑诚在襄阳联保学习的同学，10月13号10月14号晚上，郑在分队长屋里喝酒，喝到后半夜，吐的哪儿都是，喝酒相关的情况我已拍照留存，另外，郑诚在学习期间，手机从未上交，每晚玩到很晚，严重影响我们学习。发信息没别的意思，希望您能劝他最后半个月低调一点，如不效，我会把相关证据材料转发负责纪委工作的副政委，也方便你们调查"
-        val list = str.divideMessage()
-        LogUtils.e("",GsonUtil.GsonString(list))
+        mDialog.show()
     }
 
     fun toImage(){

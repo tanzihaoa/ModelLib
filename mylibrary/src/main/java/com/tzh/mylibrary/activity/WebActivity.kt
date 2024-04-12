@@ -46,7 +46,6 @@ class WebActivity : XBaseBindingActivity<ActivityWebViewBinding>(R.layout.activi
 
         var filePathCallback: ValueCallback<Array<Uri>>? = null
         const val REQUEST_SELECT_FILE = 100
-        const val REQUEST_RECORD_AUDIO_PERMISSION = 200
     }
 
 

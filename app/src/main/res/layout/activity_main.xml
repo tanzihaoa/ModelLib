@@ -38,7 +38,6 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_margin="16dp"
-            android:visibility="gone"
             app:shapeBackgroundColor="@color/color_00f3b8"
             android:onClick="@{()->v.openDialog()}"
             app:shapeCorners="8dp">
@@ -180,7 +179,6 @@
             android:layout_height="40dp"
             android:layout_margin="16dp"
             android:text="客服"
-            android:visibility="gone"
             app:shapeCorners="20dp"
             android:gravity="center"
             app:shapeBackgroundColor="@color/color_00f3b8"
