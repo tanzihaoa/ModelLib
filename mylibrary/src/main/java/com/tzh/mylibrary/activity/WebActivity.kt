@@ -10,7 +10,6 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
 import android.view.View
-import android.webkit.CookieManager
 import android.webkit.GeolocationPermissions
 import android.webkit.PermissionRequest
 import android.webkit.ValueCallback
@@ -58,7 +57,6 @@ class WebActivity : XBaseBindingActivity<ActivityWebViewBinding>(R.layout.activi
         intent?.getStringExtra("title").toDefault("")
     }
 
-    @SuppressLint("JavascriptInterface", "SetJavaScriptEnabled")
     override fun initView() {
         binding.titleBar.setTitleTxt(mTitle)
         binding.webBrowser.setLayerType(View.LAYER_TYPE_HARDWARE, null)
@@ -67,7 +65,6 @@ class WebActivity : XBaseBindingActivity<ActivityWebViewBinding>(R.layout.activi
         binding.webBrowser.webChromeClient = MyWebChromeClient(this,binding.webBrowser.progressBar)
 
         val settings = binding.webBrowser.settings
-        settings.javaScriptEnabled = true // 设置webView支持javascript
 
         settings.loadsImagesAutomatically = true // 支持自动加载图片
 
@@ -94,14 +91,12 @@ class WebActivity : XBaseBindingActivity<ActivityWebViewBinding>(R.layout.activi
             }
 
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
-                syncCookie(url.toDefault(""))
                 if (!isLoadUrl) {
                     isLoadUrl = true
                     view?.loadUrl(url.toDefault(""))
                 }
             }
         }
-        binding.webBrowser.addJavascriptInterface(this, "biubiu")
         binding.webBrowser.isLongClickable = true
         binding.webBrowser.isScrollbarFadingEnabled = true
         binding.webBrowser.isDrawingCacheEnabled = true
@@ -119,10 +114,6 @@ class WebActivity : XBaseBindingActivity<ActivityWebViewBinding>(R.layout.activi
     }
 
     var isLoadUrl = false
-    private fun syncCookie(url: String) {
-        val cookieManager = CookieManager.getInstance()
-        cookieManager.flush()
-    }
 
     class MyWebChromeClient(val activity : WebActivity,val progressBar : ProgressBar) : WebChromeClient() {
         // 配置权限（同样在WebChromeClient中实现）
