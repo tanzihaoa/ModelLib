@@ -57,10 +57,5 @@
             tools:ignore="LockedOrientationActivity"
             android:theme="@style/AppBaseTheme"/>
 
-        <activity android:name=".activity.tool.ScanCodeActivity"
-            android:screenOrientation="portrait"
-            android:exported="false"
-            tools:ignore="LockedOrientationActivity"
-            android:theme="@style/AppBaseTheme"/>
     </application>
 </manifest>
