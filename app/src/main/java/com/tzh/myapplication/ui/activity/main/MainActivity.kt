@@ -36,6 +36,7 @@ import com.tzh.mylibrary.activity.TranslateActivity
 import com.tzh.mylibrary.activity.WebActivity
 import com.tzh.mylibrary.activity.tool.MuYuActivity
 import com.tzh.mylibrary.util.GsonUtil
+import com.tzh.mylibrary.util.img.ChoiceImageAdapter
 import com.tzh.mylibrary.util.img.ChoiceImageUtil
 import com.tzh.mylibrary.util.picture.PictureSelectorHelper
 import com.tzh.mylibrary.util.toDefault
@@ -65,7 +66,20 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
             SkUtil.start(this)
         }
 
-        val mAdapter = ChoiceImageUtil.setChoiceImage(this,binding.recyclerView,4,9,false)
+        val mAdapter = ChoiceImageUtil.setChoiceImage(this,binding.recyclerView,4,9,false, isBack = true)
+        mAdapter.setListener(object : ChoiceImageAdapter.ImageChangeListener{
+            override fun change() {
+
+            }
+
+            override fun getPermission() {
+                PermissionDetectionUtil.detection(this@MainActivity,object : PermissionDetectionUtil.DetectionListener{
+                    override fun ok() {
+
+                    }
+                })
+            }
+        })
     }
 
     override fun onResume() {

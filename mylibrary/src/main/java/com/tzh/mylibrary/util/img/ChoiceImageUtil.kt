@@ -1,5 +1,7 @@
 package com.tzh.mylibrary.util.img
 
+import android.Manifest
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.tzh.mylibrary.util.grid
@@ -26,5 +28,21 @@ object ChoiceImageUtil {
         }
 
         return list
+    }
+
+    /**
+     * 选择图片所需权限
+     */
+    fun getPhotoPermissions(): MutableList<String> {
+        return mutableListOf<String>().apply {
+            add(Manifest.permission.CAMERA)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                add(Manifest.permission.READ_MEDIA_IMAGES)
+                add(Manifest.permission.READ_MEDIA_VIDEO)
+            } else {
+                add(Manifest.permission.READ_EXTERNAL_STORAGE)
+                add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            }
+        }
     }
 }
