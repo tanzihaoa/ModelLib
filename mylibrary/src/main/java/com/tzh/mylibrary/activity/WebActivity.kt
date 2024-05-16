@@ -5,12 +5,11 @@ import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
-import android.util.Log
 import android.view.View
-import android.webkit.CookieManager
 import android.webkit.GeolocationPermissions
 import android.webkit.PermissionRequest
 import android.webkit.ValueCallback
@@ -23,9 +22,10 @@ import android.widget.ProgressBar
 import com.tzh.mylibrary.R
 import com.tzh.mylibrary.base.XBaseBindingActivity
 import com.tzh.mylibrary.databinding.ActivityWebViewBinding
-import com.tzh.mylibrary.util.GsonUtil
+import com.tzh.mylibrary.dialog.HintDialog
 import com.tzh.mylibrary.util.OnPermissionCallBackListener
 import com.tzh.mylibrary.util.PermissionXUtil
+import com.tzh.mylibrary.util.general.PermissionDetectionUtil
 import com.tzh.mylibrary.util.toDefault
 
 
@@ -46,7 +46,6 @@ class WebActivity : XBaseBindingActivity<ActivityWebViewBinding>(R.layout.activi
 
         var filePathCallback: ValueCallback<Array<Uri>>? = null
         const val REQUEST_SELECT_FILE = 100
-        const val REQUEST_RECORD_AUDIO_PERMISSION = 200
     }
 
 
@@ -58,7 +57,6 @@ class WebActivity : XBaseBindingActivity<ActivityWebViewBinding>(R.layout.activi
         intent?.getStringExtra("title").toDefault("")
     }
 
-    @SuppressLint("JavascriptInterface", "SetJavaScriptEnabled")
     override fun initView() {
         binding.titleBar.setTitleTxt(mTitle)
         binding.webBrowser.setLayerType(View.LAYER_TYPE_HARDWARE, null)
@@ -67,7 +65,6 @@ class WebActivity : XBaseBindingActivity<ActivityWebViewBinding>(R.layout.activi
         binding.webBrowser.webChromeClient = MyWebChromeClient(this,binding.webBrowser.progressBar)
 
         val settings = binding.webBrowser.settings
-        settings.javaScriptEnabled = true // 设置webView支持javascript
 
         settings.loadsImagesAutomatically = true // 支持自动加载图片
 
@@ -94,14 +91,12 @@ class WebActivity : XBaseBindingActivity<ActivityWebViewBinding>(R.layout.activi
             }
 
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
-                syncCookie(url.toDefault(""))
                 if (!isLoadUrl) {
                     isLoadUrl = true
                     view?.loadUrl(url.toDefault(""))
                 }
             }
         }
-        binding.webBrowser.addJavascriptInterface(this, "biubiu")
         binding.webBrowser.isLongClickable = true
         binding.webBrowser.isScrollbarFadingEnabled = true
         binding.webBrowser.isDrawingCacheEnabled = true
@@ -119,10 +114,6 @@ class WebActivity : XBaseBindingActivity<ActivityWebViewBinding>(R.layout.activi
     }
 
     var isLoadUrl = false
-    private fun syncCookie(url: String) {
-        val cookieManager = CookieManager.getInstance()
-        cookieManager.flush()
-    }
 
     class MyWebChromeClient(val activity : WebActivity,val progressBar : ProgressBar) : WebChromeClient() {
         // 配置权限（同样在WebChromeClient中实现）
@@ -144,12 +135,35 @@ class WebActivity : XBaseBindingActivity<ActivityWebViewBinding>(R.layout.activi
 
         override fun onShowFileChooser(webView: WebView?, filePathCallback: ValueCallback<Array<Uri>>?, fileChooserParams: FileChooserParams?): Boolean {
             WebActivity.filePathCallback = filePathCallback
-            val intent = fileChooserParams!!.createIntent()
-            try {
-                activity.startActivityForResult(intent, REQUEST_SELECT_FILE)
-            } catch (ex: ActivityNotFoundException) {
-                filePathCallback!!.onReceiveValue(null)
+            if (activity.checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                HintDialog(activity, object : HintDialog.HintDialogListener{
+                    override fun cancel() {
+
+                    }
+
+                    override fun ok() {
+                        //权限未授予，需要向用户请求权限
+                        PermissionDetectionUtil.getPermission(activity,object : PermissionDetectionUtil.DetectionListener{
+                            override fun ok() {
+
+                            }
+
+                            override fun cancel() {
+
+                            }
+                        })
+                    }
+                }).show("即将申请读取权限用于发送照片或文件，是否确定申请?")
                 return false
+            } else {
+                //权限已授予，可以进行文件读取操作
+                val intent = fileChooserParams!!.createIntent()
+                try {
+                    activity.startActivityForResult(intent, REQUEST_SELECT_FILE)
+                } catch (ex: ActivityNotFoundException) {
+                    filePathCallback!!.onReceiveValue(null)
+                    return false
+                }
             }
             return true
         }

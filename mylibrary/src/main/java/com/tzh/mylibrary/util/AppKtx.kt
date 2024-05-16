@@ -3,6 +3,7 @@ package com.tzh.mylibrary.util
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.graphics.Rect
 import android.os.Looper
@@ -259,4 +260,20 @@ fun String.divideMessageArray() : ArrayList<String>{
         }
         return list
     }
+}
+
+
+
+/**
+ * 检查权限
+ */
+fun MutableList<String>.checkPhonePermission(context: Context): Boolean {
+    //验证是否许可权限
+    for (permission in this) {
+        if (context.checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
+            //没有这个权限
+            return false
+        }
+    }
+    return true
 }

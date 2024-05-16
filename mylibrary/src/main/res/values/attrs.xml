@@ -110,4 +110,25 @@
         <attr name="isFixed" format="boolean" />
         <attr name="columnSize" format="integer" />
     </declare-styleable>
+
+
+    <declare-styleable name="RingProgressBar">
+        <attr name="ringColor" format="color" />
+        <attr name="ringProgressColor" format="color" />
+        <attr name="ringWidth" format="dimension" />
+        <attr name="ringMax" format="integer" />
+        <attr name="ringTextIsDisplayable" format="boolean" />
+        <attr name="ringStyle">
+            <enum name="STROKE" value="0" />
+            <enum name="FILL" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="RecordView">
+        <!--最大录制秒数-->
+        <attr name="rv_Max_Second" format="integer" />
+        <!--最小录制秒数-->
+        <attr name="rv_Min_Second" format="integer" />
+
+    </declare-styleable>
 </resources>

@@ -9,11 +9,13 @@ import com.tzh.myapplication.utils.OnPermissionCallBackListener
 import com.tzh.myapplication.utils.PermissionXUtil
 import com.tzh.mylibrary.base.XAppActivityManager
 import com.tzh.mylibrary.dialog.HintDialog
+import com.tzh.mylibrary.util.checkPhonePermission
+import com.tzh.mylibrary.util.img.ChoiceImageUtil
 
 object PermissionDetectionUtil {
 
     fun detection(context : Context,listener : DetectionListener){
-        if(PackageManager.PERMISSION_GRANTED == context.packageManager.checkPermission(Manifest.permission.CAMERA,context.packageName)){
+        if(ChoiceImageUtil.getPhotoPermissions().checkPhonePermission(context)){
             //有这个权限
             //人工传话
             getPermission(listener)
@@ -32,16 +34,7 @@ object PermissionDetectionUtil {
     }
 
     fun getPermission(listener : DetectionListener){
-        PermissionXUtil.requestAnyPermission(XAppActivityManager.getInstance().currentActivity() as AppCompatActivity, mutableListOf<String>().apply {
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
-                add(Manifest.permission.READ_MEDIA_IMAGES)
-                add(Manifest.permission.READ_MEDIA_VIDEO)
-            }else{
-                add(Manifest.permission.READ_EXTERNAL_STORAGE)
-                add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            }
-            add(Manifest.permission.CAMERA)
-        },object : OnPermissionCallBackListener {
+        PermissionXUtil.requestAnyPermission(XAppActivityManager.getInstance().currentActivity() as AppCompatActivity,ChoiceImageUtil.getPhotoPermissions(),object : OnPermissionCallBackListener {
             override fun onAgree() {
                 listener.ok()
             }
