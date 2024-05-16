@@ -76,6 +76,7 @@ object PictureSelectorHelper {
         val selectionModel = PictureSelector.create(activity)
             .openGallery(SelectMimeType.ofImage())
             .setImageEngine(GlideEngine.createGlideEngine())
+            .setSelectedData(selectImages)
             //图片最大选择数量
             .setMaxSelectNum(maxSelectNum)
             //图片最小选择数量
@@ -176,4 +177,43 @@ object PictureSelectorHelper {
     }
 
 
+
+    /**
+     * 选择器总处理
+     */
+    @JvmStatic
+    fun onPictureSelector(activity: Activity, selectImages: List<LocalMedia>? = null, maxSelectNum: Int = 1, listener: OnResultCallbackListener<LocalMedia>? = null,chooseMode : Int = SelectMimeType.ofImage()) {
+        val selectionModel = PictureSelector.create(activity)
+            .openGallery(chooseMode)//SelectMimeType.ofVideo()
+            .setImageEngine(GlideEngine.createGlideEngine())
+            .setSelectedData(selectImages)
+            //图片最大选择数量
+            .setMaxSelectNum(maxSelectNum)
+//            .setMaxVideoSelectNum(1)
+            //图片最小选择数量
+            .setMinSelectNum(1)
+            //是否开启点击音效
+            .isOpenClickSound(false)
+            //是否显示gif文件
+            .isGif(false)
+        //压缩
+        selectionModel.setCompressEngine(CompressFileEngine { context, source, call ->
+            Luban.with(context).load(source).ignoreBy(100)
+                .setCompressListener(object : OnNewCompressListener {
+                    override fun onStart() {
+                    }
+
+                    override fun onSuccess(source: String?, compressFile: File?) {
+                        call?.onCallback(source, compressFile?.absolutePath)
+                    }
+
+                    override fun onError(source: String?, e: Throwable?) {
+                        call?.onCallback(source, null)
+                    }
+                }).launch()
+        })
+
+
+        selectionModel.forResult(listener)
+    }
 }
