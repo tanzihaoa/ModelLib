@@ -120,7 +120,7 @@ public class SideBar extends AppCompatTextView {
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_MOVE:
                 if (event.getX() > (w - getPaddingRight() - singleTextH - 10)) {
-                    eventY = event.getY();
+                    eventY = event.getY() - getPaddingTop();
                     invalidate();
                     return true;
                 } else {
@@ -164,7 +164,7 @@ public class SideBar extends AppCompatTextView {
                     //画大的字母
                     Paint.FontMetrics fontMetrics = bigTextPaint.getFontMetrics();
                     float bigTextSize = fontMetrics.descent - fontMetrics.ascent;
-                    canvas.drawText(letters[i], w - getPaddingRight() - scaleWidth - bigTextSize, singleTextH + itemH * i, bigTextPaint);
+                    canvas.drawText(letters[i], w - getPaddingEnd() - scaleWidth - bigTextSize, singleTextH + itemH * i + getPaddingTop(), bigTextPaint);
                 }
             }
         }
@@ -176,11 +176,11 @@ public class SideBar extends AppCompatTextView {
         if (index == -1) {
             w = getMeasuredWidth();
             h = getMeasuredHeight();
-            itemH = h / letters.length;
+            itemH = (h - getPaddingTop() - getPaddingBottom()) / letters.length;
             Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
             singleTextH = fontMetrics.descent - fontMetrics.ascent;
             for (int i = 0; i < letters.length; i++) {
-                canvas.drawText(letters[i], w - getPaddingRight(), singleTextH + itemH * i, textPaint);
+                canvas.drawText(letters[i], w - getPaddingRight(), singleTextH + itemH * i + getPaddingTop(), textPaint);
             }
             //触摸的时候画缩放图
         } else {
@@ -190,9 +190,9 @@ public class SideBar extends AppCompatTextView {
                 float currentItemToDrawY = singleTextH + itemH * i;
                 float centerItemToDrawY;
                 if (index < i)
-                    centerItemToDrawY = singleTextH + itemH * (index + scaleItemCount);
+                    centerItemToDrawY = singleTextH + itemH * (index + scaleItemCount) + getPaddingTop();
                 else
-                    centerItemToDrawY = singleTextH + itemH * (index - scaleItemCount);
+                    centerItemToDrawY = singleTextH + itemH * (index - scaleItemCount) + getPaddingTop();
                 float delta = 1 - Math.abs((y - currentItemToDrawY) / (centerItemToDrawY - currentItemToDrawY));
                 float maxRightX = w - getPaddingRight();
                 //如果大于0，表明在y坐标上方
@@ -200,9 +200,9 @@ public class SideBar extends AppCompatTextView {
                 float drawX = maxRightX - scaleWidth * delta;
                 //超出边界直接花在边界上
                 if (drawX > maxRightX)
-                    canvas.drawText(letters[i], maxRightX, singleTextH + itemH * i, textPaint);
+                    canvas.drawText(letters[i], maxRightX, singleTextH + itemH * i + getPaddingTop(), textPaint);
                 else
-                    canvas.drawText(letters[i], drawX, singleTextH + itemH * i, scaleTextPaint);
+                    canvas.drawText(letters[i], drawX, singleTextH + itemH * i + getPaddingTop(), scaleTextPaint);
             }
         }
     }

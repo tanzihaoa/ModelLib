@@ -23,7 +23,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
-                android:paddingVertical="60dp"
+                android:paddingTop="60dp"
+                android:paddingBottom="60dp"
                 android:paddingEnd="10dp"
                 android:textColor="@color/color_00f3b8"
                 android:textSize="15sp" />
