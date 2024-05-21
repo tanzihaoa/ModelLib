@@ -100,4 +100,7 @@ dependencies {
     api 'com.liulishuo.okdownload:okhttp:1.0.7'
 
     api 'com.czt.mp3recorder:library:1.0.3'
+
+    //中英文转换框架
+    api 'com.belerweb:pinyin4j:2.5.1'
 }

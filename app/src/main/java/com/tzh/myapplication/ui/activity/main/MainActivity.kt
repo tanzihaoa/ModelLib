@@ -18,6 +18,7 @@ import com.luck.picture.lib.interfaces.OnResultCallbackListener
 import com.tzh.myapplication.R
 import com.tzh.myapplication.base.AppBaseActivity
 import com.tzh.myapplication.databinding.ActivityMainBinding
+import com.tzh.myapplication.ui.activity.ContactsActivity
 import com.tzh.myapplication.ui.activity.HandSendMessageActivity
 import com.tzh.myapplication.ui.activity.ImageActivity
 import com.tzh.myapplication.ui.activity.ListActivity
@@ -125,7 +126,7 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
     }
 
     fun toWebView(){
-        WebActivity.start(this,getUrl())
+        ContactsActivity.start(this)
     }
 
     fun getUrl(): String {

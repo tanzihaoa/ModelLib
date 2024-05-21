@@ -157,6 +157,11 @@
             android:exported="false"
             tools:ignore="LockedOrientationActivity"/>
 
+        <activity android:name=".ui.activity.ContactsActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="LockedOrientationActivity" />
+
         <service
             android:name=".service.SkAccessibilityService"
             android:enabled="true"
