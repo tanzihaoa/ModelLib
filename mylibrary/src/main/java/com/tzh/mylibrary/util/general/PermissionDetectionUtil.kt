@@ -11,9 +11,9 @@ object PermissionDetectionUtil {
     /**
      * @param isBack 没有权限的时候是否返回
      */
-    fun getPermission(activity: AppCompatActivity,listener : DetectionListener,isBack : Boolean = false){
+    fun getPermission(activity: AppCompatActivity,listener : DetectionListener,isBack : Boolean = false,isCamera : Boolean = true){
         if(isBack){
-            if(ChoiceImageUtil.getPhotoPermissions().checkPhonePermission(activity)){
+            if(ChoiceImageUtil.getPhotoPermissions(isCamera).checkPhonePermission(activity)){
                 //有这个权限
                 listener.ok()
             } else {
@@ -21,12 +21,12 @@ object PermissionDetectionUtil {
                 listener.cancel()
             }
         }else{
-            getPermissionNow(activity,listener)
+            getPermissionNow(activity,listener,isCamera)
         }
     }
 
-    private fun getPermissionNow(activity: AppCompatActivity,listener : DetectionListener){
-        PermissionXUtil.requestAnyPermission(activity, ChoiceImageUtil.getPhotoPermissions(),object : OnPermissionCallBackListener {
+    private fun getPermissionNow(activity: AppCompatActivity,listener : DetectionListener,isCamera : Boolean = true){
+        PermissionXUtil.requestAnyPermission(activity, ChoiceImageUtil.getPhotoPermissions(isCamera),object : OnPermissionCallBackListener {
             override fun onAgree() {
                 listener.ok()
             }

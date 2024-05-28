@@ -19,7 +19,7 @@ import com.tzh.mylibrary.util.picture.PictureSelectorHelper
 import java.io.File
 import java.util.ArrayList
 
-class ChoiceImageAdapter(val activity : AppCompatActivity, private val num : Int = 9,val isHaveVideo : Boolean = false,val isBack : Boolean = false) : XRvBindingPureDataAdapter<ImageDTO>(R.layout.adapter_choice_image)  {
+class ChoiceImageAdapter(val activity : AppCompatActivity, private val num : Int = 9,val isHaveVideo : Boolean = false,val isBack : Boolean = false,val isCamera : Boolean = true) : XRvBindingPureDataAdapter<ImageDTO>(R.layout.adapter_choice_image)  {
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: XRvBindingHolder, position: Int, data: ImageDTO) {
@@ -58,7 +58,7 @@ class ChoiceImageAdapter(val activity : AppCompatActivity, private val num : Int
                                         }
 
                                         override fun onCancel() {}
-                                    }, SelectMimeType.ofImage())
+                                    }, SelectMimeType.ofImage(),)
                             }
                         }
                     } else {
@@ -89,7 +89,7 @@ class ChoiceImageAdapter(val activity : AppCompatActivity, private val num : Int
                 override fun cancel() {
                     mListener?.getPermission()
                 }
-            },isBack)
+            },isBack,isCamera)
         }
     }
 

@@ -12,8 +12,8 @@ object ChoiceImageUtil {
     /**
      * 绑定适配器
      */
-    fun setChoiceImage(activity: AppCompatActivity, recyclerView: RecyclerView, gridNum: Int, num: Int,isHaveVideo : Boolean = false,isBack : Boolean = false): ChoiceImageAdapter {
-        val adapter = ChoiceImageAdapter(activity, num,isHaveVideo,isBack)
+    fun setChoiceImage(activity: AppCompatActivity, recyclerView: RecyclerView, gridNum: Int, num: Int,isHaveVideo : Boolean = false,isBack : Boolean = false,isCamera : Boolean = true): ChoiceImageAdapter {
+        val adapter = ChoiceImageAdapter(activity, num,isHaveVideo,isBack,isCamera)
         adapter.initView()
         recyclerView.grid(gridNum).initAdapter(adapter)
         return adapter
@@ -32,10 +32,14 @@ object ChoiceImageUtil {
 
     /**
      * 选择图片所需权限
+     * @param isCamera 是否需要拍照权限
      */
-    fun getPhotoPermissions(): MutableList<String> {
+    fun getPhotoPermissions(isCamera : Boolean = true): MutableList<String> {
         return mutableListOf<String>().apply {
-            add(Manifest.permission.CAMERA)
+            if(isCamera){
+                add(Manifest.permission.CAMERA)
+            }
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 add(Manifest.permission.READ_MEDIA_IMAGES)
                 add(Manifest.permission.READ_MEDIA_VIDEO)
