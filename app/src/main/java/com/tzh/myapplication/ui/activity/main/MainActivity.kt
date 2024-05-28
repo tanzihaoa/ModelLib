@@ -67,7 +67,7 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
             SkUtil.start(this)
         }
 
-        val mAdapter = ChoiceImageUtil.setChoiceImage(this,binding.recyclerView,4,9,false, isBack = true)
+        val mAdapter = ChoiceImageUtil.setChoiceImage(this,binding.recyclerView,4,9,false, isBack = false,false)
         mAdapter.setListener(object : ChoiceImageAdapter.ImageChangeListener{
             override fun change() {
 

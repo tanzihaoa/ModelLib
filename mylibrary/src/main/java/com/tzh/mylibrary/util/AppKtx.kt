@@ -1,5 +1,6 @@
 package com.tzh.mylibrary.util
 
+import android.app.Activity
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -13,6 +14,7 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import java.util.regex.Pattern
@@ -276,4 +278,24 @@ fun MutableList<String>.checkPhonePermission(context: Context): Boolean {
         }
     }
     return true
+}
+
+/**
+ * 检查权限
+ * @return type 0同意了所有权限 -1没有这个权限 -2拒绝过了这个权限
+ */
+fun MutableList<String>.checkPhonePermissionType(activity : Activity): Int {
+    //验证是否许可权限
+    for (permission in this) {
+        if (activity.checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
+            return if(ActivityCompat.shouldShowRequestPermissionRationale(activity,permission)){
+                //用户曾经拒绝过权限请求
+                -2
+            }else{
+                //没有这个权限
+                -1
+            }
+        }
+    }
+    return 0
 }

@@ -182,7 +182,7 @@ object PictureSelectorHelper {
      * 选择器总处理
      */
     @JvmStatic
-    fun onPictureSelector(activity: Activity, selectImages: List<LocalMedia>? = null, maxSelectNum: Int = 1, listener: OnResultCallbackListener<LocalMedia>? = null,chooseMode : Int = SelectMimeType.ofImage()) {
+    fun onPictureSelector(activity: Activity, selectImages: List<LocalMedia>? = null, maxSelectNum: Int = 1, listener: OnResultCallbackListener<LocalMedia>? = null,chooseMode : Int = SelectMimeType.ofImage(),isCamera : Boolean = true) {
         val selectionModel = PictureSelector.create(activity)
             .openGallery(chooseMode)//SelectMimeType.ofVideo()
             .setImageEngine(GlideEngine.createGlideEngine())
@@ -192,6 +192,8 @@ object PictureSelectorHelper {
 //            .setMaxVideoSelectNum(1)
             //图片最小选择数量
             .setMinSelectNum(1)
+            //是否显示拍照
+            .isDisplayCamera(isCamera)
             //是否开启点击音效
             .isOpenClickSound(false)
             //是否显示gif文件

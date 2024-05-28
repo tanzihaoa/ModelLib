@@ -46,7 +46,7 @@ class ChoiceImageAdapter(val activity : AppCompatActivity, private val num : Int
                                         }
 
                                         override fun onCancel() {}
-                                    }, SelectMimeType.ofAll())
+                                    }, SelectMimeType.ofAll(),isCamera)
                             }else{
                                 PictureSelectorHelper.onPictureSelector(
                                     activity,
@@ -58,7 +58,7 @@ class ChoiceImageAdapter(val activity : AppCompatActivity, private val num : Int
                                         }
 
                                         override fun onCancel() {}
-                                    }, SelectMimeType.ofImage(),)
+                                    }, SelectMimeType.ofImage(),isCamera)
                             }
                         }
                     } else {
@@ -70,7 +70,7 @@ class ChoiceImageAdapter(val activity : AppCompatActivity, private val num : Int
                                     }
 
                                     override fun onCancel() {}
-                                }, SelectMimeType.ofAll())
+                                }, SelectMimeType.ofAll(),isCamera)
                         }else{
                             PictureSelectorHelper.onPictureSelector(
                                 activity,selectImage,
@@ -81,7 +81,7 @@ class ChoiceImageAdapter(val activity : AppCompatActivity, private val num : Int
                                     }
 
                                     override fun onCancel() {}
-                                }, SelectMimeType.ofImage())
+                                }, SelectMimeType.ofImage(),isCamera)
                         }
                     }
                 }

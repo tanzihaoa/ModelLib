@@ -37,6 +37,14 @@ object PermissionDetectionUtil {
         })
     }
 
+    fun getAnyPermission(activity: AppCompatActivity,list : MutableList<String>,hint : String,listener : DetectionListener){
+        if(list.checkPhonePermission(activity)){
+            listener.ok()
+        }else{
+            listener.cancel()
+        }
+    }
+
     interface DetectionListener{
         fun ok()
 
