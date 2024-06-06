@@ -137,4 +137,14 @@
         <attr name="scaleItemCount" format="integer"/>
         <attr name="scaleWidth" format="dimension"/>
     </declare-styleable>
+
+    <declare-styleable name="SwitchButton">
+        <attr name="unselectedBg" format="color"/>
+        <attr name="selectedBg" format="color"/>
+        <attr name="circle2Bgmargin" format="dimension"/>
+        <attr name="switchState" format="enum">
+            <enum name="open" value="2"/>
+            <enum name="close" value="1"/>
+        </attr>
+    </declare-styleable>
 </resources>
