@@ -301,8 +301,16 @@ class XAppTitleBar @JvmOverloads constructor(
         }
     }
 
+    fun setBackColor(color : Int) {
+        mBackIv?.drawable?.setTint(ContextCompat.getColor(context,color))
+    }
+
     fun setTitleTxt(title: String?) {
         mTitleTv?.text = title ?: ""
+    }
+
+    fun setTitleTxtColor(color : Int) {
+        mTitleTv?.setTextColorRes(color)
     }
 
 
