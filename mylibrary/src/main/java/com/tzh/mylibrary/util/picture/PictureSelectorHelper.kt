@@ -218,4 +218,29 @@ object PictureSelectorHelper {
 
         selectionModel.forResult(listener)
     }
+
+    /**
+     * 打开相机
+     */
+    fun openCamera(activity: Activity, listener: OnResultCallbackListener<LocalMedia>,chooseMode : Int = SelectMimeType.ofImage()){
+        val selectionModel = PictureSelector.create(activity).openCamera(chooseMode)
+        //压缩
+        selectionModel.setCompressEngine(CompressFileEngine { context, source, call ->
+            Luban.with(context).load(source).ignoreBy(100)
+                .setCompressListener(object : OnNewCompressListener {
+                    override fun onStart() {
+                    }
+
+                    override fun onSuccess(source: String?, compressFile: File?) {
+                        call?.onCallback(source, compressFile?.absolutePath)
+                    }
+
+                    override fun onError(source: String?, e: Throwable?) {
+                        call?.onCallback(source, null)
+                    }
+                }).launch()
+        })
+
+        selectionModel.forResult(listener)
+    }
 }

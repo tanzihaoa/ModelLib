@@ -229,4 +229,19 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
     fun record(){
         ImageActivity.start(this)
     }
+
+    /**
+     * 拍照
+     */
+    fun openCamera(){
+        PictureSelectorHelper.openCamera(this,object : OnResultCallbackListener<LocalMedia>{
+            override fun onResult(result: ArrayList<LocalMedia>?) {
+
+            }
+
+            override fun onCancel() {
+
+            }
+        })
+    }
 }
