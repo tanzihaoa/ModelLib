@@ -18,43 +18,43 @@
             android:screenOrientation="portrait"
             android:exported="false"
             tools:ignore="LockedOrientationActivity"
-            android:theme="@style/AppBaseTheme" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <activity android:name=".activity.ScanActivity"
             android:screenOrientation="portrait"
             android:exported="false"
             tools:ignore="LockedOrientationActivity"
-            android:theme="@style/AppBaseTheme"  />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"  />
 
         <activity android:name=".activity.TranslateActivity"
             android:screenOrientation="portrait"
             android:exported="false"
             tools:ignore="LockedOrientationActivity"
-            android:theme="@style/AppBaseTheme"   />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"   />
 
         <activity android:name=".activity.PasswordGenerationActivity"
             android:screenOrientation="portrait"
             android:exported="false"
             tools:ignore="LockedOrientationActivity"
-            android:theme="@style/AppBaseTheme"    />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"    />
 
         <activity android:name=".activity.ScanUtilActivity"
             android:screenOrientation="portrait"
             android:exported="false"
             tools:ignore="LockedOrientationActivity"
-            android:theme="@style/AppBaseTheme"     />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"     />
 
         <activity android:name=".activity.PhotoViewActivity"
             android:screenOrientation="portrait"
             android:exported="false"
             tools:ignore="LockedOrientationActivity"
-            android:theme="@style/AppBaseTheme"     />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"     />
 
         <activity android:name=".activity.tool.MuYuActivity"
             android:screenOrientation="portrait"
             android:exported="false"
             tools:ignore="LockedOrientationActivity"
-            android:theme="@style/AppBaseTheme"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
     </application>
 </manifest>
