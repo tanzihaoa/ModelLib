@@ -1,7 +1,6 @@
 package com.tzh.mylibrary.activity
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
@@ -21,7 +20,7 @@ import android.webkit.WebViewClient
 import android.widget.ProgressBar
 import com.tzh.mylibrary.R
 import com.tzh.mylibrary.base.XBaseBindingActivity
-import com.tzh.mylibrary.databinding.ActivityWebViewBinding
+import com.tzh.mylibrary.databinding.ActivityWebViewLibBinding
 import com.tzh.mylibrary.dialog.HintDialog
 import com.tzh.mylibrary.util.OnPermissionCallBackListener
 import com.tzh.mylibrary.util.PermissionXUtil
@@ -29,7 +28,7 @@ import com.tzh.mylibrary.util.general.PermissionDetectionUtil
 import com.tzh.mylibrary.util.toDefault
 
 
-class WebActivity : XBaseBindingActivity<ActivityWebViewBinding>(R.layout.activity_web_view) {
+class WebLibActivity : XBaseBindingActivity<ActivityWebViewLibBinding>(R.layout.activity_web_view_lib) {
 
     companion object {
         @JvmStatic
@@ -38,7 +37,7 @@ class WebActivity : XBaseBindingActivity<ActivityWebViewBinding>(R.layout.activi
                 return
             }
 
-            val intent = Intent(context, WebActivity::class.java)
+            val intent = Intent(context, WebLibActivity::class.java)
             intent.putExtra("url", url)
             intent.putExtra("title", title)
             context.startActivity(intent)
@@ -115,7 +114,7 @@ class WebActivity : XBaseBindingActivity<ActivityWebViewBinding>(R.layout.activi
 
     var isLoadUrl = false
 
-    class MyWebChromeClient(val activity : WebActivity,val progressBar : ProgressBar) : WebChromeClient() {
+    class MyWebChromeClient(val activity : WebLibActivity, val progressBar : ProgressBar) : WebChromeClient() {
         // 配置权限（同样在WebChromeClient中实现）
         override fun onGeolocationPermissionsShowPrompt(origin: String?, callback: GeolocationPermissions.Callback) {
             callback.invoke(origin, true, false)
@@ -134,7 +133,7 @@ class WebActivity : XBaseBindingActivity<ActivityWebViewBinding>(R.layout.activi
         }
 
         override fun onShowFileChooser(webView: WebView?, filePathCallback: ValueCallback<Array<Uri>>?, fileChooserParams: FileChooserParams?): Boolean {
-            WebActivity.filePathCallback = filePathCallback
+            WebLibActivity.filePathCallback = filePathCallback
             if (activity.checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                 HintDialog(activity, object : HintDialog.HintDialogListener{
                     override fun cancel() {
