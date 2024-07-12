@@ -18,6 +18,7 @@ import com.luck.picture.lib.interfaces.OnResultCallbackListener
 import com.tzh.myapplication.R
 import com.tzh.myapplication.base.AppBaseActivity
 import com.tzh.myapplication.databinding.ActivityMainBinding
+import com.tzh.myapplication.ui.activity.CallActivity
 import com.tzh.myapplication.ui.activity.ContactsActivity
 import com.tzh.myapplication.ui.activity.HandSendMessageActivity
 import com.tzh.myapplication.ui.activity.ImageActivity
@@ -32,6 +33,7 @@ import com.tzh.myapplication.utils.SkUtil
 import com.tzh.myapplication.utils.TimeUtil
 import com.tzh.myapplication.utils.ToastUtil
 import com.tzh.myapplication.utils.img.PermissionDetectionUtil
+import com.tzh.myapplication.utils.window.WindowUtil
 import com.tzh.mylibrary.activity.ScanUtilActivity
 import com.tzh.mylibrary.activity.TranslateActivity
 import com.tzh.mylibrary.activity.tool.MuYuActivity
@@ -242,5 +244,12 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
 
             }
         })
+    }
+
+    /**
+     * 缩小为悬浮窗
+     */
+    fun window(){
+        CallActivity.start(this)
     }
 }

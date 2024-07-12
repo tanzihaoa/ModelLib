@@ -42,6 +42,11 @@
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
     <uses-permission android:name="android.permission.CALL_PHONE"/>
 
+    <!-- 悬浮窗 -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.REORDER_TASKS"/>
+
     <application
         android:name=".base.MyApplication"
         android:icon="@mipmap/ic_launcher"
@@ -161,6 +166,12 @@
             android:screenOrientation="portrait"
             android:exported="false"
             tools:ignore="LockedOrientationActivity" />
+
+        <activity android:name=".ui.activity.CallActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleInstance"
+            android:exported="true"
+            tools:ignore="LockedOrientationActivity"  />
 
         <service
             android:name=".service.SkAccessibilityService"

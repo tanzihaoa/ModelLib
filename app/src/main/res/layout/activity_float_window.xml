@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="100dp"
+    android:layout_height="138dp"
+    android:background="#D68888"
+    android:padding="20dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layout_call_voice"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="20dip"
+        android:background="#d8d8d8"
+        >
+        <ImageView
+            android:id="@+id/iv_typer"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/ic_launcher_foreground" />
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:text=""
+            android:textStyle="bold"
+            android:layout_marginTop="6dp"
+            />
+    </LinearLayout>
+    <!--显示视频窗口-->
+    <RelativeLayout
+        android:id="@+id/layout_call_video"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="20dip"
+        android:visibility="gone" />
+</RelativeLayout>

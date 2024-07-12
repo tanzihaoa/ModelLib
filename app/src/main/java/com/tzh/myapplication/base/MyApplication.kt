@@ -4,8 +4,10 @@ import android.app.Application
 import android.content.Context
 import androidx.multidex.MultiDex
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
+import com.tzh.myapplication.utils.window.BaseActivityLifecycleCallbacks
 import com.tzh.mylibrary.view.load.AppLoadLayout
 import com.tzh.mylibrary.view.load.AppRefreshLayout
+
 
 class MyApplication : Application() {
 
@@ -26,11 +28,16 @@ class MyApplication : Application() {
         }
 
         lateinit var mContext: Context
+
+        var mLifecycleCallbacks: BaseActivityLifecycleCallbacks? = null
     }
 
     override fun onCreate() {
         super.onCreate()
         mContext = this
+
+        mLifecycleCallbacks = BaseActivityLifecycleCallbacks()
+        registerActivityLifecycleCallbacks(mLifecycleCallbacks)
     }
 
     /**
@@ -44,4 +51,7 @@ class MyApplication : Application() {
         MultiDex.install(this)
     }
 
+    fun getLifecycleCallbacks(): BaseActivityLifecycleCallbacks? {
+        return mLifecycleCallbacks
+    }
 }
