@@ -34,6 +34,9 @@ import com.tzh.myapplication.utils.TimeUtil
 import com.tzh.myapplication.utils.ToastUtil
 import com.tzh.myapplication.utils.img.PermissionDetectionUtil
 import com.tzh.myapplication.utils.window.WindowUtil
+import com.tzh.myapplication.utils.xls.DownloadDataUtil
+import com.tzh.myapplication.utils.xls.MyBean
+import com.tzh.myapplication.utils.xls.XlsxUtil
 import com.tzh.mylibrary.activity.ScanUtilActivity
 import com.tzh.mylibrary.activity.TranslateActivity
 import com.tzh.mylibrary.activity.tool.MuYuActivity
@@ -251,5 +254,20 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
      */
     fun window(){
         CallActivity.start(this)
+    }
+
+    /**
+     * 导出数据为xlsx表
+     */
+    fun toXls(){
+        DownloadDataUtil().download(this, mutableListOf<MyBean>().apply {
+            add(MyBean(1,"20","2024-07-27","2024-07-27"))
+            add(MyBean(2,"20","2024-07-27","2024-07-27"))
+            add(MyBean(3,"20","2024-07-27","2024-07-27"))
+            add(MyBean(4,"20","2024-07-27","2024-07-27"))
+            add(MyBean(5,"20","2024-07-27","2024-07-27"))
+            add(MyBean(6,"20","2024-07-27","2024-07-27"))
+            add(MyBean(7,"20","2024-07-27","2024-07-27"))
+        })
     }
 }

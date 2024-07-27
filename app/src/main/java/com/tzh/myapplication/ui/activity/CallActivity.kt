@@ -53,7 +53,10 @@ open class CallActivity : AppBaseActivity<ActivityCallBinding>(R.layout.activity
 
     override fun onStop() {
         super.onStop()
-        showFloatWindow()
+        if(!isFinish){
+            showFloatWindow()
+        }
+
     }
 
     private fun checkFloatIntent(intent: Intent) {
@@ -111,14 +114,17 @@ open class CallActivity : AppBaseActivity<ActivityCallBinding>(R.layout.activity
         }
     }
 
+    var isFinish = false
     override fun onBackPressed() {
         // 也可以处理成悬浮窗
         HintDialog(this,object : HintDialog.HintDialogListener{
             override fun cancel() {
+                isFinish = true
                 finish()
             }
 
             override fun ok() {
+                isFinish = false
                 showFloatWindow()
                 MyApplication.mLifecycleCallbacks?.makeMainTaskToFront(this@CallActivity)
             }
