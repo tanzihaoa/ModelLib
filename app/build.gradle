@@ -2,7 +2,6 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
-    id 'com.github.johnrengelman.shadow' version '2.0.3'
 }
 
 android {
@@ -99,7 +98,7 @@ dependencies {
 
     implementation 'com.huawei.hms:health:6.9.0.300'
     implementation 'org.apache.httpcomponents:httpclient-android:4.3.5.1'
-    implementation 'org.apache.poi:poi:4.1.2'
-    implementation 'org.apache.poi:poi-ooxml:4.1.2'
+    implementation 'org.apache.poi:poi:5.2.4'
+    implementation 'org.apache.poi:poi-ooxml:5.2.4'
     implementation project(':mylibrary')
 }
