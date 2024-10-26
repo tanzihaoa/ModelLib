@@ -5,7 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <com.tzh.mylibrary.view.XAppTitleBar
+        <com.tzh.mylibrary.view.title.XAppTitleBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:xtbTitleText="联系人"/>

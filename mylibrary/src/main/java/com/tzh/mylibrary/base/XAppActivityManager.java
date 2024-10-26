@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityOptionsCompat;
 
 import com.tzh.mylibrary.R;
@@ -11,7 +12,7 @@ import com.tzh.mylibrary.R;
 import java.util.Stack;
 
 public class XAppActivityManager {
-    private static Stack<Activity> mActivityStack;
+    private static Stack<AppCompatActivity> mActivityStack;
     private static XAppActivityManager mInstance;
 
     private XAppActivityManager() {
@@ -30,7 +31,7 @@ public class XAppActivityManager {
      *
      * @param activity Acitivity
      */
-    public void addActivity(Activity activity) {
+    public void addActivity(AppCompatActivity activity) {
         if (mActivityStack == null) {
             mActivityStack = new Stack<>();
         }
@@ -42,8 +43,8 @@ public class XAppActivityManager {
      *
      * @return 当前栈顶Activity
      */
-    public Activity currentActivity() {
-        Activity activity = null;
+    public AppCompatActivity currentActivity() {
+        AppCompatActivity activity = null;
         if (null != mActivityStack) {
             if (!mActivityStack.empty()) {
                 activity = mActivityStack.lastElement();
@@ -58,7 +59,7 @@ public class XAppActivityManager {
      *
      * @param activity 需要销毁的Activity
      */
-    public void finishActivity(Activity activity) {
+    public void finishActivity(AppCompatActivity activity) {
         if (activity != null) {
             // 在从自定义集合中取出当前Activity时，也进行了Activity的关闭操
             mActivityStack.remove(activity);
@@ -76,7 +77,7 @@ public class XAppActivityManager {
         if (mActivityStack == null) {
             return;
         }
-        Activity closeActivity = null;
+        AppCompatActivity closeActivity = null;
         for (int i = 0, size = mActivityStack.size(); i < size; i++) {
             if (mActivityStack.get(i).getClass().equals(cls)) {
                 closeActivity = mActivityStack.get(i);
@@ -90,7 +91,7 @@ public class XAppActivityManager {
     /**
      * 从栈中移除某个Activity
      */
-    public void removeActivity(Activity activity) {
+    public void removeActivity(AppCompatActivity activity) {
         if (activity == null) {
             return;
         }
@@ -107,9 +108,9 @@ public class XAppActivityManager {
      */
     public void finishAllActivityExceptOne(Class cls) {
         //先循环找出来
-        Activity activityExceptOne = null;
+        AppCompatActivity activityExceptOne = null;
         for (int i = 0; i < mActivityStack.size(); i++) {
-            Activity activity = mActivityStack.get(i);
+            AppCompatActivity activity = mActivityStack.get(i);
             if (activity.getClass().getName().endsWith(cls.getName())) {
                 activityExceptOne = activity;
             } else {
@@ -128,11 +129,11 @@ public class XAppActivityManager {
      *
      * @param activity Activity
      */
-    public void finishAllActivityExceptOne(Activity activity) {
+    public void finishAllActivityExceptOne(AppCompatActivity activity) {
         //先循环找出来
-        Activity activityExceptOne = null;
+        AppCompatActivity activityExceptOne = null;
         for (int i = 0; i < mActivityStack.size(); i++) {
-            Activity activityStack = mActivityStack.get(i);
+            AppCompatActivity activityStack = mActivityStack.get(i);
             if (activityStack == activity) {
                 activityExceptOne = activity;
             } else {
@@ -165,13 +166,13 @@ public class XAppActivityManager {
      * @param cls Activity Name
      * @return
      */
-    public Activity getActivityByClass(Class cls) {
+    public AppCompatActivity getActivityByClass(Class cls) {
         if (mActivityStack == null) {
             return null;
         }
         for (int i = 0; i < mActivityStack.size(); i++) {
             if (null != mActivityStack.get(i)) {
-                Activity activity = mActivityStack.get(i);
+                AppCompatActivity activity = mActivityStack.get(i);
                 String name1 = activity.getClass().getName();
                 String name2 = cls.getName();
                 if (name1.equals(name2)) {

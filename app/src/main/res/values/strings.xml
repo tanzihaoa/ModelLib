@@ -1,5 +1,15 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">短信发送助手</string>
-    <string name="access_desc">收款助手使用无障碍服务监听收款信息</string>
+    <string name="access_desc">自动记账</string>
     <string name="negative_duration">\u2212<xliff:g id="time" example="1:14">%1$s</xliff:g></string>
+
+
+    <string name="no_assets" translatable="false">请先添加资产！</string>
+    <string name="js_error" translatable="false">JS脚本执行出错，建议前去日志查看错误信息。</string>
+    <string name="data_loading" translatable="false">数据导入中…</string>
+    <string name="restore_failed" translatable="false">导入失败！</string>
+    <string name="restore_success" translatable="false">导入成功！</string>
+    <string name="set_error" translatable="false">该文件不是有效的%s配置数据文件</string>
+    <string name="output" translatable="false">数据导出中…</string>
+    <string name="output_success" translatable="false">数据导出成功！</string>
 </resources>

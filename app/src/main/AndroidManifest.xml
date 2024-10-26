@@ -11,6 +11,7 @@
         android:required="false" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"
         tools:ignore="ProtectedPermissions" />
@@ -173,14 +174,21 @@
             android:exported="true"
             tools:ignore="LockedOrientationActivity"  />
 
+        <activity android:name=".ui.activity.wallper.WallPaperActivity"
+            android:screenOrientation="portrait"
+            android:exported="true"
+            tools:ignore="LockedOrientationActivity" />
+
+        <service android:name=".service.AutoBillService" />
         <service
             android:name=".service.SkAccessibilityService"
             android:enabled="true"
             android:exported="true"
-            android:label="收款助手"
+            android:label="自动记账"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService" />
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
             <meta-data
                 android:name="android.accessibilityservice"
@@ -227,7 +235,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.tzh.myapplication.fileprovider"
+            android:authorities="com.example.myapplication.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -235,6 +243,7 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
+        <receiver android:name=".service.auto.Helper.broadcast.NotificationClickReceiver" /> <!-- 无障碍开机启动广播 -->
     </application>
 
 </manifest>

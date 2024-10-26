@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
-    android:accessibilityEventTypes="typeAllMask"
+    android:accessibilityEventTypes="typeWindowContentChanged|typeWindowStateChanged|typeNotificationStateChanged"
     android:accessibilityFeedbackType="feedbackAllMask"
+    android:accessibilityFlags="flagDefault|flagRetrieveInteractiveWindows|flagIncludeNotImportantViews|flagReportViewIds"
+    android:canRequestFilterKeyEvents="true"
     android:canRetrieveWindowContent="true"
+    android:canRequestEnhancedWebAccessibility="true"
     android:notificationTimeout="100"
-    android:packageNames="com.eg.android.AlipayGphone,com.tencent.mm,com.tencent.mobileqq"
+    android:packageNames="com.tencent.mm,com.eg.android.AlipayGphone,com.unionpay,com.sankuai.meituan.takeoutnew,com.sankuai.meituan,com.jingdong.app.mall,com.jd.jrapp,com.xunmeng.pinduoduo,com.synjones.xuepay.sdu"
     android:description="@string/access_desc" />

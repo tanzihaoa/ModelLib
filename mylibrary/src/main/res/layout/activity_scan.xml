@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@color/white">
-        <com.tzh.mylibrary.view.XAppTitleBar
+        <com.tzh.mylibrary.view.title.XAppTitleBar
             android:id="@+id/title_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

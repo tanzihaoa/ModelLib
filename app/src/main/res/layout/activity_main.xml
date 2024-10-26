@@ -13,7 +13,7 @@
         android:orientation="vertical"
         android:gravity="center_horizontal"
         android:background="@color/color_fff">
-        <com.tzh.mylibrary.view.XAppTitleView
+        <com.tzh.mylibrary.view.title.XAppTitleView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <com.tzh.mylibrary.shapeview.ShapeTextView
@@ -38,6 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_margin="16dp"
+            android:visibility="gone"
             app:shapeBackgroundColor="@color/color_00f3b8"
             android:onClick="@{()->v.openDialog()}"
             app:shapeCorners="8dp">
@@ -131,7 +132,6 @@
             android:text="无障碍模式"
             app:shapeCorners="20dp"
             android:gravity="center"
-            android:visibility="gone"
             app:shapeBackgroundColor="@color/color_00f3b8"
             app:shapeBorderColor="@color/color_333"
             app:shapeBorderWidth="1dp"
@@ -265,6 +265,7 @@
             android:text="木鱼"
             app:shapeCorners="20dp"
             android:gravity="center"
+            android:visibility="gone"
             app:shapeBackgroundColor="@color/color_00f3b8"
             app:shapeBorderColor="@color/color_333"
             app:shapeBorderWidth="1dp"
@@ -297,6 +298,7 @@
             android:text="录音"
             app:shapeCorners="20dp"
             android:gravity="center"
+            android:visibility="gone"
             app:shapeBackgroundColor="@color/color_00f3b8"
             app:shapeBorderColor="@color/color_333"
             app:shapeBorderWidth="1dp"
@@ -313,6 +315,7 @@
             android:text="拍照"
             app:shapeCorners="20dp"
             android:gravity="center"
+            android:visibility="gone"
             app:shapeBackgroundColor="@color/color_00f3b8"
             app:shapeBorderColor="@color/color_333"
             app:shapeBorderWidth="1dp"
@@ -349,6 +352,22 @@
             app:shapeBorderColor="@color/color_333"
             app:shapeBorderWidth="1dp"
             android:onClick="@{()->v.toXls()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <com.tzh.mylibrary.shapeview.ShapeTextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="16dp"
+            android:text="壁纸"
+            app:shapeCorners="20dp"
+            android:gravity="center"
+            app:shapeBackgroundColor="@color/color_00f3b8"
+            app:shapeBorderColor="@color/color_333"
+            app:shapeBorderWidth="1dp"
+            android:onClick="@{()->v.toWall()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

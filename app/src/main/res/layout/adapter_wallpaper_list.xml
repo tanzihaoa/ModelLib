@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+    <data>
+
+    </data>
+    <com.tzh.mylibrary.shapeview.ShapeRelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:shapeBackgroundColor="@color/color_f4f4f4"
+        app:shapeCorners="8dp">
+        <com.tzh.mylibrary.view.RatioImageView
+            android:id="@+id/iv_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:ratio="1.5"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher"/>
+    </com.tzh.mylibrary.shapeview.ShapeRelativeLayout>
+</layout>

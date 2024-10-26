@@ -1,0 +1,18 @@
+{
+  "data": [
+    {
+      "app": "com.tencent.mm",
+      "data": "{\"account_name1\":\"零钱\",\"shopRemark\":\"$3\",\"account_name2\":\"\",\"auto\":\"0\",\"regular_app\":\"com.tencent.mm\",\"identify\":\"helper\",\"regex_input\":\"Flag:11,Data:\\\\[转账-来自(.*),收入(.*)元, 当前状态, 已存入零钱, 转账说明, (.*), 转账时间, (.*), 收款时间, (.*), 转账单号\",\"fee\":\"\",\"shopName\":\"$1\",\"type\":\"1\",\"version\":1,\"dataId\":\"GJXpUGdLTUZznWpTsiMb0s1ysBrq5YSI\",\"money\":\"$2\",\"regular_name\":\"账单列表 接收转账\",\"str_input\":\"Flag:11,Data:[转账-来自中通客服009,收入12.80元, 当前状态, 已存入零钱, 转账说明, 75816267618453 赔付收件人12.8元 内物 手机壳, 转账时间, 2021年10月21日 10:02:51, 收款时间, 2021年10月21日 10:03:38, 转账单号, 1000050001202110210408961289027,   , 账单服务,   , 定位到聊天位置, 申请转账电子凭证, 查看往来转账,   , 账单]\",\"id\":\"\",\"time\":\"$5\",\"regular_remark\":\"编写：Ankio\"}",
+      "dataId": "GJXpUGdLTUZznWpTsiMb0s1ysBrq5YSI",
+      "identify": "helper",
+      "use": 1,
+      "name": "账单列表 缴费",
+      "remark": "编写：Ankio",
+      "id": 101,
+      "sort": 101,
+      "version": "1",
+      "regular": "var d,e,f,g,h,i;try{if(pattern=/Flag:11,Data:\\[(.*), (.*), 当前状态, 支付成功, 支付时间, (.*), 商品, (.*), 商户全称, (.*), \\\\s+/,pattern.test(a)){for(d=pattern.exec(a),e=\"$3##零钱##1##$2####$1####$5##0\",f=e.split(\"##\"),g=\"\",h=0;h<f.length;h++)i=f[h],g+=-1!=i.indexOf(\"$+\")?b(d,i,\"$+\")+\"##\":-1!=i.indexOf(\"$-\")?b(d,i,\"$-\")+\"##\":-1!=i.indexOf(\"$|\")?b(d,i,\"$|\")+\"##\":i+\"##\";return g=g.slice(0,g.length-2),c(d,g)}}catch(j){}"
+    }
+  ],
+  "from": "helper"
+}

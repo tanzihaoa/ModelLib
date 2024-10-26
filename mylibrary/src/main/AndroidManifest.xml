@@ -14,31 +14,31 @@
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.FLASHLIGHT" />
     <application>
-        <activity android:name=".activity.WebLibActivity"
+        <activity android:name=".activity.web.WebLibActivity"
             android:screenOrientation="portrait"
             android:exported="false"
             tools:ignore="LockedOrientationActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
-        <activity android:name=".activity.ScanActivity"
+        <activity android:name=".activity.tool.ScanActivity"
             android:screenOrientation="portrait"
             android:exported="false"
             tools:ignore="LockedOrientationActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"  />
 
-        <activity android:name=".activity.TranslateActivity"
+        <activity android:name=".activity.tool.TranslateActivity"
             android:screenOrientation="portrait"
             android:exported="false"
             tools:ignore="LockedOrientationActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"   />
 
-        <activity android:name=".activity.PasswordGenerationActivity"
+        <activity android:name=".activity.tool.PasswordGenerationActivity"
             android:screenOrientation="portrait"
             android:exported="false"
             tools:ignore="LockedOrientationActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"    />
 
-        <activity android:name=".activity.ScanUtilActivity"
+        <activity android:name=".activity.tool.ScanUtilActivity"
             android:screenOrientation="portrait"
             android:exported="false"
             tools:ignore="LockedOrientationActivity"

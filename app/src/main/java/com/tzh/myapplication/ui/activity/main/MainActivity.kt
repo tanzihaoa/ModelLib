@@ -26,6 +26,7 @@ import com.tzh.myapplication.ui.activity.ListActivity
 import com.tzh.myapplication.ui.activity.SearchActivity
 import com.tzh.myapplication.ui.activity.SendMessageActivity
 import com.tzh.myapplication.ui.activity.SendSmsActivity
+import com.tzh.myapplication.ui.activity.wallper.WallPaperActivity
 import com.tzh.myapplication.ui.dialog.AddMobileDialog
 import com.tzh.myapplication.ui.dialog.MyDialog
 import com.tzh.myapplication.utils.ConfigUtil
@@ -33,12 +34,10 @@ import com.tzh.myapplication.utils.SkUtil
 import com.tzh.myapplication.utils.TimeUtil
 import com.tzh.myapplication.utils.ToastUtil
 import com.tzh.myapplication.utils.img.PermissionDetectionUtil
-import com.tzh.myapplication.utils.window.WindowUtil
-import com.tzh.myapplication.utils.xls.DownloadDataUtil
 import com.tzh.myapplication.utils.xls.MyBean
 import com.tzh.myapplication.utils.xls.XlsxUtil
-import com.tzh.mylibrary.activity.ScanUtilActivity
-import com.tzh.mylibrary.activity.TranslateActivity
+import com.tzh.mylibrary.activity.tool.ScanUtilActivity
+import com.tzh.mylibrary.activity.tool.TranslateActivity
 import com.tzh.mylibrary.activity.tool.MuYuActivity
 import com.tzh.mylibrary.util.GsonUtil
 import com.tzh.mylibrary.util.img.ChoiceImageAdapter
@@ -260,7 +259,7 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
      * 导出数据为xlsx表
      */
     fun toXls(){
-        DownloadDataUtil().download(this, mutableListOf<MyBean>().apply {
+        XlsxUtil.toXlsx(this, mutableListOf<MyBean>().apply {
             add(MyBean(1,"20","2024-07-27","2024-07-27"))
             add(MyBean(2,"20","2024-07-27","2024-07-27"))
             add(MyBean(3,"20","2024-07-27","2024-07-27"))
@@ -269,5 +268,12 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
             add(MyBean(6,"20","2024-07-27","2024-07-27"))
             add(MyBean(7,"20","2024-07-27","2024-07-27"))
         })
+    }
+
+    /**
+     * 壁纸
+     */
+    fun toWall(){
+        WallPaperActivity.start(this)
     }
 }

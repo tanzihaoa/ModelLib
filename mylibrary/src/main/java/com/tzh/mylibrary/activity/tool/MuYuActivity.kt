@@ -34,8 +34,6 @@ class MuYuActivity : XBaseBindingActivity<ActivityMuYuBinding>(R.layout.activity
         binding.ivMuGun.setOnClickListener {
             clickMuYu()
         }
-
-        LoadImageUtil.loadImageUrl(binding.ivMuYu,"https://uubook.oss-cn-shanghai.aliyuncs.com/uubook_static/28f9005501ccb0d72764b8564bd4ca36.png")
     }
 
     override fun initData() {

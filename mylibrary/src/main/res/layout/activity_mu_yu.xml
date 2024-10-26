@@ -10,20 +10,19 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#000000">
-        <com.tzh.mylibrary.view.XAppTitleBar
+        android:background="#ffffff">
+        <com.tzh.mylibrary.view.title.XAppTitleBar
             android:id="@+id/title_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
-            app:xtbTitleText="木鱼"
-            app:xtbTitleTxtColor="@color/color_fff"
-            app:xtbBackIconColor="@color/color_fff"/>
+            app:xtbTitleText="木鱼"/>
         <ImageView
             android:id="@+id/iv_mu_yu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
+            android:src="@drawable/icon_muyu"
             android:layout_marginHorizontal="94dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -33,13 +32,13 @@
 
         <ImageView
             android:id="@+id/iv_mu_gun"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/iv_mu_yu"
             android:layout_marginBottom="-30dp"
             android:layout_marginEnd="40dp"
-            android:src="@drawable/wooden"/>
+            android:src="@drawable/icon_muyu_gun"/>
 
         <RelativeLayout
             android:id="@+id/layout_text"
@@ -59,15 +58,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="本次功德"
-                android:textColor="@color/color_fff"
+                android:text="功德"
+                android:textColor="@color/color_333"
                 android:textSize="16sp"/>
             <TextView
                 android:id="@+id/tv_now_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textColor="@color/color_fff"
+                android:textColor="@color/color_333"
                 android:text="0"/>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
