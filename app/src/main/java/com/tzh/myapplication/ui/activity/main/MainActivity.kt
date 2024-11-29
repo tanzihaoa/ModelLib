@@ -8,17 +8,26 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.telephony.SmsManager
+import android.view.View
+import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import com.liulishuo.okdownload.OkDownloadProvider.context
 import com.luck.picture.lib.config.SelectMimeType
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.interfaces.OnResultCallbackListener
+import com.molihuan.pathselector.PathSelector
+import com.molihuan.pathselector.entity.FileBean
+import com.molihuan.pathselector.fragment.BasePathSelectFragment
+import com.molihuan.pathselector.listener.CommonItemListener
+import com.molihuan.pathselector.utils.MConstants
+import com.molihuan.pathselector.utils.Mtools
 import com.tzh.myapplication.R
 import com.tzh.myapplication.base.AppBaseActivity
 import com.tzh.myapplication.databinding.ActivityMainBinding
-import com.tzh.myapplication.ui.activity.CallActivity
+import com.tzh.myapplication.livedata.AutoDataLiveData
 import com.tzh.myapplication.ui.activity.ContactsActivity
 import com.tzh.myapplication.ui.activity.HandSendMessageActivity
 import com.tzh.myapplication.ui.activity.ImageActivity
@@ -34,14 +43,14 @@ import com.tzh.myapplication.utils.SkUtil
 import com.tzh.myapplication.utils.TimeUtil
 import com.tzh.myapplication.utils.ToastUtil
 import com.tzh.myapplication.utils.img.PermissionDetectionUtil
+import com.tzh.myapplication.utils.window.WindowUtil
 import com.tzh.myapplication.utils.xls.MyBean
 import com.tzh.myapplication.utils.xls.XlsxUtil
+import com.tzh.mylibrary.activity.tool.MuYuActivity
 import com.tzh.mylibrary.activity.tool.ScanUtilActivity
 import com.tzh.mylibrary.activity.tool.TranslateActivity
-import com.tzh.mylibrary.activity.tool.MuYuActivity
+import com.tzh.mylibrary.livedata.observeForeverNoBack
 import com.tzh.mylibrary.util.GsonUtil
-import com.tzh.mylibrary.util.img.ChoiceImageAdapter
-import com.tzh.mylibrary.util.img.ChoiceImageUtil
 import com.tzh.mylibrary.util.picture.PictureSelectorHelper
 import com.tzh.mylibrary.util.toDefault
 
@@ -61,6 +70,10 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
         MyDialog(this)
     }
 
+    val mWindowUtil by lazy {
+        WindowUtil(this)
+    }
+
     override fun initView() {
         binding.v = this
 
@@ -70,20 +83,14 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
             SkUtil.start(this)
         }
 
-        val mAdapter = ChoiceImageUtil.setChoiceImage(this,binding.recyclerView,4,9,false, isBack = false,false)
-        mAdapter.setListener(object : ChoiceImageAdapter.ImageChangeListener{
-            override fun change() {
 
+        AutoDataLiveData.instance.observeForeverNoBack {
+            it?.apply {
+                binding.root.post {
+                    mWindowUtil.showAsFloatingWindow()
+                }
             }
-
-            override fun getPermission() {
-                PermissionDetectionUtil.detection(this@MainActivity,object : PermissionDetectionUtil.DetectionListener{
-                    override fun ok() {
-
-                    }
-                })
-            }
-        })
+        }
     }
 
     override fun onResume() {
@@ -252,7 +259,7 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
      * 缩小为悬浮窗
      */
     fun window(){
-        CallActivity.start(this)
+        mWindowUtil.showAsFloatingWindow()
     }
 
     /**
@@ -275,5 +282,44 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
      */
     fun toWall(){
         WallPaperActivity.start(this)
+    }
+
+    /**
+     * 选择文件
+     */
+    fun selectFile(){
+        //Activity构建方式
+        //Activity构建方式
+        val selector = PathSelector.build(this, MConstants.BUILD_ACTIVITY)
+            .setRequestCode(635)
+            .setShowFileTypes("xml", "cvs", "xls")
+            .setSelectFileTypes("xml", "cvs", "xls")
+            .setMaxCount(1)
+            .setShowSelectStorageBtn(false)//设置是否显示内部存储选择按钮
+            .setTitlebarBG(ContextCompat.getColor(context,R.color.colorPrimary))
+            .setMorePopupItemListeners(
+                object : CommonItemListener("确定",true) {
+                    override fun onClick(
+                        v: View,
+                        tv: TextView,
+                        selectedFiles: List<FileBean>,
+                        currentPath: String,
+                        pathSelectFragment: BasePathSelectFragment
+                    ): Boolean {
+                        val builder = StringBuilder()
+                        builder.append("you selected:\n")
+                        for (fileBean in selectedFiles) {
+                            builder.append(fileBean.path + "\n")
+                        }
+                        Mtools.toast(builder.toString())
+                        return true
+                    }
+                }
+            )
+            .show()
+    }
+
+    fun toSelectFile(){
+        SelectFileActivity.start(this)
     }
 }

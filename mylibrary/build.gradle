@@ -103,4 +103,6 @@ dependencies {
 
     //中英文转换框架
     api 'com.belerweb:pinyin4j:2.5.1'
+
+    api 'io.github.molihuan:pathselector:1.1.16'
 }

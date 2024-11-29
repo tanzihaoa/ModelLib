@@ -1,5 +1,6 @@
 package com.tzh.myapplication.service.auto
 
+import com.tzh.myapplication.utils.DateTime
 import com.tzh.mylibrary.util.GsonUtil
 import com.tzh.mylibrary.util.LogUtils
 
@@ -8,6 +9,9 @@ import com.tzh.mylibrary.util.LogUtils
  */
 object AutoDataGetUtil {
 
+    /**
+     * 获取微信账单页面数据
+     */
     fun getData(dataInfo : MutableList<String>) : AutoDataDto{
         LogUtils.e("数据=====", GsonUtil.GsonString(dataInfo))
         val dto = AutoDataDto()
@@ -29,6 +33,32 @@ object AutoDataGetUtil {
             LogUtils.e("失败=====", GsonUtil.GsonString(e))
             return dto
         }
+    }
+
+    /**
+     * 获取微信支付页面数据
+     */
+    fun getWxPlay(dataInfo : MutableList<String>) : AutoDataDto{
+        LogUtils.e("数据=====", GsonUtil.GsonString(dataInfo))
+        val dto = AutoDataDto()
+
+        for(info in dataInfo){
+            if(info.contains("￥")){
+                dto.money = -info.replace("￥","").toFloat()
+            }
+
+            if(info.contains("待") && info.contains("确认收款")){
+                //转账类型
+                dto.remark = "向"+info.replace("待","").replace("确认收款","")+"转账"
+            }
+
+        }
+
+        dto.type = "1"
+        dto.time = DateTime.getNowTime()
+
+
+        return dto
     }
 
     /**

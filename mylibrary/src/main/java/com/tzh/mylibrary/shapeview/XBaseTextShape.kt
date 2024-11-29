@@ -6,6 +6,7 @@ import android.content.res.TypedArray
 import android.graphics.drawable.GradientDrawable
 import android.view.View
 import android.widget.TextView
+import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import com.tzh.mylibrary.R
@@ -198,6 +199,11 @@ open class XBaseTextShape<T : TextView>(val view: T) {
 
     fun setShapeBackgroundColorRes(@ColorRes resId: Int) {
         gradientDrawable.setColor(ContextCompat.getColor(view.context, resId))
+        view.background = gradientDrawable
+    }
+
+    fun setShapeBackgroundColor(@ColorInt color: Int) {
+        gradientDrawable.setColor(color)
         view.background = gradientDrawable
     }
 

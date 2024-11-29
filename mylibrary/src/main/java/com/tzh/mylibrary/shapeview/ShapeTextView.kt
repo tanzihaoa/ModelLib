@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.view.View
+import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.appcompat.widget.AppCompatTextView
 import com.tzh.mylibrary.R
@@ -26,6 +27,10 @@ open class ShapeTextView @JvmOverloads constructor(
         attrs?.run {
             xBaseShape.initShape(context.obtainStyledAttributes(attrs, R.styleable.ShapeTextView))
         }
+    }
+
+    fun setShapeBackgroundColor(@ColorInt color: Int) {
+        xBaseShape.setShapeBackgroundColor(color)
     }
 
     fun setShapeBackgroundColorRes(@ColorRes resId: Int) {

@@ -1,6 +1,7 @@
 package com.tzh.myapplication.livedata
 
 import androidx.lifecycle.MutableLiveData
+import com.tzh.myapplication.service.auto.AutoDataDto
 import com.tzh.myapplication.ui.dto.SmsDto
 
 /**
@@ -18,5 +19,14 @@ class LoginStateLiveData : MutableLiveData<Boolean>() {
 class SmsLiveData : MutableLiveData<SmsDto>() {
     companion object {
         val instance by lazy { SmsLiveData() }
+    }
+}
+
+/**
+ * 收到自动记账监听
+ */
+class AutoDataLiveData : MutableLiveData<AutoDataDto>() {
+    companion object {
+        val instance by lazy { AutoDataLiveData() }
     }
 }

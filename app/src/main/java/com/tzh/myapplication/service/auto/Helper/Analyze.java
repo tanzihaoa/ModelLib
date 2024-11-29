@@ -6,6 +6,7 @@ import android.content.Context;
 import android.util.Log;
 import android.view.accessibility.AccessibilityNodeInfo;
 
+import com.tzh.myapplication.livedata.AutoDataLiveData;
 import com.tzh.myapplication.service.SkAccessibilityService;
 import com.tzh.myapplication.service.auto.AutoDataDto;
 import com.tzh.myapplication.service.auto.AutoDataGetUtil;
@@ -14,10 +15,8 @@ import com.tzh.myapplication.service.auto.Helper.pkg.mt;
 import com.tzh.myapplication.service.auto.Helper.pkg.baseHelper;
 import com.tzh.myapplication.service.auto.Helper.pkg.unionOrjd;
 import com.tzh.myapplication.service.auto.Helper.pkg.wechat;
-import com.tzh.myapplication.service.auto.bills.BillInfo;
 import com.tzh.mylibrary.util.GsonUtil;
 import com.tzh.mylibrary.util.LogUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,19 +58,6 @@ public class Analyze implements Runnable {
         this.className = className;
         this.nodeInfo = nodeInfo;
 
-    }
-
-    public static void goApp(Context context, BillInfo billInfo) {
-        if (billInfo == null) {
-            Log.i("","Billinfo数据为空");
-            return;
-        }
-        //防止出现多次识别
-        if (System.currentTimeMillis() - time > 1000L) {
-            time = System.currentTimeMillis();
-//            SendDataToApp.call(context, billInfo);
-            //进行记账
-        }
     }
 
     //验证节点
@@ -191,49 +177,23 @@ public class Analyze implements Runnable {
                     return;
                 }
 
-                if(autoService.flag == FLAG_WECHAT_PAY_MONEY_UI){
+                if(autoService.flag == FLAG_WECHAT_PAY_MONEY_UI || autoService.flag == FLAG_WECHAT_DETAIL_UI_2){
                     //微信账单详情
                     AutoDataDto dto = AutoDataGetUtil.INSTANCE.getData(nodeListInfo);
                     LogUtils.e("微信账单解析结果=====",GsonUtil.GsonString(dto));
+                    goApp(dto);
+                }else if(autoService.flag == FLAG_WECHAT_PAY_UI){
+                    //微信支付页面
+                    AutoDataDto dto = AutoDataGetUtil.INSTANCE.getWxPlay(nodeListInfo);
+                    LogUtils.e("微信支付账单解析结果=====",GsonUtil.GsonString(dto));
+                    goApp(dto);
                 }else if(autoService.flag == FLAG_ALIPAY_PAY_DETAIL_UI){
                     //支付宝账单详情
                     AutoDataDto dto = AutoDataGetUtil.INSTANCE.getAliPayData(nodeListInfo);
                     LogUtils.e("支付宝账单解析结果=====",GsonUtil.GsonString(dto));
+                    goApp(dto);
                 }
 
-
-//                String s = "Flag:" + autoService.flag + ",Data:" + nodeListInfo.toString();
-//                String s = nodeListInfo.toString();
-//
-//                String identify = "helper";
-//
-//                TaskThread.onThread(() -> {
-//                    Db.db.AppDataDao().add(s, identify, packageName);
-//                });
-//                Handler mHandler = new Handler(Looper.getMainLooper()) {
-//                    @Override
-//                    public void handleMessage(@NonNull Message msg) {
-//                        BillInfo billInfo = (BillInfo) msg.obj;
-//                        billInfo.setFromApp(AppInfo.getName(autoService.getApplicationContext(), packageName));
-//
-//                        //  billInfo.setFromApp(app);
-//                        goApp(autoService.getApplicationContext(), billInfo);
-//                    }
-//                };
-//
-//                RegularCenter.getInstance(identify).run(packageName, s, null, new TaskThread.TaskResult() {
-//                    @Override
-//                    public void onEnd(Object obj) {
-//                        BillInfo billInfo = (BillInfo) obj;
-//                        if (billInfo != null) {
-//                            Log.i("=====","[auto]解析成功");
-//                            Log.i("billInfo=====", GsonUtil.GsonString(billInfo));
-//                            SkAccessibilityService.clear(autoService);
-//                        } else {
-//                            Log.i("=====","[auto]解析失败");
-//                        }
-//                    }
-//                });
             }
         } catch (Throwable v0) {
             Log.i("=====","出现异常");
@@ -243,5 +203,18 @@ public class Analyze implements Runnable {
 
     }
 
+    public static void goApp(AutoDataDto autoDataDto) {
+        if (autoDataDto == null) {
+            Log.i("","autoDataDto数据为空");
+            return;
+        }
+        //防止出现多次识别
+        if (System.currentTimeMillis() - time > 1000L) {
+            time = System.currentTimeMillis();
+//            SendDataToApp.call(context, billInfo);
+            //进行记账
+            AutoDataLiveData.Companion.getInstance().postValue(autoDataDto);
+        }
+    }
 }
 

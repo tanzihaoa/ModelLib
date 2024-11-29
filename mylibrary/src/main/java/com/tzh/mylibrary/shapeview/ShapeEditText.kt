@@ -3,6 +3,7 @@ package com.tzh.mylibrary.shapeview
 import android.content.Context
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
+import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import com.tzh.mylibrary.R
 
@@ -29,6 +30,10 @@ open class ShapeEditText @JvmOverloads constructor(
 
     fun setShapeBackgroundColorRes(@ColorRes resId: Int) {
         xBaseShape.setShapeBackgroundColorRes(resId)
+    }
+
+    fun setShapeBackgroundColor(@ColorInt color: Int) {
+        xBaseShape.setShapeBackgroundColor(color)
     }
 
     /**

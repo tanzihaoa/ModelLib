@@ -23,16 +23,12 @@ import java.util.concurrent.Executors;
 public class SkAccessibilityService extends AccessibilityService{
 
     public static List<String> nodeList = new ArrayList<>();
-    public static boolean l;
-    public static boolean m;
-    public final ExecutorService h;
     public volatile boolean useful;
     public volatile int flag;
 
     public SkAccessibilityService() {
         this.useful = false;
         this.flag = 0;
-        this.h = Executors.newSingleThreadExecutor();
     }
 
 

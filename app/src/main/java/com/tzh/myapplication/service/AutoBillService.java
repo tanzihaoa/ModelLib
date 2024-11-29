@@ -68,13 +68,11 @@ public class AutoBillService extends Service {
         builder.setSmallIcon(R.mipmap.ic_launcher);
         builder.setCustomContentView(remoteViews);
         builder.setCustomBigContentView(remoteViews);
-        if (Build.VERSION.SDK_INT >= 26) {
-            NotificationChannel notificationChannel = new NotificationChannel("AutoBillService", "自动记账后台服务通知", NotificationManager.IMPORTANCE_HIGH);
-            notificationChannel.enableLights(false);
-            notificationChannel.setShowBadge(false);
-            ((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE)).createNotificationChannel(notificationChannel);
-            builder.setChannelId("AutoBillService");
-        }
+        NotificationChannel notificationChannel = new NotificationChannel("AutoBillService", "自动记账后台服务通知", NotificationManager.IMPORTANCE_HIGH);
+        notificationChannel.enableLights(false);
+        notificationChannel.setShowBadge(false);
+        ((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE)).createNotificationChannel(notificationChannel);
+        builder.setChannelId("AutoBillService");
         Notification notification = builder.build();
         notification.defaults = 1;
         notification.flags = 2;
