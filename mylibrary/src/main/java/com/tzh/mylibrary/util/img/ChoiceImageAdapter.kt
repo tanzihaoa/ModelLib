@@ -42,7 +42,7 @@ class ChoiceImageAdapter(val activity : AppCompatActivity, private val num : Int
                                     object : OnResultCallbackListener<LocalMedia> {
 
                                         override fun onResult(result: ArrayList<LocalMedia>?) {
-                                            setDataList(localMediaToImage(result))
+                                            addDataList(localMediaToImage(result))
                                         }
 
                                         override fun onCancel() {}
@@ -54,7 +54,7 @@ class ChoiceImageAdapter(val activity : AppCompatActivity, private val num : Int
                                     num - listData.size + 1,
                                     object : OnResultCallbackListener<LocalMedia> {
                                         override fun onResult(result: ArrayList<LocalMedia>?) {
-                                            setDataList(localMediaToImage(result))
+                                            addDataList(localMediaToImage(result))
                                         }
 
                                         override fun onCancel() {}
@@ -66,7 +66,7 @@ class ChoiceImageAdapter(val activity : AppCompatActivity, private val num : Int
                             PictureSelectorHelper.onPictureSelector(activity, mutableListOf(),num - listData.size + 1,
                                 object : OnResultCallbackListener<LocalMedia> {
                                     override fun onResult(result: ArrayList<LocalMedia>?) {
-                                        setDataList(localMediaToImage(result))
+                                        addDataList(localMediaToImage(result))
                                     }
 
                                     override fun onCancel() {}
@@ -77,7 +77,7 @@ class ChoiceImageAdapter(val activity : AppCompatActivity, private val num : Int
                                 num - listData.size + 1,
                                 object : OnResultCallbackListener<LocalMedia> {
                                     override fun onResult(result: ArrayList<LocalMedia>?) {
-                                        setDataList(localMediaToImage(result))
+                                        addDataList(localMediaToImage(result))
                                     }
 
                                     override fun onCancel() {}
