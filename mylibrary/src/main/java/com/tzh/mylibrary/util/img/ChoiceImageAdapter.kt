@@ -38,11 +38,11 @@ class ChoiceImageAdapter(val activity : AppCompatActivity, private val num : Int
                     if (listData.size >= num) {
                         if (listData[num - 1].status == 1) {
                             if(isHaveVideo){
-                                PictureSelectorHelper.onPictureSelector(activity, selectImage,num - listData.size + 1,
+                                PictureSelectorHelper.onPictureSelector(activity, mutableListOf(),num - listData.size + 1,
                                     object : OnResultCallbackListener<LocalMedia> {
 
                                         override fun onResult(result: ArrayList<LocalMedia>?) {
-                                            setDataList(result)
+                                            setDataList(localMediaToImage(result))
                                         }
 
                                         override fun onCancel() {}
@@ -50,11 +50,11 @@ class ChoiceImageAdapter(val activity : AppCompatActivity, private val num : Int
                             }else{
                                 PictureSelectorHelper.onPictureSelector(
                                     activity,
-                                    selectImage,
+                                    mutableListOf(),
                                     num - listData.size + 1,
                                     object : OnResultCallbackListener<LocalMedia> {
                                         override fun onResult(result: ArrayList<LocalMedia>?) {
-                                            setDataList(result)
+                                            setDataList(localMediaToImage(result))
                                         }
 
                                         override fun onCancel() {}
@@ -63,21 +63,21 @@ class ChoiceImageAdapter(val activity : AppCompatActivity, private val num : Int
                         }
                     } else {
                         if(isHaveVideo){
-                            PictureSelectorHelper.onPictureSelector(activity, selectImage,num - listData.size + 1,
+                            PictureSelectorHelper.onPictureSelector(activity, mutableListOf(),num - listData.size + 1,
                                 object : OnResultCallbackListener<LocalMedia> {
                                     override fun onResult(result: ArrayList<LocalMedia>?) {
-                                        setDataList(result)
+                                        setDataList(localMediaToImage(result))
                                     }
 
                                     override fun onCancel() {}
                                 }, SelectMimeType.ofAll(),isCamera)
                         }else{
                             PictureSelectorHelper.onPictureSelector(
-                                activity,selectImage,
+                                activity,mutableListOf(),
                                 num - listData.size + 1,
                                 object : OnResultCallbackListener<LocalMedia> {
                                     override fun onResult(result: ArrayList<LocalMedia>?) {
-                                        setDataList(result)
+                                        setDataList(localMediaToImage(result))
                                     }
 
                                     override fun onCancel() {}
@@ -134,35 +134,36 @@ class ChoiceImageAdapter(val activity : AppCompatActivity, private val num : Int
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setDataList(list: List<LocalMedia>?) {
-        if (list != null) {
-            this.listData.clear()
-            selectImage.clear()
-            selectImage.addAll(list)
-            for (dto in list){
-                this.listData.add(ImageDTO(File(dto.realPath),0).apply {
-                    type = if(dto.mimeType.contains("video")){
-                        2
-                    }else{
-                        1
-                    }
-                })
-            }
-            initView()
-            notifyDataSetChanged()
-        }
+    fun setDataList(list: List<ImageDTO>) {
+        this.listData.clear()
+        selectImage.clear()
+        selectImage.addAll(list)
+        this.listData.addAll(list)
+        initView()
+        notifyDataSetChanged()
     }
 
-    var selectImage : MutableList<LocalMedia> = mutableListOf()
-    fun addDataList(list: List<LocalMedia>?) {
+    var selectImage : MutableList<ImageDTO> = mutableListOf()
+    fun addDataList(list: List<ImageDTO>?) {
         if (list != null) {
             if (listData.size > 0) {
                 if (listData[listData.size - 1].status == 1) {
                     listData.removeAt(listData.size - 1)
                 }
             }
+            this.listData.addAll(list)
+            initView()
+
+            selectImage.addAll(list)
+            mListener?.change()
+        }
+    }
+
+    fun localMediaToImage(list : MutableList<LocalMedia>?) : MutableList<ImageDTO>{
+        if (list != null) {
+            val mList = mutableListOf<ImageDTO>()
             for (dto in list){
-                this.listData.add(ImageDTO(File(dto.realPath),0).apply {
+                mList.add(ImageDTO(File(dto.realPath),0).apply {
                     type = if(dto.mimeType.contains("video")){
                         2
                     }else{
@@ -170,10 +171,10 @@ class ChoiceImageAdapter(val activity : AppCompatActivity, private val num : Int
                     }
                 })
             }
-            initView()
 
-            selectImage.addAll(list)
-            mListener?.change()
+            return mList
+        }else{
+            return mutableListOf()
         }
     }
 
