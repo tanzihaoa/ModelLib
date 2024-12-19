@@ -105,4 +105,6 @@ dependencies {
     api 'com.belerweb:pinyin4j:2.5.1'
 
     api 'io.github.molihuan:pathselector:1.1.16'
+
+    api 'androidx.cardview:cardview:1.0.0'
 }

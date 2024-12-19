@@ -7,9 +7,13 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
+import android.os.Environment
+import android.provider.Settings
 import android.telephony.SmsManager
+import android.util.Log
 import android.view.View
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -51,6 +55,7 @@ import com.tzh.mylibrary.activity.tool.ScanUtilActivity
 import com.tzh.mylibrary.activity.tool.TranslateActivity
 import com.tzh.mylibrary.livedata.observeForeverNoBack
 import com.tzh.mylibrary.util.GsonUtil
+import com.tzh.mylibrary.util.permission.PermissionLauncher
 import com.tzh.mylibrary.util.picture.PictureSelectorHelper
 import com.tzh.mylibrary.util.toDefault
 
@@ -321,5 +326,40 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
 
     fun toSelectFile(){
         SelectFileActivity.start(this)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.R)
+    fun permission(){
+        PermissionLauncher()
+            .with(this) //this可以是androidx.fragment.app.Fragment或者androidx.fragment.app.FragmentActivity
+            .granted {
+                Log.e("======","已经获得权限")
+            }
+            .denied { rejectPermissionList: List<String> ->
+                for(permission in rejectPermissionList){
+                    if(permission == Manifest.permission.MANAGE_EXTERNAL_STORAGE && !Environment.isExternalStorageManager()){
+                        val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
+                        intent.data = Uri.parse("package:$packageName")
+                        startActivity(intent)
+                    }
+                }
+                Log.e("======",GsonUtil.GsonString(rejectPermissionList))
+            }
+            .request(getFilePermissions().toTypedArray(), arrayOf("文件选择"), arrayOf("该功能需要获取手机存储读取权限用于选择本地文件"))
+    }
+
+
+    /**
+     * 选择文件所需权限
+     */
+    fun getFilePermissions(): MutableList<String> {
+        return mutableListOf<String>().apply {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                add(Manifest.permission.MANAGE_EXTERNAL_STORAGE)
+            } else {
+                add(Manifest.permission.READ_EXTERNAL_STORAGE)
+                add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            }
+        }
     }
 }
