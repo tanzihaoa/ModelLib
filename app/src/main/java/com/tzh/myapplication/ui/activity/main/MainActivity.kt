@@ -204,7 +204,7 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
      * 木鱼
      */
     fun muYu(){
-        MuYuActivity.start(this)
+
     }
 
     /**
