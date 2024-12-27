@@ -98,8 +98,13 @@ class DirectionView @JvmOverloads constructor(
         changeUI()
     }
 
-    fun setColorRes(@ColorRes color: Int) {
+    fun setColor(@ColorRes color: Int) {
         mFinishColor = ContextCompat.getColor(context, color)
+        binding?.finish?.setShapeBackgroundColor(mFinishColor)
+    }
+
+    fun setColorRes(@ColorRes color: Int) {
+        mFinishColor = color
         binding?.finish?.setShapeBackgroundColor(mFinishColor)
     }
 

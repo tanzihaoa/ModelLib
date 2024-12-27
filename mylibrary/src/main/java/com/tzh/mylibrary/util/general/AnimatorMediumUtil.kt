@@ -129,7 +129,7 @@ object AnimatorMediumUtil {
         }else{
             textView.setTextColor(Color.parseColor("#EC8812"))
         }
-        FontUtil.loadFont(textView, FontType.SJXZ)
+//        FontUtil.loadFont(textView, FontType.SJXZ)
         val animSet = AnimatorSet()
         val anim1 = ObjectAnimator.ofFloat(textView, "translationX", view.x + view.width / 2 - DpToUtil.dip2px(view.context,textView.text.length.toFloat()*8), state) //移动到屏幕中间
         val anim2 = ObjectAnimator.ofFloat(textView, "translationY", view.y, 0f) //从木鱼移动到上端
