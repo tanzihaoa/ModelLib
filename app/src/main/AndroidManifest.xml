@@ -184,6 +184,11 @@
             android:exported="true"
             tools:ignore="LockedOrientationActivity"/>
 
+        <activity android:name=".ui.activity.encipher.EncipherActivity"
+            android:screenOrientation="portrait"
+            android:exported="true"
+            tools:ignore="LockedOrientationActivity"/>
+
         <service android:name=".service.AutoBillService" />
         <service
             android:name=".service.SkAccessibilityService"

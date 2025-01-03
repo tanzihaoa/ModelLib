@@ -39,6 +39,7 @@ import com.tzh.myapplication.ui.activity.ListActivity
 import com.tzh.myapplication.ui.activity.SearchActivity
 import com.tzh.myapplication.ui.activity.SendMessageActivity
 import com.tzh.myapplication.ui.activity.SendSmsActivity
+import com.tzh.myapplication.ui.activity.encipher.EncipherActivity
 import com.tzh.myapplication.ui.activity.wallper.WallPaperActivity
 import com.tzh.myapplication.ui.dialog.AddMobileDialog
 import com.tzh.myapplication.ui.dialog.MyDialog
@@ -289,38 +290,10 @@ class MainActivity : AppBaseActivity<ActivityMainBinding>(R.layout.activity_main
     }
 
     /**
-     * 选择文件
+     * 加密
      */
     fun selectFile(){
-        //Activity构建方式
-        //Activity构建方式
-        val selector = PathSelector.build(this, MConstants.BUILD_ACTIVITY)
-            .setRequestCode(635)
-            .setShowFileTypes("xml", "cvs", "xls")
-            .setSelectFileTypes("xml", "cvs", "xls")
-            .setMaxCount(1)
-            .setShowSelectStorageBtn(false)//设置是否显示内部存储选择按钮
-            .setTitlebarBG(ContextCompat.getColor(context,R.color.colorPrimary))
-            .setMorePopupItemListeners(
-                object : CommonItemListener("确定",true) {
-                    override fun onClick(
-                        v: View,
-                        tv: TextView,
-                        selectedFiles: List<FileBean>,
-                        currentPath: String,
-                        pathSelectFragment: BasePathSelectFragment
-                    ): Boolean {
-                        val builder = StringBuilder()
-                        builder.append("you selected:\n")
-                        for (fileBean in selectedFiles) {
-                            builder.append(fileBean.path + "\n")
-                        }
-                        Mtools.toast(builder.toString())
-                        return true
-                    }
-                }
-            )
-            .show()
+        EncipherActivity.start(this)
     }
 
     fun toSelectFile(){

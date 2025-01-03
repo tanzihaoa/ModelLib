@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="activity"
+            type="com.tzh.myapplication.ui.activity.encipher.EncipherActivity" />
+    </data>
+    <com.tzh.mylibrary.shapeview.ShapeLinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <com.tzh.mylibrary.view.title.XAppTitleBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:xtbTitleText="加密"/>
+        <com.tzh.mylibrary.shapeview.ShapeTextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="16dp"
+            android:onClick="@{()->activity.encode()}"
+            app:shapeBackgroundColor="@color/color_00f3b8"
+            app:shapeCorners="12dp"
+            android:gravity="center"
+            android:text="加密"/>
+        <com.tzh.mylibrary.shapeview.ShapeTextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="16dp"
+            android:onClick="@{()->activity.getCode()}"
+            app:shapeBackgroundColor="@color/color_00f3b8"
+            app:shapeCorners="12dp"
+            android:gravity="center"
+            android:text="打印手机数据"/>
+
+        <com.tzh.mylibrary.shapeview.ShapeTextView
+            android:id="@+id/tv_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"/>
+    </com.tzh.mylibrary.shapeview.ShapeLinearLayout>
+</layout>
